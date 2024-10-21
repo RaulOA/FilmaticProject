@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Filmatic.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <!-- Metadatos básicos -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Título dinámico de la página -->
+    <title><%: Page.Title %> - Filmatic</title>
+
+    <!-- Referencia a Modernizr (para compatibilidad con navegadores antiguos) -->
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <!-- Referencias a los estilos del sitio -->
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+
+    <!-- Favicon del sitio -->
+    <link href="~/favicon.ico" rel="icon" type="image/x-icon" />
+</head>
+<body>
+    <!-- Formulario principal para mantener el estado del servidor -->
+    <form runat="server">
+        <!-- ScriptManager para gestionar los scripts del servidor y cliente -->
+        <asp:ScriptManager runat="server" />
+
+        <!-- Barra de navegación -->
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <div class="container">
+                <!-- Nombre de la aplicación y enlace a la página de inicio -->
+                <a class="navbar-brand" runat="server" href="Pages/Home.aspx">FILMATIC</a>
+
+                <!-- Botón para navegación en dispositivos móviles -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Menú de navegación -->
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Movies.aspx">Películas</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Billboard.aspx">Cartelera</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Register.aspx">Crear Cuenta</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Login.aspx">Iniciar Sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Contenido principal dinámico -->
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+            <hr />
+
+            <!-- Pie de página -->
+            <footer class="text-center">
+                <p>&copy; <%: DateTime.Now.Year %> - Filmatic</p>
+            </footer>
+        </div>
+    </form>
+
+    <!-- Scripts necesarios para el sitio, incluido Bootstrap -->
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/bootstrap") %>
+    </asp:PlaceHolder>
+</body>
+</html>

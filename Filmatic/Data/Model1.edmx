@@ -1,0 +1,1001 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FilmaticModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="auth_app_privileges">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="auth_app_role_privileges">
+          <Key>
+            <PropertyRef Name="id_privilege" />
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_privilege" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="id_role" Type="char" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="auth_permisions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="auth_role_permisions">
+          <Key>
+            <PropertyRef Name="id_permision" />
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_permision" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="id_role" Type="char" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="auth_roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="auth_user_roles">
+          <Key>
+            <PropertyRef Name="id_user" />
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_user" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="id_role" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="STATUS" Type="nchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="auth_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="id_document" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="usernamme" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="hash_password" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" />
+          <Property Name="lastname" Type="varchar" MaxLength="200" />
+          <Property Name="email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="phone_number" Type="varchar" MaxLength="50" />
+          <Property Name="create_at" Type="datetime" />
+          <Property Name="birthday_date" Type="date" />
+          <Property Name="status" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="cat_genres_movies">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="cat_movie_genres">
+          <Key>
+            <PropertyRef Name="id_movie" />
+            <PropertyRef Name="code_genre" />
+          </Key>
+          <Property Name="id_movie" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="code_genre" Type="char" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cat_movies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="synopsis" Type="varchar" MaxLength="2000" />
+          <Property Name="year" Type="int" />
+        </EntityType>
+        <EntityType Name="cinema_agencies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" />
+          <Property Name="description" Type="varchar" MaxLength="1000" />
+          <Property Name="direction" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="cinema_functions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="id_room" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="create_at" Type="datetime" Nullable="false" />
+          <Property Name="duration" Type="decimal" Precision="5" Scale="1" />
+          <Property Name="start_date" Type="datetime" />
+          <Property Name="id_movie" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="format_movie" Type="char" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cinema_rooms">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="id_agency" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="number_room" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" />
+          <Property Name="ubication" Type="varchar" MaxLength="200" />
+          <Property Name="description" Type="varchar" MaxLength="500" />
+          <Property Name="model" Type="varchar" MaxLength="10" />
+          <Property Name="status" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="invoice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_user" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="id_payment_card" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="create_at" Type="datetime" Nullable="false" />
+          <Property Name="total_amount" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="status" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="invoice_deta">
+          <Key>
+            <PropertyRef Name="id_invoice" />
+            <PropertyRef Name="line" />
+          </Key>
+          <Property Name="id_invoice" Type="int" Nullable="false" />
+          <Property Name="line" Type="int" Nullable="false" />
+          <Property Name="detail" Type="varchar(max)" Nullable="false" />
+          <Property Name="total_line" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="status" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="payment_cards">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="id_user" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="represent_name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="card_number" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="card_year" Type="int" Nullable="false" />
+          <Property Name="card_month" Type="int" Nullable="false" />
+          <Property Name="card_cv" Type="varchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <Association Name="FK01_auth_permisions__auth_app_privileges">
+          <End Role="auth_app_privileges" Type="Self.auth_app_privileges" Multiplicity="1" />
+          <End Role="auth_app_role_privileges" Type="Self.auth_app_role_privileges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="auth_app_privileges">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="auth_app_role_privileges">
+              <PropertyRef Name="id_privilege" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK01_auth_role_permisions__auth_permisions">
+          <End Role="auth_permisions" Type="Self.auth_permisions" Multiplicity="1" />
+          <End Role="auth_role_permisions" Type="Self.auth_role_permisions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="auth_permisions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="auth_role_permisions">
+              <PropertyRef Name="id_permision" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK01_auth_user_roles__auth_users">
+          <End Role="auth_users" Type="Self.auth_users" Multiplicity="1" />
+          <End Role="auth_user_roles" Type="Self.auth_user_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="auth_users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="auth_user_roles">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK01_cat_movie_genres__cat_movies">
+          <End Role="cat_movies" Type="Self.cat_movies" Multiplicity="1" />
+          <End Role="cat_movie_genres" Type="Self.cat_movie_genres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cat_movies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cat_movie_genres">
+              <PropertyRef Name="id_movie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK01_cinema_functions__cinema_rooms">
+          <End Role="cinema_rooms" Type="Self.cinema_rooms" Multiplicity="1" />
+          <End Role="cinema_functions" Type="Self.cinema_functions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cinema_rooms">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cinema_functions">
+              <PropertyRef Name="id_room" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK01_cinema_rooms__cinema_agencies">
+          <End Role="cinema_agencies" Type="Self.cinema_agencies" Multiplicity="1" />
+          <End Role="cinema_rooms" Type="Self.cinema_rooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cinema_agencies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cinema_rooms">
+              <PropertyRef Name="id_agency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK01_invoice__auth_users">
+          <End Role="auth_users" Type="Self.auth_users" Multiplicity="1" />
+          <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="auth_users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK01_invoice_deta__invoice">
+          <End Role="invoice" Type="Self.invoice" Multiplicity="1" />
+          <End Role="invoice_deta" Type="Self.invoice_deta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoice">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice_deta">
+              <PropertyRef Name="id_invoice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK01_payment_cards__auth_users">
+          <End Role="auth_users" Type="Self.auth_users" Multiplicity="1" />
+          <End Role="payment_cards" Type="Self.payment_cards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="auth_users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="payment_cards">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK02_auth_app_role_privileges__auth_roles">
+          <End Role="auth_roles" Type="Self.auth_roles" Multiplicity="1" />
+          <End Role="auth_app_role_privileges" Type="Self.auth_app_role_privileges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="auth_roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="auth_app_role_privileges">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK02_auth_role_permisions__auth_roles">
+          <End Role="auth_roles" Type="Self.auth_roles" Multiplicity="1" />
+          <End Role="auth_role_permisions" Type="Self.auth_role_permisions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="auth_roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="auth_role_permisions">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK02_auth_user_roles__auth_roles">
+          <End Role="auth_roles" Type="Self.auth_roles" Multiplicity="1" />
+          <End Role="auth_user_roles" Type="Self.auth_user_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="auth_roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="auth_user_roles">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK02_cat_movie_genres__cat_genres_movies">
+          <End Role="cat_genres_movies" Type="Self.cat_genres_movies" Multiplicity="1" />
+          <End Role="cat_movie_genres" Type="Self.cat_movie_genres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cat_genres_movies">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="cat_movie_genres">
+              <PropertyRef Name="code_genre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK02_cinema_functions__cinema_movies">
+          <End Role="cat_movies" Type="Self.cat_movies" Multiplicity="1" />
+          <End Role="cinema_functions" Type="Self.cinema_functions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cat_movies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cinema_functions">
+              <PropertyRef Name="id_movie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK02_invoice__payment_cards">
+          <End Role="payment_cards" Type="Self.payment_cards" Multiplicity="1" />
+          <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payment_cards">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice">
+              <PropertyRef Name="id_payment_card" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="F_GetHashedPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+          <Parameter Name="Pv_password" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Pv_hash" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="P_CreateHashedPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Pv_password" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="P_CreateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_username" Type="varchar" Mode="In" />
+          <Parameter Name="Lv_password" Type="varchar" Mode="In" />
+          <Parameter Name="Lv_name" Type="varchar" Mode="In" />
+          <Parameter Name="Lv_lastname" Type="varchar" Mode="In" />
+          <Parameter Name="Lv_email" Type="varchar" Mode="In" />
+          <Parameter Name="Lv_phone_number" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="FilmaticModelStoreContainer">
+          <EntitySet Name="auth_app_privileges" EntityType="Self.auth_app_privileges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="auth_app_role_privileges" EntityType="Self.auth_app_role_privileges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="auth_permisions" EntityType="Self.auth_permisions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="auth_role_permisions" EntityType="Self.auth_role_permisions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="auth_roles" EntityType="Self.auth_roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="auth_user_roles" EntityType="Self.auth_user_roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="auth_users" EntityType="Self.auth_users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cat_genres_movies" EntityType="Self.cat_genres_movies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cat_movie_genres" EntityType="Self.cat_movie_genres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cat_movies" EntityType="Self.cat_movies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cinema_agencies" EntityType="Self.cinema_agencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cinema_functions" EntityType="Self.cinema_functions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cinema_rooms" EntityType="Self.cinema_rooms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="invoice" EntityType="Self.invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="invoice_deta" EntityType="Self.invoice_deta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payment_cards" EntityType="Self.payment_cards" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK01_auth_permisions__auth_app_privileges" Association="Self.FK01_auth_permisions__auth_app_privileges">
+            <End Role="auth_app_privileges" EntitySet="auth_app_privileges" />
+            <End Role="auth_app_role_privileges" EntitySet="auth_app_role_privileges" />
+          </AssociationSet>
+          <AssociationSet Name="FK01_auth_role_permisions__auth_permisions" Association="Self.FK01_auth_role_permisions__auth_permisions">
+            <End Role="auth_permisions" EntitySet="auth_permisions" />
+            <End Role="auth_role_permisions" EntitySet="auth_role_permisions" />
+          </AssociationSet>
+          <AssociationSet Name="FK01_auth_user_roles__auth_users" Association="Self.FK01_auth_user_roles__auth_users">
+            <End Role="auth_users" EntitySet="auth_users" />
+            <End Role="auth_user_roles" EntitySet="auth_user_roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK01_cat_movie_genres__cat_movies" Association="Self.FK01_cat_movie_genres__cat_movies">
+            <End Role="cat_movies" EntitySet="cat_movies" />
+            <End Role="cat_movie_genres" EntitySet="cat_movie_genres" />
+          </AssociationSet>
+          <AssociationSet Name="FK01_cinema_functions__cinema_rooms" Association="Self.FK01_cinema_functions__cinema_rooms">
+            <End Role="cinema_rooms" EntitySet="cinema_rooms" />
+            <End Role="cinema_functions" EntitySet="cinema_functions" />
+          </AssociationSet>
+          <AssociationSet Name="FK01_cinema_rooms__cinema_agencies" Association="Self.FK01_cinema_rooms__cinema_agencies">
+            <End Role="cinema_agencies" EntitySet="cinema_agencies" />
+            <End Role="cinema_rooms" EntitySet="cinema_rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK01_invoice__auth_users" Association="Self.FK01_invoice__auth_users">
+            <End Role="auth_users" EntitySet="auth_users" />
+            <End Role="invoice" EntitySet="invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK01_invoice_deta__invoice" Association="Self.FK01_invoice_deta__invoice">
+            <End Role="invoice" EntitySet="invoice" />
+            <End Role="invoice_deta" EntitySet="invoice_deta" />
+          </AssociationSet>
+          <AssociationSet Name="FK01_payment_cards__auth_users" Association="Self.FK01_payment_cards__auth_users">
+            <End Role="auth_users" EntitySet="auth_users" />
+            <End Role="payment_cards" EntitySet="payment_cards" />
+          </AssociationSet>
+          <AssociationSet Name="FK02_auth_app_role_privileges__auth_roles" Association="Self.FK02_auth_app_role_privileges__auth_roles">
+            <End Role="auth_roles" EntitySet="auth_roles" />
+            <End Role="auth_app_role_privileges" EntitySet="auth_app_role_privileges" />
+          </AssociationSet>
+          <AssociationSet Name="FK02_auth_role_permisions__auth_roles" Association="Self.FK02_auth_role_permisions__auth_roles">
+            <End Role="auth_roles" EntitySet="auth_roles" />
+            <End Role="auth_role_permisions" EntitySet="auth_role_permisions" />
+          </AssociationSet>
+          <AssociationSet Name="FK02_auth_user_roles__auth_roles" Association="Self.FK02_auth_user_roles__auth_roles">
+            <End Role="auth_roles" EntitySet="auth_roles" />
+            <End Role="auth_user_roles" EntitySet="auth_user_roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK02_cat_movie_genres__cat_genres_movies" Association="Self.FK02_cat_movie_genres__cat_genres_movies">
+            <End Role="cat_genres_movies" EntitySet="cat_genres_movies" />
+            <End Role="cat_movie_genres" EntitySet="cat_movie_genres" />
+          </AssociationSet>
+          <AssociationSet Name="FK02_cinema_functions__cinema_movies" Association="Self.FK02_cinema_functions__cinema_movies">
+            <End Role="cat_movies" EntitySet="cat_movies" />
+            <End Role="cinema_functions" EntitySet="cinema_functions" />
+          </AssociationSet>
+          <AssociationSet Name="FK02_invoice__payment_cards" Association="Self.FK02_invoice__payment_cards">
+            <End Role="payment_cards" EntitySet="payment_cards" />
+            <End Role="invoice" EntitySet="invoice" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FilmaticModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="auth_app_privileges">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="auth_roles" Relationship="Self.auth_app_role_privileges" FromRole="auth_app_privileges" ToRole="auth_roles" />
+        </EntityType>
+        <EntityType Name="auth_permisions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="auth_roles" Relationship="Self.auth_role_permisions" FromRole="auth_permisions" ToRole="auth_roles" />
+        </EntityType>
+        <EntityType Name="auth_roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="auth_user_roles" Relationship="Self.FK02_auth_user_roles__auth_roles" FromRole="auth_roles" ToRole="auth_user_roles" />
+          <NavigationProperty Name="auth_app_privileges" Relationship="Self.auth_app_role_privileges" FromRole="auth_roles" ToRole="auth_app_privileges" />
+          <NavigationProperty Name="auth_permisions" Relationship="Self.auth_role_permisions" FromRole="auth_roles" ToRole="auth_permisions" />
+        </EntityType>
+        <EntityType Name="auth_user_roles">
+          <Key>
+            <PropertyRef Name="id_user" />
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_user" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="id_role" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="STATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="auth_roles" Relationship="Self.FK02_auth_user_roles__auth_roles" FromRole="auth_user_roles" ToRole="auth_roles" />
+          <NavigationProperty Name="auth_users" Relationship="Self.FK01_auth_user_roles__auth_users" FromRole="auth_user_roles" ToRole="auth_users" />
+        </EntityType>
+        <EntityType Name="auth_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="id_document" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usernamme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="hash_password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="create_at" Type="DateTime" Precision="3" />
+          <Property Name="birthday_date" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="auth_user_roles" Relationship="Self.FK01_auth_user_roles__auth_users" FromRole="auth_users" ToRole="auth_user_roles" />
+          <NavigationProperty Name="invoice" Relationship="Self.FK01_invoice__auth_users" FromRole="auth_users" ToRole="invoice" />
+          <NavigationProperty Name="payment_cards" Relationship="Self.FK01_payment_cards__auth_users" FromRole="auth_users" ToRole="payment_cards" />
+        </EntityType>
+        <EntityType Name="cat_genres_movies">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cat_movies" Relationship="Self.cat_movie_genres" FromRole="cat_genres_movies" ToRole="cat_movies" />
+        </EntityType>
+        <EntityType Name="cat_movies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="synopsis" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="year" Type="Int32" />
+          <NavigationProperty Name="cinema_functions" Relationship="Self.FK02_cinema_functions__cinema_movies" FromRole="cat_movies" ToRole="cinema_functions" />
+          <NavigationProperty Name="cat_genres_movies" Relationship="Self.cat_movie_genres" FromRole="cat_movies" ToRole="cat_genres_movies" />
+        </EntityType>
+        <EntityType Name="cinema_agencies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="direction" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cinema_rooms" Relationship="Self.FK01_cinema_rooms__cinema_agencies" FromRole="cinema_agencies" ToRole="cinema_rooms" />
+        </EntityType>
+        <EntityType Name="cinema_functions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="id_room" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="create_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="duration" Type="Decimal" Precision="5" Scale="1" />
+          <Property Name="start_date" Type="DateTime" Precision="3" />
+          <Property Name="id_movie" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="format_movie" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cat_movies" Relationship="Self.FK02_cinema_functions__cinema_movies" FromRole="cinema_functions" ToRole="cat_movies" />
+          <NavigationProperty Name="cinema_rooms" Relationship="Self.FK01_cinema_functions__cinema_rooms" FromRole="cinema_functions" ToRole="cinema_rooms" />
+        </EntityType>
+        <EntityType Name="cinema_rooms">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="id_agency" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="number_room" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ubication" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="model" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="cinema_agencies" Relationship="Self.FK01_cinema_rooms__cinema_agencies" FromRole="cinema_rooms" ToRole="cinema_agencies" />
+          <NavigationProperty Name="cinema_functions" Relationship="Self.FK01_cinema_functions__cinema_rooms" FromRole="cinema_rooms" ToRole="cinema_functions" />
+        </EntityType>
+        <EntityType Name="invoice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_user" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="id_payment_card" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="create_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="total_amount" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="auth_users" Relationship="Self.FK01_invoice__auth_users" FromRole="invoice" ToRole="auth_users" />
+          <NavigationProperty Name="invoice_deta" Relationship="Self.FK01_invoice_deta__invoice" FromRole="invoice" ToRole="invoice_deta" />
+          <NavigationProperty Name="payment_cards" Relationship="Self.FK02_invoice__payment_cards" FromRole="invoice" ToRole="payment_cards" />
+        </EntityType>
+        <EntityType Name="invoice_deta">
+          <Key>
+            <PropertyRef Name="id_invoice" />
+            <PropertyRef Name="line" />
+          </Key>
+          <Property Name="id_invoice" Type="Int32" Nullable="false" />
+          <Property Name="line" Type="Int32" Nullable="false" />
+          <Property Name="detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="total_line" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="invoice" Relationship="Self.FK01_invoice_deta__invoice" FromRole="invoice_deta" ToRole="invoice" />
+        </EntityType>
+        <EntityType Name="payment_cards">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="id_user" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="represent_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="card_number" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="card_year" Type="Int32" Nullable="false" />
+          <Property Name="card_month" Type="Int32" Nullable="false" />
+          <Property Name="card_cv" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="auth_users" Relationship="Self.FK01_payment_cards__auth_users" FromRole="payment_cards" ToRole="auth_users" />
+          <NavigationProperty Name="invoice" Relationship="Self.FK02_invoice__payment_cards" FromRole="payment_cards" ToRole="invoice" />
+        </EntityType>
+        <Association Name="FK02_auth_user_roles__auth_roles">
+          <End Role="auth_roles" Type="Self.auth_roles" Multiplicity="1" />
+          <End Role="auth_user_roles" Type="Self.auth_user_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="auth_roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="auth_user_roles">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK01_auth_user_roles__auth_users">
+          <End Role="auth_users" Type="Self.auth_users" Multiplicity="1" />
+          <End Role="auth_user_roles" Type="Self.auth_user_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="auth_users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="auth_user_roles">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK01_invoice__auth_users">
+          <End Role="auth_users" Type="Self.auth_users" Multiplicity="1" />
+          <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="auth_users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK01_payment_cards__auth_users">
+          <End Role="auth_users" Type="Self.auth_users" Multiplicity="1" />
+          <End Role="payment_cards" Type="Self.payment_cards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="auth_users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="payment_cards">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK02_cinema_functions__cinema_movies">
+          <End Role="cat_movies" Type="Self.cat_movies" Multiplicity="1" />
+          <End Role="cinema_functions" Type="Self.cinema_functions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cat_movies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cinema_functions">
+              <PropertyRef Name="id_movie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK01_cinema_rooms__cinema_agencies">
+          <End Role="cinema_agencies" Type="Self.cinema_agencies" Multiplicity="1" />
+          <End Role="cinema_rooms" Type="Self.cinema_rooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cinema_agencies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cinema_rooms">
+              <PropertyRef Name="id_agency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK01_cinema_functions__cinema_rooms">
+          <End Role="cinema_rooms" Type="Self.cinema_rooms" Multiplicity="1" />
+          <End Role="cinema_functions" Type="Self.cinema_functions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cinema_rooms">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cinema_functions">
+              <PropertyRef Name="id_room" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK01_invoice_deta__invoice">
+          <End Role="invoice" Type="Self.invoice" Multiplicity="1" />
+          <End Role="invoice_deta" Type="Self.invoice_deta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoice">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice_deta">
+              <PropertyRef Name="id_invoice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK02_invoice__payment_cards">
+          <End Role="payment_cards" Type="Self.payment_cards" Multiplicity="1" />
+          <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payment_cards">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice">
+              <PropertyRef Name="id_payment_card" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="auth_app_role_privileges">
+          <End Role="auth_app_privileges" Type="Self.auth_app_privileges" Multiplicity="*" />
+          <End Role="auth_roles" Type="Self.auth_roles" Multiplicity="*" />
+        </Association>
+        <Association Name="auth_role_permisions">
+          <End Role="auth_permisions" Type="Self.auth_permisions" Multiplicity="*" />
+          <End Role="auth_roles" Type="Self.auth_roles" Multiplicity="*" />
+        </Association>
+        <Association Name="cat_movie_genres">
+          <End Role="cat_movies" Type="Self.cat_movies" Multiplicity="*" />
+          <End Role="cat_genres_movies" Type="Self.cat_genres_movies" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="FilmaticEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="auth_app_privileges" EntityType="Self.auth_app_privileges" />
+          <EntitySet Name="auth_permisions" EntityType="Self.auth_permisions" />
+          <EntitySet Name="auth_roles" EntityType="Self.auth_roles" />
+          <EntitySet Name="auth_user_roles" EntityType="Self.auth_user_roles" />
+          <EntitySet Name="auth_users" EntityType="Self.auth_users" />
+          <EntitySet Name="cat_genres_movies" EntityType="Self.cat_genres_movies" />
+          <EntitySet Name="cat_movies" EntityType="Self.cat_movies" />
+          <EntitySet Name="cinema_agencies" EntityType="Self.cinema_agencies" />
+          <EntitySet Name="cinema_functions" EntityType="Self.cinema_functions" />
+          <EntitySet Name="cinema_rooms" EntityType="Self.cinema_rooms" />
+          <EntitySet Name="invoice" EntityType="Self.invoice" />
+          <EntitySet Name="invoice_deta" EntityType="Self.invoice_deta" />
+          <EntitySet Name="payment_cards" EntityType="Self.payment_cards" />
+          <AssociationSet Name="FK02_auth_user_roles__auth_roles" Association="Self.FK02_auth_user_roles__auth_roles">
+            <End Role="auth_roles" EntitySet="auth_roles" />
+            <End Role="auth_user_roles" EntitySet="auth_user_roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK01_auth_user_roles__auth_users" Association="Self.FK01_auth_user_roles__auth_users">
+            <End Role="auth_users" EntitySet="auth_users" />
+            <End Role="auth_user_roles" EntitySet="auth_user_roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK01_invoice__auth_users" Association="Self.FK01_invoice__auth_users">
+            <End Role="auth_users" EntitySet="auth_users" />
+            <End Role="invoice" EntitySet="invoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK01_payment_cards__auth_users" Association="Self.FK01_payment_cards__auth_users">
+            <End Role="auth_users" EntitySet="auth_users" />
+            <End Role="payment_cards" EntitySet="payment_cards" />
+          </AssociationSet>
+          <AssociationSet Name="FK02_cinema_functions__cinema_movies" Association="Self.FK02_cinema_functions__cinema_movies">
+            <End Role="cat_movies" EntitySet="cat_movies" />
+            <End Role="cinema_functions" EntitySet="cinema_functions" />
+          </AssociationSet>
+          <AssociationSet Name="FK01_cinema_rooms__cinema_agencies" Association="Self.FK01_cinema_rooms__cinema_agencies">
+            <End Role="cinema_agencies" EntitySet="cinema_agencies" />
+            <End Role="cinema_rooms" EntitySet="cinema_rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK01_cinema_functions__cinema_rooms" Association="Self.FK01_cinema_functions__cinema_rooms">
+            <End Role="cinema_rooms" EntitySet="cinema_rooms" />
+            <End Role="cinema_functions" EntitySet="cinema_functions" />
+          </AssociationSet>
+          <AssociationSet Name="FK01_invoice_deta__invoice" Association="Self.FK01_invoice_deta__invoice">
+            <End Role="invoice" EntitySet="invoice" />
+            <End Role="invoice_deta" EntitySet="invoice_deta" />
+          </AssociationSet>
+          <AssociationSet Name="FK02_invoice__payment_cards" Association="Self.FK02_invoice__payment_cards">
+            <End Role="payment_cards" EntitySet="payment_cards" />
+            <End Role="invoice" EntitySet="invoice" />
+          </AssociationSet>
+          <AssociationSet Name="auth_app_role_privileges" Association="Self.auth_app_role_privileges">
+            <End Role="auth_app_privileges" EntitySet="auth_app_privileges" />
+            <End Role="auth_roles" EntitySet="auth_roles" />
+          </AssociationSet>
+          <AssociationSet Name="auth_role_permisions" Association="Self.auth_role_permisions">
+            <End Role="auth_permisions" EntitySet="auth_permisions" />
+            <End Role="auth_roles" EntitySet="auth_roles" />
+          </AssociationSet>
+          <AssociationSet Name="cat_movie_genres" Association="Self.cat_movie_genres">
+            <End Role="cat_movies" EntitySet="cat_movies" />
+            <End Role="cat_genres_movies" EntitySet="cat_genres_movies" />
+          </AssociationSet>
+          <FunctionImport Name="P_CreateHashedPassword" ReturnType="Collection(FilmaticModel.P_CreateHashedPassword_Result)">
+            <Parameter Name="Pv_password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_CreateUser">
+            <Parameter Name="Lv_username" Mode="In" Type="String" />
+            <Parameter Name="Lv_password" Mode="In" Type="String" />
+            <Parameter Name="Lv_name" Mode="In" Type="String" />
+            <Parameter Name="Lv_lastname" Mode="In" Type="String" />
+            <Parameter Name="Lv_email" Mode="In" Type="String" />
+            <Parameter Name="Lv_phone_number" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="P_CreateHashedPassword_Result">
+          <Property Type="String" Name="Column1" Nullable="true" />
+          <Property Type="String" Name="Column2" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FilmaticModelStoreContainer" CdmEntityContainer="FilmaticEntities">
+          <EntitySetMapping Name="auth_app_privileges">
+            <EntityTypeMapping TypeName="FilmaticModel.auth_app_privileges">
+              <MappingFragment StoreEntitySet="auth_app_privileges">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="auth_permisions">
+            <EntityTypeMapping TypeName="FilmaticModel.auth_permisions">
+              <MappingFragment StoreEntitySet="auth_permisions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="auth_roles">
+            <EntityTypeMapping TypeName="FilmaticModel.auth_roles">
+              <MappingFragment StoreEntitySet="auth_roles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="auth_user_roles">
+            <EntityTypeMapping TypeName="FilmaticModel.auth_user_roles">
+              <MappingFragment StoreEntitySet="auth_user_roles">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="auth_users">
+            <EntityTypeMapping TypeName="FilmaticModel.auth_users">
+              <MappingFragment StoreEntitySet="auth_users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_document" ColumnName="id_document" />
+                <ScalarProperty Name="usernamme" ColumnName="usernamme" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="hash_password" ColumnName="hash_password" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="create_at" ColumnName="create_at" />
+                <ScalarProperty Name="birthday_date" ColumnName="birthday_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cat_genres_movies">
+            <EntityTypeMapping TypeName="FilmaticModel.cat_genres_movies">
+              <MappingFragment StoreEntitySet="cat_genres_movies">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cat_movies">
+            <EntityTypeMapping TypeName="FilmaticModel.cat_movies">
+              <MappingFragment StoreEntitySet="cat_movies">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="synopsis" ColumnName="synopsis" />
+                <ScalarProperty Name="year" ColumnName="year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cinema_agencies">
+            <EntityTypeMapping TypeName="FilmaticModel.cinema_agencies">
+              <MappingFragment StoreEntitySet="cinema_agencies">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="direction" ColumnName="direction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cinema_functions">
+            <EntityTypeMapping TypeName="FilmaticModel.cinema_functions">
+              <MappingFragment StoreEntitySet="cinema_functions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_room" ColumnName="id_room" />
+                <ScalarProperty Name="create_at" ColumnName="create_at" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="id_movie" ColumnName="id_movie" />
+                <ScalarProperty Name="format_movie" ColumnName="format_movie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cinema_rooms">
+            <EntityTypeMapping TypeName="FilmaticModel.cinema_rooms">
+              <MappingFragment StoreEntitySet="cinema_rooms">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_agency" ColumnName="id_agency" />
+                <ScalarProperty Name="number_room" ColumnName="number_room" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="ubication" ColumnName="ubication" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invoice">
+            <EntityTypeMapping TypeName="FilmaticModel.invoice">
+              <MappingFragment StoreEntitySet="invoice">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id_payment_card" ColumnName="id_payment_card" />
+                <ScalarProperty Name="create_at" ColumnName="create_at" />
+                <ScalarProperty Name="total_amount" ColumnName="total_amount" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invoice_deta">
+            <EntityTypeMapping TypeName="FilmaticModel.invoice_deta">
+              <MappingFragment StoreEntitySet="invoice_deta">
+                <ScalarProperty Name="id_invoice" ColumnName="id_invoice" />
+                <ScalarProperty Name="line" ColumnName="line" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="total_line" ColumnName="total_line" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payment_cards">
+            <EntityTypeMapping TypeName="FilmaticModel.payment_cards">
+              <MappingFragment StoreEntitySet="payment_cards">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="represent_name" ColumnName="represent_name" />
+                <ScalarProperty Name="card_number" ColumnName="card_number" />
+                <ScalarProperty Name="card_year" ColumnName="card_year" />
+                <ScalarProperty Name="card_month" ColumnName="card_month" />
+                <ScalarProperty Name="card_cv" ColumnName="card_cv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="auth_app_role_privileges" TypeName="FilmaticModel.auth_app_role_privileges" StoreEntitySet="auth_app_role_privileges">
+            <EndProperty Name="auth_app_privileges">
+              <ScalarProperty Name="id" ColumnName="id_privilege" />
+            </EndProperty>
+            <EndProperty Name="auth_roles">
+              <ScalarProperty Name="id" ColumnName="id_role" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="auth_role_permisions" TypeName="FilmaticModel.auth_role_permisions" StoreEntitySet="auth_role_permisions">
+            <EndProperty Name="auth_permisions">
+              <ScalarProperty Name="id" ColumnName="id_permision" />
+            </EndProperty>
+            <EndProperty Name="auth_roles">
+              <ScalarProperty Name="id" ColumnName="id_role" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="cat_movie_genres" TypeName="FilmaticModel.cat_movie_genres" StoreEntitySet="cat_movie_genres">
+            <EndProperty Name="cat_movies">
+              <ScalarProperty Name="id" ColumnName="id_movie" />
+            </EndProperty>
+            <EndProperty Name="cat_genres_movies">
+              <ScalarProperty Name="code" ColumnName="code_genre" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="P_CreateHashedPassword" FunctionName="FilmaticModel.Store.P_CreateHashedPassword">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FilmaticModel.P_CreateHashedPassword_Result">
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+                <ScalarProperty Name="Column2" ColumnName="Column2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="P_CreateUser" FunctionName="FilmaticModel.Store.P_CreateUser" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
