@@ -4,33 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4778e4fee3b142ccae5fec0acdf35f78" Name="Diagram1">
-        <EntityTypeShape EntityType="FilmaticModel.auth_app_privileges" Width="1.5" PointX="1.5" PointY="16.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FilmaticModel.auth_permisions" Width="1.5" PointX="1.5" PointY="18.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FilmaticModel.auth_roles" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FilmaticModel.auth_user_roles" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FilmaticModel.auth_users" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FilmaticModel.cat_genres_movies" Width="1.5" PointX="10.25" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FilmaticModel.cat_movies" Width="1.5" PointX="8" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FilmaticModel.cinema_agencies" Width="1.5" PointX="5.75" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FilmaticModel.cinema_functions" Width="1.5" PointX="10.25" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="FilmaticModel.cinema_rooms" Width="1.5" PointX="8" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="FilmaticModel.invoice" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FilmaticModel.invoice_deta" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="FilmaticModel.payment_cards" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
-        <AssociationConnector Association="FilmaticModel.FK02_auth_user_roles__auth_roles" ManuallyRouted="false" />
-        <AssociationConnector Association="FilmaticModel.FK01_auth_user_roles__auth_users" ManuallyRouted="false" />
-        <AssociationConnector Association="FilmaticModel.FK01_invoice__auth_users" ManuallyRouted="false" />
-        <AssociationConnector Association="FilmaticModel.FK01_payment_cards__auth_users" ManuallyRouted="false" />
-        <AssociationConnector Association="FilmaticModel.FK02_cinema_functions__cinema_movies" ManuallyRouted="false" />
-        <AssociationConnector Association="FilmaticModel.FK01_cinema_rooms__cinema_agencies" ManuallyRouted="false" />
-        <AssociationConnector Association="FilmaticModel.FK01_cinema_functions__cinema_rooms" ManuallyRouted="false" />
-        <AssociationConnector Association="FilmaticModel.FK01_invoice_deta__invoice" ManuallyRouted="false" />
-        <AssociationConnector Association="FilmaticModel.FK02_invoice__payment_cards" ManuallyRouted="false" />
-        <AssociationConnector Association="FilmaticModel.auth_app_role_privileges" ManuallyRouted="false" />
-        <AssociationConnector Association="FilmaticModel.auth_role_permisions" ManuallyRouted="false" />
-        <AssociationConnector Association="FilmaticModel.cat_movie_genres" ManuallyRouted="false" />
-      </Diagram>
+      <Diagram DiagramId="4441d2583c794f12a55cb5df622e4844" Name="Diagram1" />
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
