@@ -2,19 +2,25 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Contenedor principal que centra el contenido vertical y horizontalmente -->
+   
     <div class="d-flex justify-content-center align-items-center vh-100">
+
         <div class="card shadow-lg p-4" style="width: 100%; max-width: 400px;">
+             <div class="alert alert-warning" role="alert" runat="server" id="alertMsgLogin">
+               This is a warning alert—check it out!
+             </div>
+
             <h2 class="text-center mb-4">Iniciar Sesión</h2>
 
             <!-- Formulario de login -->
                 <div class="mb-3">
                     <label for="inputEmail" class="form-label">Correo electrónico</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Ingresá tu correo" required>
+                    <input runat="server" type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Ingresá tu correo" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="inputPassword" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Ingresá tu contraseña" required>
+                    <input runat="server" type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Ingresá tu contraseña" required>
                 </div>
 
                 <!-- Checkbox de recordarme -->
@@ -25,7 +31,7 @@
 
                 <!-- Botón de login -->
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                    <button type="submit" class="btn btn-primary btn-block" runat="server" onserverclick="OnClickLoginUser">Ingresar</button>
                 </div>
 
             <!-- Enlace para crear una nueva cuenta -->
