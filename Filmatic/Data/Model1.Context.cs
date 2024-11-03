@@ -64,5 +64,18 @@ namespace Filmatic.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("P_CreateUser", lv_usernameParameter, lv_passwordParameter, lv_nameParameter, lv_lastnameParameter, lv_emailParameter, lv_phone_numberParameter, lv_id_documentParameter, lv_birthday_dateParameter);
         }
+    
+        public virtual ObjectResult<sp_LoginUser_Result> sp_LoginUser(string lv_username, string lv_password)
+        {
+            var lv_usernameParameter = lv_username != null ?
+                new ObjectParameter("Lv_username", lv_username) :
+                new ObjectParameter("Lv_username", typeof(string));
+    
+            var lv_passwordParameter = lv_password != null ?
+                new ObjectParameter("Lv_password", lv_password) :
+                new ObjectParameter("Lv_password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_LoginUser_Result>("sp_LoginUser", lv_usernameParameter, lv_passwordParameter);
+        }
     }
 }

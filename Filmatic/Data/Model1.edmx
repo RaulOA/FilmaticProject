@@ -4,9 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FilmaticModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <Function Name="F_HashString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
-          <Parameter Name="InputString" Type="varchar(max)" Mode="In" />
+    <Schema Namespace="FilmaticModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="F_LoginUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char">
+          <Parameter Name="Lv_username" Type="varchar" Mode="In" />
+          <Parameter Name="Lv_password" Type="varchar" Mode="In" />
         </Function>
         <Function Name="P_CreateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Lv_username" Type="varchar" Mode="In" />
@@ -18,9 +19,12 @@
           <Parameter Name="Lv_id_document" Type="varchar" Mode="In" />
           <Parameter Name="Lv_birthday_date" Type="date" Mode="In" />
         </Function>
+        <Function Name="sp_LoginUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_username" Type="varchar" Mode="In" />
+          <Parameter Name="Lv_password" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="FilmaticModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FilmaticModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -35,7 +39,20 @@
             <Parameter Name="Lv_id_document" Mode="In" Type="String" />
             <Parameter Name="Lv_birthday_date" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="sp_LoginUser" ReturnType="Collection(FilmaticModel.sp_LoginUser_Result)">
+            <Parameter Name="Lv_username" Mode="In" Type="String" />
+            <Parameter Name="Lv_password" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="sp_LoginUser_Result">
+          <Property Type="String" Name="login_message" Nullable="false" MaxLength="32" />
+          <Property Type="String" Name="id_user" Nullable="true" />
+          <Property Type="String" Name="username" Nullable="true" />
+          <Property Type="String" Name="id_document" Nullable="true" />
+          <Property Type="String" Name="user_name" Nullable="true" />
+          <Property Type="String" Name="user_lastname" Nullable="true" />
+          <Property Type="String" Name="user_phone_number" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -43,6 +60,19 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="FilmaticModelStoreContainer" CdmEntityContainer="FilmaticEntities2" >
           <FunctionImportMapping FunctionImportName="P_CreateUser" FunctionName="FilmaticModel.Store.P_CreateUser" />
+          <FunctionImportMapping FunctionImportName="sp_LoginUser" FunctionName="FilmaticModel.Store.sp_LoginUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FilmaticModel.sp_LoginUser_Result">
+                <ScalarProperty Name="login_message" ColumnName="login_message" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id_document" ColumnName="id_document" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_lastname" ColumnName="user_lastname" />
+                <ScalarProperty Name="user_phone_number" ColumnName="user_phone_number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
