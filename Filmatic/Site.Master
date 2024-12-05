@@ -46,12 +46,17 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Movies.aspx">Películas</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Billboard.aspx">Cartelera</a></li>
 
-                        <% if (Session["user_logged"] != null) { %>
-                            <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Logout.aspx">Cerrar Sesión</a></li>         
-                        <% } else { %>
-                            <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Register.aspx">Crear Cuenta</a></li>
-                            <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Login.aspx">Iniciar Sesión</a></li>
-                        <% } %>
+                         <% if (Session["user_logged"] != null) { %>
+ 
+                             <% if (Session["is_admin"] != "1") { %>
+                                 <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Admin/Main.aspx">Administración</a></li>
+                             <% } %>
+     
+                             <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Logout.aspx">Cerrar Sesión</a></li>
+                         <% } else { %>
+                             <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Register.aspx">Crear Cuenta</a></li>
+                             <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Login.aspx">Iniciar Sesión</a></li>
+                         <% } %>
                         
                     </ul>
                 </div>

@@ -134,6 +134,9 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Pages\Admin\GenresMoviesEdit.aspx" />
+    <Content Include="Pages\Admin\GenresMoviesList.aspx" />
+    <Content Include="Pages\Admin\Main.aspx" />
     <Content Include="Pages\Asientos.aspx" />
     <Content Include="Pages\Horarios.aspx" />
     <Content Include="Pages\Logout.aspx" />
@@ -240,6 +243,27 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\GenresMoviesEdit.aspx.cs">
+      <DependentUpon>GenresMoviesEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\GenresMoviesEdit.aspx.designer.cs">
+      <DependentUpon>GenresMoviesEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\GenresMoviesList.aspx.cs">
+      <DependentUpon>GenresMoviesList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\GenresMoviesList.aspx.designer.cs">
+      <DependentUpon>GenresMoviesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Asientos.aspx.cs">
       <DependentUpon>Asientos.aspx</DependentUpon>

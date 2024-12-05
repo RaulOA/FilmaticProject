@@ -10,8 +10,6 @@ namespace Filmatic
         {
             if (!IsPostBack)
             {
-                // Francisco Luna
-                // Raul
                 // Crear una lista de películas de ejemplo
                 var movies = new List<Movie>
                 {

@@ -15,6 +15,7 @@ namespace Filmatic.Models
         string PhoneNumber { get; set; }
         string Status { get; set; }
         DateTime BirthdayDate { get; set; }
+        Boolean IsAdmin { get; set; }
     }
 
     public class User : IUser
@@ -27,6 +28,7 @@ namespace Filmatic.Models
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Status { get; set; }
-        public DateTime BirthdayDate { get; set; } 
+        public DateTime BirthdayDate { get; set; }
+        public Boolean IsAdmin { get; set; }
     }
 }

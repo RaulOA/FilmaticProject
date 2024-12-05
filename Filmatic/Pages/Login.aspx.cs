@@ -32,6 +32,10 @@ namespace Filmatic
         /// <param name="e"></param>
         protected void OnClickLoginUser(object sender, EventArgs e)
         {
+
+            inputEmail.Value = "franj.lunam@gmail.com";
+            inputPassword.Value = "Abc123$";
+
             string username = inputEmail.Value;
             string password = inputPassword.Value;
 
@@ -61,6 +65,7 @@ namespace Filmatic
             userdata.LastName = dataLogin.user_lastname;
             userdata.PhoneNumber = dataLogin.user_phone_number;
             userdata.Status = null;
+            userdata.IsAdmin = true;
 
             // El objeto de usuario se carga en la session como user_logged
             Session["user_logged"] = userdata;
