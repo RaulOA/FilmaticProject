@@ -134,7 +134,7 @@ namespace Filmatic
         {
             try
             {
-                using (var context = new FilmaticEntities2())
+                using (var context = new CineMaxTicketsDB11Entities3())
                 {
                     // Llamada al procedimiento almacenado
                     int result = context.P_CreateUser(

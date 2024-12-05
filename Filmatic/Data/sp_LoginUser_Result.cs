@@ -10,15 +10,17 @@
 namespace Filmatic.Data
 {
     using System;
-    
+
     public partial class sp_LoginUser_Result
     {
-        public string login_message { get; set; }
-        public string id_user { get; set; }
-        public string username { get; set; }
-        public string id_document { get; set; }
-        public string user_name { get; set; }
-        public string user_lastname { get; set; }
-        public string user_phone_number { get; set; }
+        public string login_message { get; set; }  // string ya puede ser null
+        public string id_user { get; set; }  // Nullable<int> es equivalente a int?
+        public string username { get; set; }  // string es null por defecto
+        public string id_document { get; set; }  // asumiendo que id_document es un string
+        public string user_name { get; set; }  // string ya acepta null
+        public string user_lastname { get; set; }  // string ya acepta null
+        public string user_lastname1 { get; set; }  // nombre de campo corregido
+        public string user_phone_number { get; set; }  // string ya acepta null
     }
 }
+

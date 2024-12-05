@@ -1,12 +1,8 @@
 ﻿using Filmatic.Data;
 using Filmatic.Models;
 using System;
-using System.Collections.Generic;
-using System.Data.Entity.Core.Objects;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Filmatic
 {
@@ -86,16 +82,13 @@ namespace Filmatic
         {
             try
             {
-                using (var context = new FilmaticEntities2())
+                using (var context = new CineMaxTicketsDB11Entities3())
                 {
                     // Llamada al procedimiento almacenado
                     var result = context.sp_LoginUser(
                         lv_username: username,
                         lv_password: password
                     );
-                      
-
-
                     return result.First();
                 }
             }
