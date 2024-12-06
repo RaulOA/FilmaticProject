@@ -482,5 +482,37 @@ namespace Filmatic.Data
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual ObjectResult<sp_GetCinemaFunctionDataByID_Result> sp_GetCinemaFunctionDataByID(string lv_id_function)
+        {
+            var lv_id_functionParameter = lv_id_function != null ?
+                new ObjectParameter("Lv_id_function", lv_id_function) :
+                new ObjectParameter("Lv_id_function", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCinemaFunctionDataByID_Result>("sp_GetCinemaFunctionDataByID", lv_id_functionParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetCinemaMoviesForMainScreen_Result> sp_GetCinemaMoviesForMainScreen()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCinemaMoviesForMainScreen_Result>("sp_GetCinemaMoviesForMainScreen");
+        }
+    
+        public virtual ObjectResult<sp_GetCinemaFunctionsDataByIDMovie_Result> sp_GetCinemaFunctionsDataByIDMovie(string lv_id_movie)
+        {
+            var lv_id_movieParameter = lv_id_movie != null ?
+                new ObjectParameter("Lv_id_movie", lv_id_movie) :
+                new ObjectParameter("Lv_id_movie", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCinemaFunctionsDataByIDMovie_Result>("sp_GetCinemaFunctionsDataByIDMovie", lv_id_movieParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetCinemaFunctionTicketsNotAvaible_Result> sp_GetCinemaFunctionTicketsNotAvaible(string lv_id_function)
+        {
+            var lv_id_functionParameter = lv_id_function != null ?
+                new ObjectParameter("Lv_id_function", lv_id_function) :
+                new ObjectParameter("Lv_id_function", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCinemaFunctionTicketsNotAvaible_Result>("sp_GetCinemaFunctionTicketsNotAvaible", lv_id_functionParameter);
+        }
     }
 }

@@ -1,0 +1,284 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik+Distressed&display=swap");
+
+:root {
+  --bg-color: #f8f9fa;
+  --text-color: #212529;
+
+  --not-available-text-color: white;
+  --not-available-bg-color: red;
+
+  --available-text-color: blue;
+  --available-bg-color: white;
+
+  --selected-text-color: white;
+  --selected-bg-color: blue;
+}
+
+.section-buy-tickets {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.section-buy-tickets * {
+  font-family: "Montserrat", sans-serif;
+  padding: 0px;
+  margin: 0px; 
+  box-sizing: content-box;
+
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+input {
+  background-color: black;
+}
+
+.section-buy-tickets {
+  display: grid;
+  grid-template-areas:
+    "header header header header header header"
+    "select-tickets select-tickets select-tickets select-tickets selected-tickets selected-tickets";
+}
+
+header {
+  grid-area: header;
+}
+
+.summary-tickets {
+  position: relative;
+  grid-area: selected-tickets;
+}
+
+.summary-tickets section {
+
+}
+
+.summary-tickets .list-items-detail {
+  min-height: 30vh;
+  min-height: 30vh;
+  overflow: auto;
+}
+
+.summary-tickets .list-items-detail li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--bg-color);
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: var(--bg-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.summary-tickets footer {
+  position: sticky;
+  bottom: 0px;
+  background-color: var(--bg-color);
+  padding: 5px 10px;
+  border-top: 1px solid var(--text-color);
+}
+
+
+.container-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.container-item .quantity {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.container-item .description {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-color);
+  margin-bottom: 5px;
+}
+
+.container-item .price {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-top: 5px;
+  align-self: flex-end;
+}
+
+.container-item .button-delete {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 3px;
+  border: 3px solid var(--text-color);
+  border-radius: 10px;
+}
+
+
+
+.select-tickets {
+  grid-area: select-tickets;
+}
+
+.container-select-seats {
+  display: flex;
+  flex-direction: row;
+  height: 50vh;
+  justify-content: space-between;
+  overflow-y: scroll;
+}
+
+.container-select-seats .aisle {
+  background-repeat: repeat;
+  height: 100%;
+  width: 15%;
+  border: 1px solid black;
+}
+
+.cinema-screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin-top: 1rem;
+  background-color: black;
+  min-height: 10vh;
+  max-height: 10vh;
+  bottom: 0px;
+  color: white;
+  border-radius: 5px;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.cinema-screen div {
+  text-align: center;
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: 1rem;
+  color: white;
+}
+
+.grid-seats {
+  display: grid;
+  width: 42%;
+  grid-template-columns: repeat(1fr, 10px);
+  grid-template-rows: repeat(1fr, 10px);
+  gap: 5px;
+  padding: 5px;
+}
+
+.grid-seats .item-seat {
+  position: relative;
+  display: flex;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/*Se esconde cuando se cumple la condición*/
+.grid-seats .item-seat .content-not-available,
+.grid-seats .item-seat .content-available,
+.grid-seats .item-seat .content-selecteds {
+  display: none;
+}
+
+/*Se muestran cuando se cumple la condición*/
+.grid-seats .item-seat.not-available .content-not-available,
+.grid-seats .item-seat.available .content-available,
+.grid-seats .item-seat.selected .content-selecteds {
+  display: inherit;
+}
+
+/* Contenido de seleccionado cunado NO está seleccionado*/
+.grid-seats .item-seat .content-selected {
+  display: inherit;
+  transform: translateY(100%);
+  position: absolute; 
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Contenido de seleccionado cunado está seleccionado*/
+.grid-seats .item-seat.selected .content-selected { 
+  transform: translateY(0%);
+}
+
+.grid-seats .item-seat .content-not-available {
+}
+
+.grid-seats .item-seat.selected .content-selected,
+.grid-seats .item-seat.available .content-available {
+  position: relative;
+  & > div:has(input[type="checkbox"]) {
+    position: absolute; 
+    display: flex;
+    justify-content: center;
+    height: 40%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+
+.row-col-ticket {
+    width: 100%;
+}
+
+.grid-seats .item-seat.not-available .content-not-available {
+  position: absolute;
+  background-color: var(--not-available-bg-color);
+  color: var(--not-available-text-color);
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 3;
+}
+
+.grid-seats .item-seat.not-available {
+  position: relative;
+  cursor: not-allowed;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.grid-seats .item-seat.selected { 
+  cursor: pointer;
+}
+
+.grid-seats .item-seat.available {
+  cursor: pointer;
+}
+
+.grid-seats .item-seat > div {
+  width: 100%;
+  height: 100%;
+}
+
+.content-available > * {
+  color: var(--available-text-color);
+  background-color: var(--available-bg-color);
+}
+
+.content-not-available > * {
+  color: var(--not-available-text-color);
+  background-color: var(--not-available-bg-color);
+}
+
+.content-selected > * {
+  color: var(--selected-text-color);
+  background-color: var(--selected-bg-color);
+}

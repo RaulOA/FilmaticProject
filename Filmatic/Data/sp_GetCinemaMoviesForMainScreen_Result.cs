@@ -11,15 +11,13 @@ namespace Filmatic.Data
 {
     using System;
     
-    public partial class sp_LoginUser_Result
+    public partial class sp_GetCinemaMoviesForMainScreen_Result
     {
-        public string login_message { get; set; }
-        public string id_user { get; set; }
-        public string username { get; set; }
-        public string id_document { get; set; }
-        public string user_name { get; set; }
-        public string user_lastname { get; set; }
-        public string user_lastname1 { get; set; }
-        public string user_phone_number { get; set; }
+        public string Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Duration { get; set; }
+        public string Rating { get; set; }
+        public string ImagePath { get; set; }
     }
 }

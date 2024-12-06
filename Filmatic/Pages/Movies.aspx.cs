@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Filmatic.Data;
+using System;
 using System.Collections.Generic;
 using System.Web.UI;
 
@@ -10,6 +11,8 @@ namespace Filmatic
         {
             if (!IsPostBack)
             {
+                LoadMovies();
+                return;
                 // Crear una lista de películas de ejemplo
                 var movies = new List<Movie>
                 {
@@ -22,6 +25,17 @@ namespace Filmatic
                 MoviesRepeater.DataSource = movies;
                 MoviesRepeater.DataBind();
 
+            }
+        }
+
+
+        private void LoadMovies()
+        {
+            using (var context = new CineMaxTicketsDB11Entities3())
+            {
+                var dataMovies = context.sp_GetCinemaMoviesForMainScreen();
+                MoviesRepeater.DataSource = dataMovies;
+                MoviesRepeater.DataBind();
             }
         }
     }

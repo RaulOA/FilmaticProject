@@ -4,13 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CineMaxTicketsDB11Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'CineMaxTicketsDB11.dbo.vwAlphabet' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="vwAlphabet">
-          <Property Name="val" Type="char" MaxLength="1" />
-          <Property Name="idx" Type="int" />
-        </EntityType>-->
+    <Schema Namespace="CineMaxTicketsDB11Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <Function Name="F_GetHashedPassword" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
           <Parameter Name="Pv_password" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="Pv_hash" Type="nvarchar(max)" Mode="In" />
@@ -57,6 +51,16 @@ advertencia 6013: La tabla o vista 'CineMaxTicketsDB11.dbo.vwAlphabet' no tiene 
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_GetCinemaFunctionDataByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_function" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_GetCinemaFunctionsDataByIDMovie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_movie" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_GetCinemaFunctionTicketsNotAvaible" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_function" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_GetCinemaMoviesForMainScreen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -155,8 +159,7 @@ advertencia 6013: La tabla o vista 'CineMaxTicketsDB11.dbo.vwAlphabet' no tiene 
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="CineMaxTicketsDB11ModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CineMaxTicketsDB11Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -288,6 +291,16 @@ advertencia 6013: La tabla o vista 'CineMaxTicketsDB11.dbo.vwAlphabet' no tiene 
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="sp_GetCinemaFunctionDataByID" ReturnType="Collection(CineMaxTicketsDB11Model.sp_GetCinemaFunctionDataByID_Result)">
+          <Parameter Name="Lv_id_function" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetCinemaMoviesForMainScreen" ReturnType="Collection(CineMaxTicketsDB11Model.sp_GetCinemaMoviesForMainScreen_Result)" />
+          <FunctionImport Name="sp_GetCinemaFunctionsDataByIDMovie" ReturnType="Collection(CineMaxTicketsDB11Model.sp_GetCinemaFunctionsDataByIDMovie_Result)">
+          <Parameter Name="Lv_id_movie" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetCinemaFunctionTicketsNotAvaible" ReturnType="Collection(CineMaxTicketsDB11Model.sp_GetCinemaFunctionTicketsNotAvaible_Result)">
+          <Parameter Name="Lv_id_function" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_LoginUser_Result">
           <Property Type="String" Name="login_message" Nullable="false" MaxLength="32" />
@@ -362,6 +375,60 @@ advertencia 6013: La tabla o vista 'CineMaxTicketsDB11.dbo.vwAlphabet' no tiene 
           <Property Type="String" Name="id_user" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="id_role" Nullable="false" MaxLength="5" />
           <Property Type="String" Name="STATUS" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCinemaFunctionDataByID_Result">
+          <Property Type="String" Name="id_function" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="id_room" Nullable="true" MaxLength="5" />
+          <Property Type="DateTime" Name="function_create_at" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="function_duration" Nullable="true" Precision="5" Scale="1" />
+          <Property Type="DateTime" Name="function_start_date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="function_format_movie" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="function_ticket_price" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="String" Name="function_status" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="room_id_agency" Nullable="true" MaxLength="5" />
+          <Property Type="Int32" Name="room_number_room" Nullable="true" />
+          <Property Type="String" Name="room_title" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="room_ubication" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="room_description" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="room_model" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="room_status" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="movie_id" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="movie_title" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="movie_synopsis" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="movie_country" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="movie_directors" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="movie_actors" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="movie_writers" Nullable="true" MaxLength="2000" />
+          <Property Type="Int32" Name="movie_year" Nullable="true" />
+          <Property Type="DateTime" Name="movie_relased_date" Nullable="true" />
+          <Property Type="String" Name="movie_url_poster" Nullable="true" />
+          <Property Type="String" Name="movie_clasification" Nullable="false" MaxLength="10" />
+          <Property Type="Decimal" Name="movie_duration" Nullable="true" Precision="5" Scale="1" />
+          <Property Type="String" Name="movie_language" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="movie_url_carrusel" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCinemaMoviesForMainScreen_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="Duration" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Rating" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="ImagePath" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCinemaFunctionsDataByIDMovie_Result">
+          <Property Type="String" Name="id_function" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="id_room" Nullable="true" MaxLength="5" />
+          <Property Type="DateTime" Name="function_start_date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="function_format_movie" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="room_id_agency" Nullable="true" MaxLength="5" />
+          <Property Type="Int32" Name="room_number_room" Nullable="true" />
+          <Property Type="String" Name="room_title" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="room_ubication" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="room_description" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCinemaFunctionTicketsNotAvaible_Result">
+          <Property Type="String" Name="row_num_seat" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="col_num_seat" Nullable="false" MaxLength="4" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -492,6 +559,76 @@ advertencia 6013: La tabla o vista 'CineMaxTicketsDB11.dbo.vwAlphabet' no tiene 
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CineMaxTicketsDB11Model.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="CineMaxTicketsDB11Model.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_GetCinemaFunctionDataByID" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetCinemaFunctionDataByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CineMaxTicketsDB11Model.sp_GetCinemaFunctionDataByID_Result">
+                <ScalarProperty Name="id_function" ColumnName="id_function" />
+                <ScalarProperty Name="id_room" ColumnName="id_room" />
+                <ScalarProperty Name="function_create_at" ColumnName="function_create_at" />
+                <ScalarProperty Name="function_duration" ColumnName="function_duration" />
+                <ScalarProperty Name="function_start_date" ColumnName="function_start_date" />
+                <ScalarProperty Name="function_format_movie" ColumnName="function_format_movie" />
+                <ScalarProperty Name="function_ticket_price" ColumnName="function_ticket_price" />
+                <ScalarProperty Name="function_status" ColumnName="function_status" />
+                <ScalarProperty Name="room_id_agency" ColumnName="room_id_agency" />
+                <ScalarProperty Name="room_number_room" ColumnName="room_number_room" />
+                <ScalarProperty Name="room_title" ColumnName="room_title" />
+                <ScalarProperty Name="room_ubication" ColumnName="room_ubication" />
+                <ScalarProperty Name="room_description" ColumnName="room_description" />
+                <ScalarProperty Name="room_model" ColumnName="room_model" />
+                <ScalarProperty Name="room_status" ColumnName="room_status" />
+                <ScalarProperty Name="movie_id" ColumnName="movie_id" />
+                <ScalarProperty Name="movie_title" ColumnName="movie_title" />
+                <ScalarProperty Name="movie_synopsis" ColumnName="movie_synopsis" />
+                <ScalarProperty Name="movie_country" ColumnName="movie_country" />
+                <ScalarProperty Name="movie_directors" ColumnName="movie_directors" />
+                <ScalarProperty Name="movie_actors" ColumnName="movie_actors" />
+                <ScalarProperty Name="movie_writers" ColumnName="movie_writers" />
+                <ScalarProperty Name="movie_year" ColumnName="movie_year" />
+                <ScalarProperty Name="movie_relased_date" ColumnName="movie_relased_date" />
+                <ScalarProperty Name="movie_url_poster" ColumnName="movie_url_poster" />
+                <ScalarProperty Name="movie_clasification" ColumnName="movie_clasification" />
+                <ScalarProperty Name="movie_duration" ColumnName="movie_duration" />
+                <ScalarProperty Name="movie_language" ColumnName="movie_language" />
+                <ScalarProperty Name="movie_url_carrusel" ColumnName="movie_url_carrusel" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetCinemaMoviesForMainScreen" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetCinemaMoviesForMainScreen">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CineMaxTicketsDB11Model.sp_GetCinemaMoviesForMainScreen_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetCinemaFunctionsDataByIDMovie" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetCinemaFunctionsDataByIDMovie">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CineMaxTicketsDB11Model.sp_GetCinemaFunctionsDataByIDMovie_Result">
+                <ScalarProperty Name="id_function" ColumnName="id_function" />
+                <ScalarProperty Name="id_room" ColumnName="id_room" />
+                <ScalarProperty Name="function_start_date" ColumnName="function_start_date" />
+                <ScalarProperty Name="function_format_movie" ColumnName="function_format_movie" />
+                <ScalarProperty Name="room_id_agency" ColumnName="room_id_agency" />
+                <ScalarProperty Name="room_number_room" ColumnName="room_number_room" />
+                <ScalarProperty Name="room_title" ColumnName="room_title" />
+                <ScalarProperty Name="room_ubication" ColumnName="room_ubication" />
+                <ScalarProperty Name="room_description" ColumnName="room_description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetCinemaFunctionTicketsNotAvaible" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetCinemaFunctionTicketsNotAvaible">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CineMaxTicketsDB11Model.sp_GetCinemaFunctionTicketsNotAvaible_Result">
+                <ScalarProperty Name="row_num_seat" ColumnName="row_num_seat" />
+                <ScalarProperty Name="col_num_seat" ColumnName="col_num_seat" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

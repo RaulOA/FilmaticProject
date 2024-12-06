@@ -11,15 +11,9 @@ namespace Filmatic.Data
 {
     using System;
     
-    public partial class sp_LoginUser_Result
+    public partial class sp_GetCinemaFunctionTicketsNotAvaible_Result
     {
-        public string login_message { get; set; }
-        public string id_user { get; set; }
-        public string username { get; set; }
-        public string id_document { get; set; }
-        public string user_name { get; set; }
-        public string user_lastname { get; set; }
-        public string user_lastname1 { get; set; }
-        public string user_phone_number { get; set; }
+        public string row_num_seat { get; set; }
+        public string col_num_seat { get; set; }
     }
 }

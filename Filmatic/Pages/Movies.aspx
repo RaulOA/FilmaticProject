@@ -2,9 +2,6 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <main>
-
-
-
         <div id="carouselExampleCaptions" class="carousel slide">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -59,7 +56,7 @@
                                     <p class="card-text"><%# Eval("Description") %></p>
                                     <p><strong>Duración:</strong> <%# Eval("Duration") %></p>
                                     <p><strong>Clasificación:</strong> <%# Eval("Rating") %></p>
-                                    <a href='CompraBoletos.aspx?movieId=<%# Eval("Id") %>' class="btn btn-primary">Comprar Boletos</a>
+                                    <a href='Horarios.aspx?movieId=<%# Eval("Id") %>' class="btn btn-primary">Comprar Boletos</a>
                                 </div>
                             </div>
                         </div>

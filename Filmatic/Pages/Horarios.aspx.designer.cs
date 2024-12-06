@@ -15,6 +15,33 @@ namespace Filmatic
     {
 
         /// <summary>
+        /// Control alertMsg.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertMsg;
+
+        /// <summary>
+        /// Control containerData.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl containerData;
+
+        /// <summary>
+        /// Control ddlFechas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFechas;
+
+        /// <summary>
         /// Control ddlHorarios.
         /// </summary>
         /// <remarks>
@@ -33,12 +60,12 @@ namespace Filmatic
         protected global::System.Web.UI.WebControls.DropDownList ddlSalas;
 
         /// <summary>
-        /// Control ddlEntradas.
+        /// Control btnConfirm.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEntradas;
+        protected global::System.Web.UI.WebControls.Button btnConfirm;
     }
 }
