@@ -71,6 +71,13 @@
           <Parameter Name="Lv_id_function" Type="char" Mode="In" />
         </Function>
         <Function Name="sp_GetCinemaMoviesForMainScreen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetInvoiceDetailsByInvoiceId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
+          <Parameter Name="Ln_id_invoice" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetInvoicesByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
+        </Function>
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -369,6 +376,13 @@
             <Parameter Name="Lv_id_function" Mode="In" Type="String" />
             <Parameter Name="Lv_id_payment_card" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_GetInvoiceDetailsByInvoiceId" ReturnType="Collection(CineMaxTicketsDB11Model.sp_GetInvoiceDetailsByInvoiceId_Result)">
+            <Parameter Name="Lv_id_user" Mode="In" Type="String" />
+            <Parameter Name="Ln_id_invoice" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetInvoicesByUser" ReturnType="Collection(CineMaxTicketsDB11Model.sp_GetInvoicesByUser_Result)">
+            <Parameter Name="Lv_id_user" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_LoginUser_Result">
           <Property Type="String" Name="login_message" Nullable="false" MaxLength="32" />
@@ -510,6 +524,31 @@
           <Property Type="Int32" Name="card_year" Nullable="false" />
           <Property Type="Int32" Name="card_month" Nullable="false" />
           <Property Type="String" Name="card_cv" Nullable="false" MaxLength="3" />
+        </ComplexType>
+        <ComplexType Name="sp_GetInvoiceDetailsByInvoiceId_Result">
+          <Property Type="Int32" Name="id_invoice" Nullable="true" />
+          <Property Type="Int32" Name="line" Nullable="true" />
+          <Property Type="String" Name="detail" Nullable="true" />
+          <Property Type="Decimal" Name="total_line" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="String" Name="type_ticket" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="id_movie" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="start_date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="url_carrusel" Nullable="true" />
+          <Property Type="String" Name="url_poster" Nullable="true" />
+          <Property Type="String" Name="clasification" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="year" Nullable="true" />
+          <Property Type="String" Name="title" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="language" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="synopsis" Nullable="true" MaxLength="2000" />
+          <Property Type="String" Name="duration" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="sp_GetInvoicesByUser_Result">
+          <Property Type="Int32" Name="id_invoice" Nullable="true" />
+          <Property Type="Decimal" Name="total_amount" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="String" Name="status_invoice" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="create_at" Nullable="true" Precision="23" />
+          <Property Type="String" Name="card_represent_name" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="card_number" Nullable="true" MaxLength="20" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -734,6 +773,39 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_CreateInvoice" FunctionName="CineMaxTicketsDB11Model.Store.sp_CreateInvoice" />
+          <FunctionImportMapping FunctionImportName="sp_GetInvoiceDetailsByInvoiceId" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetInvoiceDetailsByInvoiceId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CineMaxTicketsDB11Model.sp_GetInvoiceDetailsByInvoiceId_Result">
+                <ScalarProperty Name="id_invoice" ColumnName="id_invoice" />
+                <ScalarProperty Name="line" ColumnName="line" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="total_line" ColumnName="total_line" />
+                <ScalarProperty Name="type_ticket" ColumnName="type_ticket" />
+                <ScalarProperty Name="id_movie" ColumnName="id_movie" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="url_carrusel" ColumnName="url_carrusel" />
+                <ScalarProperty Name="url_poster" ColumnName="url_poster" />
+                <ScalarProperty Name="clasification" ColumnName="clasification" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="synopsis" ColumnName="synopsis" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetInvoicesByUser" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetInvoicesByUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CineMaxTicketsDB11Model.sp_GetInvoicesByUser_Result">
+                <ScalarProperty Name="id_invoice" ColumnName="id_invoice" />
+                <ScalarProperty Name="total_amount" ColumnName="total_amount" />
+                <ScalarProperty Name="status_invoice" ColumnName="status_invoice" />
+                <ScalarProperty Name="create_at" ColumnName="create_at" />
+                <ScalarProperty Name="card_represent_name" ColumnName="card_represent_name" />
+                <ScalarProperty Name="card_number" ColumnName="card_number" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -635,5 +635,27 @@ namespace Filmatic.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CreateInvoice", lv_id_userParameter, lv_id_functionParameter, lv_id_payment_cardParameter);
         }
+    
+        public virtual ObjectResult<sp_GetInvoiceDetailsByInvoiceId_Result> sp_GetInvoiceDetailsByInvoiceId(string lv_id_user, Nullable<int> ln_id_invoice)
+        {
+            var lv_id_userParameter = lv_id_user != null ?
+                new ObjectParameter("Lv_id_user", lv_id_user) :
+                new ObjectParameter("Lv_id_user", typeof(string));
+    
+            var ln_id_invoiceParameter = ln_id_invoice.HasValue ?
+                new ObjectParameter("Ln_id_invoice", ln_id_invoice) :
+                new ObjectParameter("Ln_id_invoice", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetInvoiceDetailsByInvoiceId_Result>("sp_GetInvoiceDetailsByInvoiceId", lv_id_userParameter, ln_id_invoiceParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetInvoicesByUser_Result> sp_GetInvoicesByUser(string lv_id_user)
+        {
+            var lv_id_userParameter = lv_id_user != null ?
+                new ObjectParameter("Lv_id_user", lv_id_user) :
+                new ObjectParameter("Lv_id_user", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetInvoicesByUser_Result>("sp_GetInvoicesByUser", lv_id_userParameter);
+        }
     }
 }

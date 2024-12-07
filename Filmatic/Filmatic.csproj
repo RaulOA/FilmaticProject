@@ -148,6 +148,8 @@
     <Content Include="Pages\Admin\Main.aspx" />
     <Content Include="Pages\Asientos.aspx" />
     <Content Include="Pages\Horarios.aspx" />
+    <Content Include="Pages\InvoiceDetails.aspx" />
+    <Content Include="Pages\Invoices.aspx" />
     <Content Include="Pages\Logout.aspx" />
     <Content Include="Pages\CreatePaymentCard.aspx" />
     <Content Include="Pages\MyPaymentCards.aspx" />
@@ -249,6 +251,12 @@
     <Compile Include="Data\sp_GetCinemaMoviesForMainScreen_Result.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\sp_GetInvoiceDetailsByInvoiceId_Result.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sp_GetInvoicesByUser_Result.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\sp_LoginUser_Result.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
@@ -321,6 +329,20 @@
       <DependentUpon>Horarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs" />
+    <Compile Include="Pages\InvoiceDetails.aspx.cs">
+      <DependentUpon>InvoiceDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\InvoiceDetails.aspx.designer.cs">
+      <DependentUpon>InvoiceDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Invoices.aspx.cs">
+      <DependentUpon>Invoices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Invoices.aspx.designer.cs">
+      <DependentUpon>Invoices.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

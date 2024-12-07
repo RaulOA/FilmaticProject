@@ -11,15 +11,13 @@ namespace Filmatic.Data
 {
     using System;
     
-    public partial class sp_LoginUser_Result
+    public partial class sp_GetInvoicesByUser_Result
     {
-        public string login_message { get; set; }
-        public string id_user { get; set; }
-        public string username { get; set; }
-        public string id_document { get; set; }
-        public string user_name { get; set; }
-        public string user_lastname { get; set; }
-        public string user_lastname1 { get; set; }
-        public string user_phone_number { get; set; }
+        public Nullable<int> id_invoice { get; set; }
+        public Nullable<decimal> total_amount { get; set; }
+        public string status_invoice { get; set; }
+        public Nullable<System.DateTime> create_at { get; set; }
+        public string card_represent_name { get; set; }
+        public string card_number { get; set; }
     }
 }

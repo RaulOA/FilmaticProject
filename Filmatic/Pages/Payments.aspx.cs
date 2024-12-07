@@ -28,7 +28,6 @@ namespace Filmatic
                 return;
             }
 
-
             if (!IsPostBack)
             {
 
@@ -50,6 +49,31 @@ namespace Filmatic
             }
         }
 
+
+        protected void btnPay_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string idFunctionQS = Request.QueryString["idFunction"];
+
+                if (idFunctionQS == null || idFunctionQS.Length < 1)
+                {
+                    sectionDetailsPaymen.Style["display"] = "none";
+                    ShowAlert("E", "Error", "No se ha encontrado la función");
+                    return;
+                }
+
+                using (var context = new CineMaxTicketsDB11Entities3())
+                {
+                    context.sp_CreateInvoice("USER02", idFunctionQS, ddlPaymentCard.SelectedValue);
+                    Response.Redirect("/Pages/Invoices");
+                }
+
+            } catch( Exception error)
+            {
+                ShowAlert("E", "Error", $"Error al crear la factura: {error.Message}");
+            }
+        }
 
         private void LoadDataPaymentCards()
         {
@@ -190,5 +214,7 @@ namespace Filmatic
             public string detail { get; set; }
             public string price { get; set; }
         }
+
+       
     }
 }

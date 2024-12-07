@@ -49,7 +49,8 @@
                                                      >
                                                         Regresar
                                                     </a>
-                                                    <button class="btn btn-primary ">Pagar</button>
+                                                    <asp:Button ID="btnPay" runat="server" Text="Pagar" CssClass="btn btn-primary" OnClick="btnPay_Click" />
+                                                    
                                                 </div>
                                             </div>
                                         </div>
