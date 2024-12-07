@@ -47,6 +47,11 @@
           <Parameter Name="version" Type="int" Mode="In" />
           <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
         </Function>
+        <Function Name="sp_CreateInvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
+          <Parameter Name="Lv_id_function" Type="char" Mode="In" />
+          <Parameter Name="Lv_id_payment_card" Type="char" Mode="In" />
+        </Function>
         <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -58,6 +63,11 @@
           <Parameter Name="Lv_id_movie" Type="char" Mode="In" />
         </Function>
         <Function Name="sp_GetCinemaFunctionTicketsNotAvaible" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
+          <Parameter Name="Lv_id_function" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_GetCinemaFunctionTicketsSelectedByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
           <Parameter Name="Lv_id_function" Type="char" Mode="In" />
         </Function>
         <Function Name="sp_GetCinemaMoviesForMainScreen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -72,6 +82,19 @@
         <Function Name="sp_LoginUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Lv_username" Type="varchar" Mode="In" />
           <Parameter Name="Lv_password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ManageCinemaTickets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
+          <Parameter Name="Lv_action" Type="char" Mode="In" />
+          <Parameter Name="Lv_id_function" Type="char" Mode="In" />
+          <Parameter Name="Lv_row_num_seat" Type="char" Mode="In" />
+          <Parameter Name="Lv_col_num_seat" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_ManageCinemaTicketsByList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
+          <Parameter Name="Lv_action" Type="char" Mode="In" />
+          <Parameter Name="Lv_id_function" Type="char" Mode="In" />
+          <Parameter Name="Lv_list_tickets" Type="varchar(max)" Mode="In" />
         </Function>
         <Function Name="sp_ManageDMLCatPermission" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Lv_id_user" Type="char" Mode="In" />
@@ -139,6 +162,17 @@
           <Parameter Name="Lv_code" Type="char" Mode="In" />
           <Parameter Name="Lv_title" Type="varchar" Mode="In" />
           <Parameter Name="Lv_description" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ManageDMLPaymentCards" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
+          <Parameter Name="Lv_dml_action" Type="char" Mode="In" />
+          <Parameter Name="Lv_id_user_credit_card" Type="char" Mode="In" />
+          <Parameter Name="Lv_id" Type="char" Mode="In" />
+          <Parameter Name="Lv_represent_name" Type="varchar" Mode="In" />
+          <Parameter Name="Lv_card_number" Type="varchar" Mode="In" />
+          <Parameter Name="Ln_card_year" Type="int" Mode="In" />
+          <Parameter Name="Ln_card_month" Type="int" Mode="In" />
+          <Parameter Name="Lv_card_cv" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_ManagePermissionsRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Lv_id_user" Type="char" Mode="In" />
@@ -299,7 +333,41 @@
           <Parameter Name="Lv_id_movie" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_GetCinemaFunctionTicketsNotAvaible" ReturnType="Collection(CineMaxTicketsDB11Model.sp_GetCinemaFunctionTicketsNotAvaible_Result)">
-          <Parameter Name="Lv_id_function" Mode="In" Type="String" />
+            <Parameter Name="Lv_id_user" Mode="In" Type="String" />
+            <Parameter Name="Lv_id_function" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetCinemaFunctionTicketsSelectedByUser" ReturnType="Collection(CineMaxTicketsDB11Model.sp_GetCinemaFunctionTicketsSelectedByUser_Result)">
+            <Parameter Name="Lv_id_user" Mode="In" Type="String" />
+            <Parameter Name="Lv_id_function" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ManageCinemaTickets">
+            <Parameter Name="Lv_id_user" Mode="In" Type="String" />
+            <Parameter Name="Lv_action" Mode="In" Type="String" />
+            <Parameter Name="Lv_id_function" Mode="In" Type="String" />
+            <Parameter Name="Lv_row_num_seat" Mode="In" Type="String" />
+            <Parameter Name="Lv_col_num_seat" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ManageCinemaTicketsByList">
+            <Parameter Name="Lv_id_user" Mode="In" Type="String" />
+            <Parameter Name="Lv_action" Mode="In" Type="String" />
+            <Parameter Name="Lv_id_function" Mode="In" Type="String" />
+            <Parameter Name="Lv_list_tickets" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ManageDMLPaymentCards" ReturnType="Collection(CineMaxTicketsDB11Model.sp_ManageDMLPaymentCards_Result)">
+            <Parameter Name="Lv_id_user" Mode="In" Type="String" />
+            <Parameter Name="Lv_dml_action" Mode="In" Type="String" />
+            <Parameter Name="Lv_id_user_credit_card" Mode="In" Type="String" />
+            <Parameter Name="Lv_id" Mode="In" Type="String" />
+            <Parameter Name="Lv_represent_name" Mode="In" Type="String" />
+            <Parameter Name="Lv_card_number" Mode="In" Type="String" />
+            <Parameter Name="Ln_card_year" Mode="In" Type="Int32" />
+            <Parameter Name="Ln_card_month" Mode="In" Type="Int32" />
+            <Parameter Name="Lv_card_cv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CreateInvoice">
+            <Parameter Name="Lv_id_user" Mode="In" Type="String" />
+            <Parameter Name="Lv_id_function" Mode="In" Type="String" />
+            <Parameter Name="Lv_id_payment_card" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_LoginUser_Result">
@@ -429,6 +497,19 @@
         <ComplexType Name="sp_GetCinemaFunctionTicketsNotAvaible_Result">
           <Property Type="String" Name="row_num_seat" Nullable="false" MaxLength="4" />
           <Property Type="String" Name="col_num_seat" Nullable="false" MaxLength="4" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCinemaFunctionTicketsSelectedByUser_Result">
+          <Property Type="String" Name="row_num_seat" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="col_num_seat" Nullable="true" MaxLength="4" />
+        </ComplexType>
+        <ComplexType Name="sp_ManageDMLPaymentCards_Result">
+          <Property Type="String" Name="id" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="id_user" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="represent_name" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="card_number" Nullable="false" MaxLength="16" />
+          <Property Type="Int32" Name="card_year" Nullable="false" />
+          <Property Type="Int32" Name="card_month" Nullable="false" />
+          <Property Type="String" Name="card_cv" Nullable="false" MaxLength="3" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -629,6 +710,30 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetCinemaFunctionTicketsSelectedByUser" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetCinemaFunctionTicketsSelectedByUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CineMaxTicketsDB11Model.sp_GetCinemaFunctionTicketsSelectedByUser_Result">
+                <ScalarProperty Name="row_num_seat" ColumnName="row_num_seat" />
+                <ScalarProperty Name="col_num_seat" ColumnName="col_num_seat" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ManageCinemaTickets" FunctionName="CineMaxTicketsDB11Model.Store.sp_ManageCinemaTickets" />
+          <FunctionImportMapping FunctionImportName="sp_ManageCinemaTicketsByList" FunctionName="CineMaxTicketsDB11Model.Store.sp_ManageCinemaTicketsByList" />
+          <FunctionImportMapping FunctionImportName="sp_ManageDMLPaymentCards" FunctionName="CineMaxTicketsDB11Model.Store.sp_ManageDMLPaymentCards">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CineMaxTicketsDB11Model.sp_ManageDMLPaymentCards_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="represent_name" ColumnName="represent_name" />
+                <ScalarProperty Name="card_number" ColumnName="card_number" />
+                <ScalarProperty Name="card_year" ColumnName="card_year" />
+                <ScalarProperty Name="card_month" ColumnName="card_month" />
+                <ScalarProperty Name="card_cv" ColumnName="card_cv" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_CreateInvoice" FunctionName="CineMaxTicketsDB11Model.Store.sp_CreateInvoice" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

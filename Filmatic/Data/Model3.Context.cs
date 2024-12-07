@@ -506,13 +506,134 @@ namespace Filmatic.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCinemaFunctionsDataByIDMovie_Result>("sp_GetCinemaFunctionsDataByIDMovie", lv_id_movieParameter);
         }
     
-        public virtual ObjectResult<sp_GetCinemaFunctionTicketsNotAvaible_Result> sp_GetCinemaFunctionTicketsNotAvaible(string lv_id_function)
+        public virtual ObjectResult<sp_GetCinemaFunctionTicketsNotAvaible_Result> sp_GetCinemaFunctionTicketsNotAvaible(string lv_id_user, string lv_id_function)
         {
+            var lv_id_userParameter = lv_id_user != null ?
+                new ObjectParameter("Lv_id_user", lv_id_user) :
+                new ObjectParameter("Lv_id_user", typeof(string));
+    
             var lv_id_functionParameter = lv_id_function != null ?
                 new ObjectParameter("Lv_id_function", lv_id_function) :
                 new ObjectParameter("Lv_id_function", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCinemaFunctionTicketsNotAvaible_Result>("sp_GetCinemaFunctionTicketsNotAvaible", lv_id_functionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCinemaFunctionTicketsNotAvaible_Result>("sp_GetCinemaFunctionTicketsNotAvaible", lv_id_userParameter, lv_id_functionParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetCinemaFunctionTicketsSelectedByUser_Result> sp_GetCinemaFunctionTicketsSelectedByUser(string lv_id_user, string lv_id_function)
+        {
+            var lv_id_userParameter = lv_id_user != null ?
+                new ObjectParameter("Lv_id_user", lv_id_user) :
+                new ObjectParameter("Lv_id_user", typeof(string));
+    
+            var lv_id_functionParameter = lv_id_function != null ?
+                new ObjectParameter("Lv_id_function", lv_id_function) :
+                new ObjectParameter("Lv_id_function", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCinemaFunctionTicketsSelectedByUser_Result>("sp_GetCinemaFunctionTicketsSelectedByUser", lv_id_userParameter, lv_id_functionParameter);
+        }
+    
+        public virtual int sp_ManageCinemaTickets(string lv_id_user, string lv_action, string lv_id_function, string lv_row_num_seat, string lv_col_num_seat)
+        {
+            var lv_id_userParameter = lv_id_user != null ?
+                new ObjectParameter("Lv_id_user", lv_id_user) :
+                new ObjectParameter("Lv_id_user", typeof(string));
+    
+            var lv_actionParameter = lv_action != null ?
+                new ObjectParameter("Lv_action", lv_action) :
+                new ObjectParameter("Lv_action", typeof(string));
+    
+            var lv_id_functionParameter = lv_id_function != null ?
+                new ObjectParameter("Lv_id_function", lv_id_function) :
+                new ObjectParameter("Lv_id_function", typeof(string));
+    
+            var lv_row_num_seatParameter = lv_row_num_seat != null ?
+                new ObjectParameter("Lv_row_num_seat", lv_row_num_seat) :
+                new ObjectParameter("Lv_row_num_seat", typeof(string));
+    
+            var lv_col_num_seatParameter = lv_col_num_seat != null ?
+                new ObjectParameter("Lv_col_num_seat", lv_col_num_seat) :
+                new ObjectParameter("Lv_col_num_seat", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ManageCinemaTickets", lv_id_userParameter, lv_actionParameter, lv_id_functionParameter, lv_row_num_seatParameter, lv_col_num_seatParameter);
+        }
+    
+        public virtual int sp_ManageCinemaTicketsByList(string lv_id_user, string lv_action, string lv_id_function, string lv_list_tickets)
+        {
+            var lv_id_userParameter = lv_id_user != null ?
+                new ObjectParameter("Lv_id_user", lv_id_user) :
+                new ObjectParameter("Lv_id_user", typeof(string));
+    
+            var lv_actionParameter = lv_action != null ?
+                new ObjectParameter("Lv_action", lv_action) :
+                new ObjectParameter("Lv_action", typeof(string));
+    
+            var lv_id_functionParameter = lv_id_function != null ?
+                new ObjectParameter("Lv_id_function", lv_id_function) :
+                new ObjectParameter("Lv_id_function", typeof(string));
+    
+            var lv_list_ticketsParameter = lv_list_tickets != null ?
+                new ObjectParameter("Lv_list_tickets", lv_list_tickets) :
+                new ObjectParameter("Lv_list_tickets", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ManageCinemaTicketsByList", lv_id_userParameter, lv_actionParameter, lv_id_functionParameter, lv_list_ticketsParameter);
+        }
+    
+        public virtual ObjectResult<sp_ManageDMLPaymentCards_Result> sp_ManageDMLPaymentCards(string lv_id_user, string lv_dml_action, string lv_id_user_credit_card, string lv_id, string lv_represent_name, string lv_card_number, Nullable<int> ln_card_year, Nullable<int> ln_card_month, string lv_card_cv)
+        {
+            var lv_id_userParameter = lv_id_user != null ?
+                new ObjectParameter("Lv_id_user", lv_id_user) :
+                new ObjectParameter("Lv_id_user", typeof(string));
+    
+            var lv_dml_actionParameter = lv_dml_action != null ?
+                new ObjectParameter("Lv_dml_action", lv_dml_action) :
+                new ObjectParameter("Lv_dml_action", typeof(string));
+    
+            var lv_id_user_credit_cardParameter = lv_id_user_credit_card != null ?
+                new ObjectParameter("Lv_id_user_credit_card", lv_id_user_credit_card) :
+                new ObjectParameter("Lv_id_user_credit_card", typeof(string));
+    
+            var lv_idParameter = lv_id != null ?
+                new ObjectParameter("Lv_id", lv_id) :
+                new ObjectParameter("Lv_id", typeof(string));
+    
+            var lv_represent_nameParameter = lv_represent_name != null ?
+                new ObjectParameter("Lv_represent_name", lv_represent_name) :
+                new ObjectParameter("Lv_represent_name", typeof(string));
+    
+            var lv_card_numberParameter = lv_card_number != null ?
+                new ObjectParameter("Lv_card_number", lv_card_number) :
+                new ObjectParameter("Lv_card_number", typeof(string));
+    
+            var ln_card_yearParameter = ln_card_year.HasValue ?
+                new ObjectParameter("Ln_card_year", ln_card_year) :
+                new ObjectParameter("Ln_card_year", typeof(int));
+    
+            var ln_card_monthParameter = ln_card_month.HasValue ?
+                new ObjectParameter("Ln_card_month", ln_card_month) :
+                new ObjectParameter("Ln_card_month", typeof(int));
+    
+            var lv_card_cvParameter = lv_card_cv != null ?
+                new ObjectParameter("Lv_card_cv", lv_card_cv) :
+                new ObjectParameter("Lv_card_cv", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ManageDMLPaymentCards_Result>("sp_ManageDMLPaymentCards", lv_id_userParameter, lv_dml_actionParameter, lv_id_user_credit_cardParameter, lv_idParameter, lv_represent_nameParameter, lv_card_numberParameter, ln_card_yearParameter, ln_card_monthParameter, lv_card_cvParameter);
+        }
+    
+        public virtual int sp_CreateInvoice(string lv_id_user, string lv_id_function, string lv_id_payment_card)
+        {
+            var lv_id_userParameter = lv_id_user != null ?
+                new ObjectParameter("Lv_id_user", lv_id_user) :
+                new ObjectParameter("Lv_id_user", typeof(string));
+    
+            var lv_id_functionParameter = lv_id_function != null ?
+                new ObjectParameter("Lv_id_function", lv_id_function) :
+                new ObjectParameter("Lv_id_function", typeof(string));
+    
+            var lv_id_payment_cardParameter = lv_id_payment_card != null ?
+                new ObjectParameter("Lv_id_payment_card", lv_id_payment_card) :
+                new ObjectParameter("Lv_id_payment_card", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_CreateInvoice", lv_id_userParameter, lv_id_functionParameter, lv_id_payment_cardParameter);
         }
     }
 }

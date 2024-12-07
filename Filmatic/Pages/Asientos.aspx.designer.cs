@@ -24,6 +24,24 @@ namespace Filmatic
         protected global::System.Web.UI.WebControls.HiddenField hdfDataSeatsNoAvaible;
 
         /// <summary>
+        /// Control hdfDataSeatsSelectedByUser.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdfDataSeatsSelectedByUser;
+
+        /// <summary>
+        /// Control hdfPriceOfTicket.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdfPriceOfTicket;
+
+        /// <summary>
         /// Control alertMsg.
         /// </summary>
         /// <remarks>
@@ -60,6 +78,24 @@ namespace Filmatic
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblFunctionDate;
 
         /// <summary>
+        /// Control lblPrice.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPrice;
+
+        /// <summary>
+        /// Control imgPoster.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgPoster;
+
+        /// <summary>
         /// Control sectionSelectSeats.
         /// </summary>
         /// <remarks>
@@ -67,6 +103,15 @@ namespace Filmatic
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionSelectSeats;
+
+        /// <summary>
+        /// Control totalAmount.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalAmount;
 
         /// <summary>
         /// Control btnGoToPay.

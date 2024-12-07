@@ -21,6 +21,13 @@
 
     <!-- Favicon del sitio -->
     <link href="~/favicon.ico" rel="icon" type="image/x-icon" />
+
+     <script
+        src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+        crossorigin="anonymous"></script>
+
+     <script src="/Scripts/master_page_scripts.js" defer></script>
 </head>
 <body>
     <!-- Formulario principal para mantener el estado del servidor -->
@@ -79,5 +86,56 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/bootstrap") %>
     </asp:PlaceHolder>
+
+     <div class="modal fade " id="modalNoLogged" tabindex="-1" aria-labelledby="modalNoLogin" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalNoLogin">Aún no estás Loggeado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalNoLoggedBody">
+                </div>
+                <div class="modal-footer">
+                    <a href="/views/Login.aspx" class="btn style-1">Ingresar</a>
+                    <a href="/views/Register.aspx" class="btn style-2">Registrame</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="modalError" tabindex="-1" aria-labelledby="modalError" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">Error!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalErrorBody">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <script type="text/javascript">
+
+        function callModalNoLogged(message) {
+            $('#modalNoLogged').modal('show');
+            const modalBody = $('#modalNoLoggedBody')
+            modalBody[0].innerHTML = `<div> ${message} </div>`
+        }
+
+        function callModalError(message) {
+            $('#modalError').modal('show');
+            const modalBody = $('#modalErrorBody')
+            modalBody[0].innerHTML = `<div> ${message} </div>`
+        }
+
+    </script>
 </body>
 </html>

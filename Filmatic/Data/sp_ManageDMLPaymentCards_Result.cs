@@ -11,15 +11,14 @@ namespace Filmatic.Data
 {
     using System;
     
-    public partial class sp_LoginUser_Result
+    public partial class sp_ManageDMLPaymentCards_Result
     {
-        public string login_message { get; set; }
-        public Nullable<int> id_user { get; set; }
-        public Nullable<int> username { get; set; }
-        public Nullable<int> id_document { get; set; }
-        public Nullable<int> user_name { get; set; }
-        public Nullable<int> user_lastname { get; set; }
-        public Nullable<int> user_lastname1 { get; set; }
-        public Nullable<int> user_phone_number { get; set; }
+        public string id { get; set; }
+        public string id_user { get; set; }
+        public string represent_name { get; set; }
+        public string card_number { get; set; }
+        public int card_year { get; set; }
+        public int card_month { get; set; }
+        public string card_cv { get; set; }
     }
 }

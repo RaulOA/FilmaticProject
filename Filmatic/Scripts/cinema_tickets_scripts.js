@@ -12,7 +12,7 @@ const NUM_COLS = 18;
 
 const notAvaibleTickets = getDataSeatsNotAvailable();
 
-let selectedTickets = [];
+let selectedTickets = getDataSeatsSelectedByUser();
 
 
 function loadDataDetailInSumaryElement() {
@@ -99,6 +99,7 @@ function manageSelectedTickets(_row, _col) {
 
     printSeats(NUM_ROWS, NUM_COLS);
     loadDataDetailInSumaryElement()
+    reserveTicketsSelected()
 }
 
 function setNotAvailableClass() {
@@ -115,12 +116,17 @@ function setNotAvailableClass() {
 
 // Se encarga de colocar la clase de ccs al los elmentos seleccionados
 function setSelectedClass() {
+    console.log("setSelectedClass", selectedTickets)
     selectedTickets.forEach((item) => {
         const $seatSelected = document.querySelector(
             `[data-ds-idx-row="${item.row}"][data-ds-idx-col="${item.col}"]`
         );
-        $seatSelected.classList.remove("available");
-        $seatSelected.classList.add("selected");
+        console.log($seatSelected)
+        if ($seatSelected) {
+            // $seatSelected.classList.remove("not-available");
+            $seatSelected.classList.remove("available");
+            $seatSelected.classList.add("selected");
+        }
     });
 }
 
@@ -201,6 +207,14 @@ function printSeats(numRows, numCols) {
 }
 
 
+function getDataSeatsSelectedByUser() {
+    try {
+        return JSON.parse(document.getElementById('jsonDataSeatsSelectedByUser').textContent)
+    } catch {
+        return []
+    }
+}
+
 function getDataSeatsNotAvailable() {
     try {
         return JSON.parse(document.getElementById('jsonDataSeatsNotAvailable').textContent)
@@ -243,5 +257,52 @@ function getAbecedaryByIdx(_idx = 0) {
 }
 
 
+
+function reserveTicketsSelected() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const idFunction = urlParams.get('idFunction');
+
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            type: "POST",
+            url: "Asientos.aspx/ReserveTickets",
+            data: JSON.stringify({ jsonSeatsSelected: selectedTickets, idFunction: idFunction }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                console.log(response)
+                const { error, message } = JSON.parse(response.d)
+                
+                if (error != 0) {
+                    callModalError(message)
+                    return reject(new Error(message))
+                }
+
+                document.querySelector("form").submit()
+                return resolve(message)
+
+            },
+            error: function (xhr, status, error) {
+                console.error({ xhr, status, error })
+                callModalError(error)
+                return reject(new Error(message))
+            }
+        });
+    })
+
+}
+
+function gotToPayDotNet() {
+
+    reserveTicketsSelected()
+        .then(() => { alert("Todo correcto") })
+        .catch((error) => { alert("Algo salió mal :( " + error.message) })
+
+}
 printSeats(NUM_ROWS, NUM_COLS);
 loadDataDetailInSumaryElement()
+
+
+
+
+

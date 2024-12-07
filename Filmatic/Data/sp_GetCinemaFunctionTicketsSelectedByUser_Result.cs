@@ -11,15 +11,9 @@ namespace Filmatic.Data
 {
     using System;
     
-    public partial class sp_LoginUser_Result
+    public partial class sp_GetCinemaFunctionTicketsSelectedByUser_Result
     {
-        public string login_message { get; set; }
-        public Nullable<int> id_user { get; set; }
-        public Nullable<int> username { get; set; }
-        public Nullable<int> id_document { get; set; }
-        public Nullable<int> user_name { get; set; }
-        public Nullable<int> user_lastname { get; set; }
-        public Nullable<int> user_lastname1 { get; set; }
-        public Nullable<int> user_phone_number { get; set; }
+        public string row_num_seat { get; set; }
+        public string col_num_seat { get; set; }
     }
 }

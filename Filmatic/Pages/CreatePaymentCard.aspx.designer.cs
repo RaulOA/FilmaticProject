@@ -7,30 +7,12 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Filmatic
+namespace Filmatic.Pages
 {
 
 
-    public partial class _Payments
+    public partial class CreatePaymentCard
     {
-
-        /// <summary>
-        /// Control hdfDataSeatsSelectedByUser.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdfDataSeatsSelectedByUser;
-
-        /// <summary>
-        /// Control hdfIdFunction.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdfIdFunction;
 
         /// <summary>
         /// Control alertMsg.
@@ -51,30 +33,48 @@ namespace Filmatic
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectionDetailsPaymen;
 
         /// <summary>
-        /// Control ddlPaymentCard.
+        /// Control txtNameCard.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPaymentCard;
+        protected global::System.Web.UI.WebControls.TextBox txtNameCard;
 
         /// <summary>
-        /// Control totalAmount.
+        /// Control txtCardNumber.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalAmount;
+        protected global::System.Web.UI.WebControls.TextBox txtCardNumber;
 
         /// <summary>
-        /// Control gvDetailLinesPayment.
+        /// Control txtDateExp.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvDetailLinesPayment;
+        protected global::System.Web.UI.WebControls.TextBox txtDateExp;
+
+        /// <summary>
+        /// Control txtCV.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCV;
+
+        /// <summary>
+        /// Control btnCreate.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreate;
     }
 }

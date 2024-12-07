@@ -149,6 +149,8 @@
     <Content Include="Pages\Asientos.aspx" />
     <Content Include="Pages\Horarios.aspx" />
     <Content Include="Pages\Logout.aspx" />
+    <Content Include="Pages\CreatePaymentCard.aspx" />
+    <Content Include="Pages\MyPaymentCards.aspx" />
     <Content Include="Pages\Register.aspx" />
     <Content Include="Pages\Admin.aspx" />
     <Content Include="Pages\Payments.aspx" />
@@ -175,6 +177,7 @@
     <Content Include="Scripts\jquery-3.7.1.min.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
+    <Content Include="Scripts\master_page_scripts.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
@@ -240,6 +243,9 @@
     <Compile Include="Data\sp_GetCinemaFunctionTicketsNotAvaible_Result.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\sp_GetCinemaFunctionTicketsSelectedByUser_Result.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\sp_GetCinemaMoviesForMainScreen_Result.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
@@ -265,6 +271,9 @@
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\sp_ManageDMLCinemaGenresMovie_Result.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sp_ManageDMLPaymentCards_Result.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\sp_ManagePermissionsRole_Result.cs">
@@ -318,6 +327,20 @@
     </Compile>
     <Compile Include="Pages\Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CreatePaymentCard.aspx.cs">
+      <DependentUpon>CreatePaymentCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\CreatePaymentCard.aspx.designer.cs">
+      <DependentUpon>CreatePaymentCard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MyPaymentCards.aspx.cs">
+      <DependentUpon>MyPaymentCards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MyPaymentCards.aspx.designer.cs">
+      <DependentUpon>MyPaymentCards.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
