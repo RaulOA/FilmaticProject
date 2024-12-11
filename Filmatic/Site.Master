@@ -22,12 +22,12 @@
     <!-- Favicon del sitio -->
     <link href="~/favicon.ico" rel="icon" type="image/x-icon" />
 
-     <script
+    <script
         src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
         crossorigin="anonymous"></script>
 
-     <script src="/Scripts/master_page_scripts.js" defer></script>
+    <script src="/Scripts/master_page_scripts.js" defer></script>
 </head>
 <body>
     <!-- Formulario principal para mantener el estado del servidor -->
@@ -53,18 +53,21 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Movies.aspx">Películas</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Billboard.aspx">Cartelera</a></li>
 
-                         <% if (Session["user_logged"] != null) { %>
- 
-                             <% if (Session["is_admin"] != "1") { %>
-                                 <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Admin/Main.aspx">Administración</a></li>
-                             <% } %>
-     
-                             <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Logout.aspx">Cerrar Sesión</a></li>
-                         <% } else { %>
-                             <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Register.aspx">Crear Cuenta</a></li>
-                             <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Login.aspx">Iniciar Sesión</a></li>
-                         <% } %>
-                        
+                        <% if (Session["user_logged"] != null)
+                            { %>
+
+                        <% if (Session["is_admin"] != "1")
+                            { %>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Admin/Main.aspx">Administración</a></li>
+                        <% } %>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="Pages/UserEdit.aspx">Editar Datos</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Logout.aspx">Cerrar Sesión</a></li>
+                        <% }
+                        else
+                        { %>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Register.aspx">Crear Cuenta</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Login.aspx">Iniciar Sesión</a></li>
+                        <% } %>
                     </ul>
                 </div>
             </div>
@@ -87,7 +90,7 @@
         <%: Scripts.Render("~/bundles/bootstrap") %>
     </asp:PlaceHolder>
 
-     <div class="modal fade " id="modalNoLogged" tabindex="-1" aria-labelledby="modalNoLogin" aria-hidden="true">
+    <div class="modal fade " id="modalNoLogged" tabindex="-1" aria-labelledby="modalNoLogin" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -121,7 +124,7 @@
         </div>
     </div>
 
-   
+
     <script type="text/javascript">
 
         function callModalNoLogged(message) {

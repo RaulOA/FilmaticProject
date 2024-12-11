@@ -13,9 +13,7 @@ namespace Filmatic
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             string idMovieQS = Request.QueryString["movieId"];
-
             if (idMovieQS == null || idMovieQS.Length < 1)
             {
                 ShowAlert("E", "Error", "No se ha encontrado datos para elegir función");
