@@ -1,10 +1,6 @@
 ﻿using Filmatic.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Filmatic
 {
@@ -23,7 +19,7 @@ namespace Filmatic
         public User GetSessionUserData()
         {
             User rUser = new User();
-            rUser.IdUser = null;
+            rUser.id_usuario = null;
             rUser.IsAdmin = false;
 
             if (Session == null) return rUser;
@@ -42,7 +38,7 @@ namespace Filmatic
             if (Session == null) return false;
             if (Session["user_logged"] == null) return false;
 
-            if (GetSessionUserData().IdUser == null) return false;
+            if (GetSessionUserData().id_usuario == null) return false;
 
             return true;
         }

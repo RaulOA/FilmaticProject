@@ -904,6 +904,89 @@ public partial class CineMaxTicketsDB11Entities3 : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("P_CheckUserExists", lv_usernameParameter, lv_passwordParameter, userExists);
     }
 
+
+    public virtual ObjectResult<string> sp_GetLastThreeMoviesCarrousel()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_GetLastThreeMoviesCarrousel");
+    }
+
+
+    public virtual ObjectResult<sp_GetCinemaFunctionTicketsNotAvaible1_Result> sp_GetCinemaFunctionTicketsNotAvaible1(string lv_id_user, string lv_id_function)
+    {
+
+        var lv_id_userParameter = lv_id_user != null ?
+            new ObjectParameter("Lv_id_user", lv_id_user) :
+            new ObjectParameter("Lv_id_user", typeof(string));
+
+
+        var lv_id_functionParameter = lv_id_function != null ?
+            new ObjectParameter("Lv_id_function", lv_id_function) :
+            new ObjectParameter("Lv_id_function", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCinemaFunctionTicketsNotAvaible1_Result>("sp_GetCinemaFunctionTicketsNotAvaible1", lv_id_userParameter, lv_id_functionParameter);
+    }
+
+
+    public virtual int sp_ManageCinemaTickets1(string lv_id_user, string lv_action, string lv_id_function, string lv_row_num_seat, string lv_col_num_seat)
+    {
+
+        var lv_id_userParameter = lv_id_user != null ?
+            new ObjectParameter("Lv_id_user", lv_id_user) :
+            new ObjectParameter("Lv_id_user", typeof(string));
+
+
+        var lv_actionParameter = lv_action != null ?
+            new ObjectParameter("Lv_action", lv_action) :
+            new ObjectParameter("Lv_action", typeof(string));
+
+
+        var lv_id_functionParameter = lv_id_function != null ?
+            new ObjectParameter("Lv_id_function", lv_id_function) :
+            new ObjectParameter("Lv_id_function", typeof(string));
+
+
+        var lv_row_num_seatParameter = lv_row_num_seat != null ?
+            new ObjectParameter("Lv_row_num_seat", lv_row_num_seat) :
+            new ObjectParameter("Lv_row_num_seat", typeof(string));
+
+
+        var lv_col_num_seatParameter = lv_col_num_seat != null ?
+            new ObjectParameter("Lv_col_num_seat", lv_col_num_seat) :
+            new ObjectParameter("Lv_col_num_seat", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ManageCinemaTickets1", lv_id_userParameter, lv_actionParameter, lv_id_functionParameter, lv_row_num_seatParameter, lv_col_num_seatParameter);
+    }
+
+
+    public virtual int sp_ManageCinemaTicketsByList1(string lv_id_user, string lv_action, string lv_id_function, string lv_list_tickets)
+    {
+
+        var lv_id_userParameter = lv_id_user != null ?
+            new ObjectParameter("Lv_id_user", lv_id_user) :
+            new ObjectParameter("Lv_id_user", typeof(string));
+
+
+        var lv_actionParameter = lv_action != null ?
+            new ObjectParameter("Lv_action", lv_action) :
+            new ObjectParameter("Lv_action", typeof(string));
+
+
+        var lv_id_functionParameter = lv_id_function != null ?
+            new ObjectParameter("Lv_id_function", lv_id_function) :
+            new ObjectParameter("Lv_id_function", typeof(string));
+
+
+        var lv_list_ticketsParameter = lv_list_tickets != null ?
+            new ObjectParameter("Lv_list_tickets", lv_list_tickets) :
+            new ObjectParameter("Lv_list_tickets", typeof(string));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ManageCinemaTicketsByList1", lv_id_userParameter, lv_actionParameter, lv_id_functionParameter, lv_list_ticketsParameter);
+    }
+
 }
 
 }

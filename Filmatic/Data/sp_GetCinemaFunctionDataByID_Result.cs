@@ -75,6 +75,8 @@ public partial class sp_GetCinemaFunctionDataByID_Result
 
     public string movie_url_carrusel { get; set; }
 
+    public string function_duration_to_show { get; set; }
+
 }
 
 }

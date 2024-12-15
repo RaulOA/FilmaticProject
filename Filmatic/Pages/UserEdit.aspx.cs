@@ -1,7 +1,6 @@
 ﻿using Filmatic.Data;
 using Filmatic.Models;
 using System;
-using System.Linq;
 using System.Web.UI;
 
 namespace Filmatic
@@ -17,7 +16,20 @@ namespace Filmatic
                 Response.Redirect("/Login.aspx");
                 return;
             }
+            if (!IsPostBack)
+            {
+                CargarDatosUsuario();
+            }                
         }
+
+        private void CargarDatosUsuario()
+        {
+            User userdata = (User)Session["user_logged"];
+            txtUsername.Text = userdata.usuario;
+            txtEmail.Text = userdata.mail;
+            txtPhone.Text = userdata.telefono;
+        }
+
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -40,7 +52,7 @@ namespace Filmatic
             if (userdata != null)
             {
                 // Asigna los valores del usuario a variables
-                string idUser = userdata.IdUser;
+                string idUser = userdata.id_usuario;
 
                 try
                 {
@@ -50,8 +62,8 @@ namespace Filmatic
                         int result = context.P_UpdateUser(
                             lv_id_user: idUser,          // ID del usuario logueado
                             lv_username: username,       // Nuevo nombre de usuario (puede ser el mismo si no se ha cambiado)
-                            lv_name: userdata.Name,      // Nombre actual (se puede modificar si es necesario)
-                            lv_lastname: userdata.LastName, // Apellido actual (se puede modificar si es necesario)
+                            lv_name: userdata.nombre,      // Nombre actual (se puede modificar si es necesario)
+                            lv_lastname: userdata.apellido, // Apellido actual (se puede modificar si es necesario)
                             lv_email: email,             // Nuevo email
                             lv_phone_number: phone,      // Nuevo número de teléfono
                             lv_password: password        // Nueva contraseña (si se quiere cambiar)

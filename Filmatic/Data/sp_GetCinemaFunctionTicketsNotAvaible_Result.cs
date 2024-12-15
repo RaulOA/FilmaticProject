@@ -21,6 +21,10 @@ public partial class sp_GetCinemaFunctionTicketsNotAvaible_Result
 
     public string col_num_seat { get; set; }
 
+    public string status { get; set; }
+
+    public string id_user { get; set; }
+
 }
 
 }

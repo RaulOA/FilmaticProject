@@ -22,7 +22,7 @@ namespace Filmatic.Pages.Admin
             {
                 using (var context = new CineMaxTicketsDB11Entities3())
                 {
-                    gv_GenresMovie.DataSource = context.sp_ManageDMLCinemaGenresMovie(GetSessionUserData().IdUser, "S", null, null, null);
+                    gv_GenresMovie.DataSource = context.sp_ManageDMLCinemaGenresMovie(GetSessionUserData().id_usuario, "S", null, null, null);
                     gv_GenresMovie.DataBind();
                 }
             }
@@ -42,7 +42,7 @@ namespace Filmatic.Pages.Admin
         public User GetSessionUserData()
         {
             User rUser = new User();
-            rUser.IdUser = null;
+            rUser.id_usuario = null;
             rUser.IsAdmin = false;
 
             if (Session == null) return rUser;
@@ -68,7 +68,7 @@ namespace Filmatic.Pages.Admin
             User user = Session["user_logged"] as User;
 
 
-            if (user.IdUser == null)
+            if (user.id_usuario == null)
             {
                 Response.StatusCode = 401;
                 Response.Redirect("/Pages/Login");

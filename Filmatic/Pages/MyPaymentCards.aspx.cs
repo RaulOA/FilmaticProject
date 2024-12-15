@@ -1,9 +1,5 @@
 ﻿using Filmatic.Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Filmatic.Pages
@@ -15,7 +11,17 @@ namespace Filmatic.Pages
 
             if (!IsPostBack)
             {
-                LoadDataPaymentCards();
+                // Verificar si no hay un usuario autenticado en la sesión
+                if (Session["user_logged"] == null)
+                {
+                    // Redirigir al usuario a la página de inicio de sesión si no ha iniciado sesión
+                    Response.Redirect("/Login.aspx");
+                    return;
+                }
+                else
+                {
+                    LoadDataPaymentCards();
+                }
             }
         }
 

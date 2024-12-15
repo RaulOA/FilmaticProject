@@ -15,6 +15,24 @@ namespace Filmatic
     {
 
         /// <summary>
+        /// Control rptCarouselItems.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCarouselItems;
+
+        /// <summary>
+        /// Control rptCarouselIndicators.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCarouselIndicators;
+
+        /// <summary>
         /// Control MoviesRepeater.
         /// </summary>
         /// <remarks>

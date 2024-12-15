@@ -15,7 +15,7 @@
             <!-- Formulario de login -->
                 <div class="mb-3">
                     <label for="inputEmail" class="form-label">Correo electrónico</label>
-                    <input runat="server" type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Ingresá tu correo" required>
+                    <input runat="server" type="text" class="form-control" id="inputEmail" name="inputEmail" placeholder="Ingresá tu usuario" required>
                 </div>
 
                 <div class="mb-3">
@@ -23,11 +23,11 @@
                     <input runat="server" type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Ingresá tu contraseña" required>
                 </div>
 
-                <!-- Checkbox de recordarme -->
+                <%--<!-- Checkbox de recordarme -->
                 <div class="form-check mb-3">
                     <input type="checkbox" class="form-check-input" id="rememberMe">
                     <label class="form-check-label" for="rememberMe">Recordarme</label>
-                </div>
+                </div>--%>
 
                 <!-- Botón de login -->
                 <div class="d-grid">

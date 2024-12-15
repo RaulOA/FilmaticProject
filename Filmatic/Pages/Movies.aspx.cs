@@ -1,6 +1,7 @@
 ﻿using Filmatic.Data;
 using System;
-using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Web.UI;
 
 namespace Filmatic
@@ -11,23 +12,48 @@ namespace Filmatic
         {
             if (!IsPostBack)
             {
+                LoadCarouselData();
                 LoadMovies();
-                return;
-                // Crear una lista de películas de ejemplo
-                var movies = new List<Movie>
-                {
-                    new Movie { Id = 1, Title = "El Gran Viaje", Description = "Una emocionante aventura por tierras desconocidas.", Duration = "2h 10m", Rating = "PG-13", ImagePath = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/f4voSsbPTvaQwicwd1dyxICow6c.jpg" },
-                    new Movie { Id = 2, Title = "Misterio en la Ciudad", Description = "Un thriller psicológico que te mantendrá al borde de tu asiento.", Duration = "1h 45m", Rating = "R", ImagePath = "~/Images/misterio_ciudad.jpg" },
-                    new Movie { Id = 3, Title = "El Reino Perdido", Description = "Una historia fantástica de reinos antiguos, magia y batallas épicas.", Duration = "2h 20m", Rating = "PG", ImagePath = "~/Images/el_reino_perdido.jpg" }
-                };
-
-                // Asignar la lista de películas al Repeater
-                MoviesRepeater.DataSource = movies;
-                MoviesRepeater.DataBind();
-
             }
         }
 
+        private void LoadCarouselData()
+        {
+            // Crear el objeto para almacenar los datos del carrousel
+            DataTable dtSlides = new DataTable();
+            dtSlides.Columns.Add("SlideID");
+            dtSlides.Columns.Add("Title");
+            dtSlides.Columns.Add("ImageUrl");
+
+            using (var context = new CineMaxTicketsDB11Entities3())
+            {
+                // Obtener los datos desde el procedimiento almacenado (solo las URLs de las imágenes)
+                var dataMovies = context.sp_GetLastThreeMoviesCarrousel().ToList();
+
+                // Verificar si dataMovies tiene exactamente 3 elementos
+                if (dataMovies.Count == 3)
+                {
+                    // Recorrer los datos devueltos por el SP y llenar el DataTable
+                    int slideID = 1;
+                    for (int i = 0; i < dataMovies.Count; i++)
+                    {
+                        string title = $"Imagen {i + 1}";  // Generar el título "Imagen 1", "Imagen 2", "Imagen 3"
+                        string imageUrl = dataMovies[i].ToString(); // Acceder a la URL utilizando el índice
+
+                        // Agregar la fila al DataTable
+                        dtSlides.Rows.Add(slideID++, title, imageUrl);
+                    }
+                }
+            }
+
+            // Enlazar los datos al Repeater de las imágenes
+            rptCarouselItems.DataSource = dtSlides;
+            rptCarouselItems.DataBind();
+
+            // Enlazar los datos al Repeater de los indicadores
+            rptCarouselIndicators.DataSource = dtSlides;
+            rptCarouselIndicators.DataBind();
+        }
 
         private void LoadMovies()
         {
@@ -38,24 +64,5 @@ namespace Filmatic
                 MoviesRepeater.DataBind();
             }
         }
-    }
-
-    // Clase Movie para almacenar la información de cada película
-    public class Movie
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string Duration { get; set; }
-        public string Rating { get; set; }
-        public string ImagePath { get; set; }
-    }
-
-    // Clase CarouselItem para almacenar la información de cada imagen del carrusel
-    public class CarouselItem
-    {
-        public string ImageUrl { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
     }
 }

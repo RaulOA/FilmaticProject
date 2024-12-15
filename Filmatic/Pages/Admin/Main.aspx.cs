@@ -12,13 +12,9 @@ namespace Filmatic.Pages.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             Boolean resultValidaAdminUser = ValidateUserIsAdmin();
-
             if (!resultValidaAdminUser) return;
         }
-
-
 
         /// <summary>
         /// Valida si el usuario es Admin y está authorizado para visitar la pagina
@@ -35,8 +31,7 @@ namespace Filmatic.Pages.Admin
 
             User user = Session["user_logged"] as User;
 
-
-            if (user.IdUser == null)
+            if (user.id_usuario == null)
             {
                 Response.StatusCode = 401;
                 Response.Redirect("/Pages/Login");

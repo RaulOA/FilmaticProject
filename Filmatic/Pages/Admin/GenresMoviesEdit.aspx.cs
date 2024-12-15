@@ -1,12 +1,7 @@
 ﻿using Filmatic.Data;
 using Filmatic.Models;
 using System;
-using System.Collections.Generic;
-using System.EnterpriseServices.CompensatingResourceManager;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Filmatic.Pages.Admin
 {
@@ -101,7 +96,7 @@ namespace Filmatic.Pages.Admin
             {
                 try
                 {
-                    context.sp_ManageDMLCinemaGenresMovie(GetSessionUserData().IdUser, "U", _codeGenreMovie, _titleGenreMovie, _descriptionGenreMovie);
+                    context.sp_ManageDMLCinemaGenresMovie(GetSessionUserData().id_usuario, "U", _codeGenreMovie, _titleGenreMovie, _descriptionGenreMovie);
                     return null;
                 }
                 catch (Exception e)
@@ -123,7 +118,7 @@ namespace Filmatic.Pages.Admin
             {
                 try
                 {
-                    context.sp_ManageDMLCinemaGenresMovie(GetSessionUserData().IdUser, "D", _codeGenreMovie, null, null);
+                    context.sp_ManageDMLCinemaGenresMovie(GetSessionUserData().id_usuario, "D", _codeGenreMovie, null, null);
 
                     return null;
                 }
@@ -141,7 +136,7 @@ namespace Filmatic.Pages.Admin
             {
                 try
                 {
-                    sp_ManageDMLCinemaGenresMovie_Result dataGenreMovie = context.sp_ManageDMLCinemaGenresMovie(GetSessionUserData().IdUser, "S", _codeGenreMovie, null, null).FirstOrDefault();
+                    sp_ManageDMLCinemaGenresMovie_Result dataGenreMovie = context.sp_ManageDMLCinemaGenresMovie(GetSessionUserData().id_usuario, "S", _codeGenreMovie, null, null).FirstOrDefault();
 
                     if (dataGenreMovie == null)
                     {
@@ -203,7 +198,7 @@ namespace Filmatic.Pages.Admin
         private User GetSessionUserData()
         {
             User rUser = new User();
-            rUser.IdUser = null;
+            rUser.id_usuario = null;
             rUser.IsAdmin = false;
 
             if (Session == null) return rUser;
@@ -229,7 +224,7 @@ namespace Filmatic.Pages.Admin
             User user = Session["user_logged"] as User;
 
 
-            if (user.IdUser == null)
+            if (user.id_usuario == null)
             {
                 Response.StatusCode = 401;
                 Response.Redirect("/Pages/Login");

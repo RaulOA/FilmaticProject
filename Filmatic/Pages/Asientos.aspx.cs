@@ -168,7 +168,6 @@ namespace Filmatic
                 ShowAlert("E", "Error", $"Error al cargar la información de los tiquetes de la función {e.Message}");
                 return false;
             }
-
         }
         
 

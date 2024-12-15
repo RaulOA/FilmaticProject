@@ -65,10 +65,22 @@
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_GetCinemaFunctionDataByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_function" Type="char" Mode="In" />
+        </Function>
         <Function Name="sp_GetCinemaFunctionsDataByIDMovie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Lv_id_movie" Type="char" Mode="In" />
         </Function>
+        <Function Name="sp_GetCinemaFunctionTicketsNotAvaible" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
+          <Parameter Name="Lv_id_function" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_GetCinemaFunctionTicketsSelectedByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
+          <Parameter Name="Lv_id_function" Type="char" Mode="In" />
+        </Function>
         <Function Name="sp_GetCinemaMoviesForMainScreen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetLastThreeMoviesCarrousel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -80,6 +92,19 @@
         <Function Name="sp_LoginUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Lv_username" Type="varchar" Mode="In" />
           <Parameter Name="Lv_password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ManageCinemaTickets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
+          <Parameter Name="Lv_action" Type="char" Mode="In" />
+          <Parameter Name="Lv_id_function" Type="char" Mode="In" />
+          <Parameter Name="Lv_row_num_seat" Type="char" Mode="In" />
+          <Parameter Name="Lv_col_num_seat" Type="char" Mode="In" />
+        </Function>
+        <Function Name="sp_ManageCinemaTicketsByList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
+          <Parameter Name="Lv_action" Type="char" Mode="In" />
+          <Parameter Name="Lv_id_function" Type="char" Mode="In" />
+          <Parameter Name="Lv_list_tickets" Type="varchar(max)" Mode="In" />
         </Function>
         <Function Name="sp_ManageDMLCatPermission" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Lv_id_user" Type="char" Mode="In" />
@@ -364,15 +389,37 @@
             <Parameter Name="Lv_password" Mode="In" Type="String" />
             <Parameter Name="UserExists" Mode="InOut" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_GetLastThreeMoviesCarrousel" ReturnType="Collection(String)" />
+          <FunctionImport Name="sp_GetCinemaFunctionTicketsNotAvaible1" ReturnType="Collection(CineMaxTicketsDB11Model.sp_GetCinemaFunctionTicketsNotAvaible1_Result)">
+            <Parameter Name="Lv_id_user" Mode="In" Type="String" />
+            <Parameter Name="Lv_id_function" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ManageCinemaTickets1">
+            <Parameter Name="Lv_id_user" Mode="In" Type="String" />
+            <Parameter Name="Lv_action" Mode="In" Type="String" />
+            <Parameter Name="Lv_id_function" Mode="In" Type="String" />
+            <Parameter Name="Lv_row_num_seat" Mode="In" Type="String" />
+            <Parameter Name="Lv_col_num_seat" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ManageCinemaTicketsByList1">
+            <Parameter Name="Lv_id_user" Mode="In" Type="String" />
+            <Parameter Name="Lv_action" Mode="In" Type="String" />
+            <Parameter Name="Lv_id_function" Mode="In" Type="String" />
+            <Parameter Name="Lv_list_tickets" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_LoginUser_Result">
-          <Property Type="String" Name="login_message" Nullable="false" MaxLength="32" />
-          <Property Type="String" Name="id_user" Nullable="true" />
-          <Property Type="String" Name="username" Nullable="true" />
-          <Property Type="String" Name="id_document" Nullable="true" />
-          <Property Type="String" Name="user_name" Nullable="true" />
-          <Property Type="String" Name="user_lastname" Nullable="true" />
-          <Property Type="String" Name="user_phone_number" Nullable="true" />
+          <Property Type="String" Name="mensaje_login" Nullable="false" MaxLength="21" />
+          <Property Type="String" Name="id_usuario" Nullable="true" />
+          <Property Type="String" Name="usuario" Nullable="true" />
+          <Property Type="String" Name="cedula" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="true" />
+          <Property Type="String" Name="apellido" Nullable="true" />
+          <Property Type="String" Name="mail" Nullable="true" />
+          <Property Type="String" Name="telefono" Nullable="true" />
+          <Property Type="DateTime" Name="nacimiento" Nullable="true" />
+          <Property Type="String" Name="estado" Nullable="true" />
+          <Property Type="String" Name="admin" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_ManageDMLCatPermission_Result">
           <Property Type="String" Name="id" Nullable="false" MaxLength="20" />
@@ -468,6 +515,7 @@
           <Property Type="Decimal" Name="movie_duration" Nullable="true" Precision="5" Scale="1" />
           <Property Type="String" Name="movie_language" Nullable="false" MaxLength="5" />
           <Property Type="String" Name="movie_url_carrusel" Nullable="true" />
+          <Property Type="String" Name="function_duration_to_show" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="sp_GetCinemaMoviesForMainScreen_Result">
           <Property Type="String" Name="Id" Nullable="false" MaxLength="20" />
@@ -489,8 +537,10 @@
           <Property Type="String" Name="room_description" Nullable="true" MaxLength="500" />
         </ComplexType>
         <ComplexType Name="sp_GetCinemaFunctionTicketsNotAvaible_Result">
-          <Property Type="String" Name="row_num_seat" Nullable="false" MaxLength="4" />
-          <Property Type="String" Name="col_num_seat" Nullable="false" MaxLength="4" />
+          <Property Type="String" Name="row_num_seat" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="col_num_seat" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="status" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="id_user" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="sp_GetCinemaFunctionTicketsSelectedByUser_Result">
           <Property Type="String" Name="row_num_seat" Nullable="true" MaxLength="4" />
@@ -530,6 +580,16 @@
           <Property Type="String" Name="card_represent_name" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="card_number" Nullable="true" MaxLength="20" />
         </ComplexType>
+        <ComplexType Name="sp_GetCinemaFunctionTicketsSelectedByUser1_Result">
+          <Property Type="String" Name="row_num_seat" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="col_num_seat" Nullable="true" MaxLength="4" />
+        </ComplexType>
+        <ComplexType Name="sp_GetCinemaFunctionTicketsNotAvaible1_Result">
+          <Property Type="String" Name="row_num_seat" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="col_num_seat" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="status" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="id_user" Nullable="true" MaxLength="20" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -546,13 +606,17 @@
           <FunctionImportMapping FunctionImportName="sp_LoginUser" FunctionName="CineMaxTicketsDB11Model.Store.sp_LoginUser">
             <ResultMapping>
               <ComplexTypeMapping TypeName="CineMaxTicketsDB11Model.sp_LoginUser_Result">
-                <ScalarProperty Name="login_message" ColumnName="login_message" />
-                <ScalarProperty Name="id_user" ColumnName="id_user" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="id_document" ColumnName="id_document" />
-                <ScalarProperty Name="user_name" ColumnName="user_name" />
-                <ScalarProperty Name="user_lastname" ColumnName="user_lastname" />
-                <ScalarProperty Name="user_phone_number" ColumnName="user_phone_number" />
+                <ScalarProperty Name="mensaje_login" ColumnName="mensaje_login" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="nacimiento" ColumnName="nacimiento" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="admin" ColumnName="admin" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -687,6 +751,75 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="P_UpdateUser" FunctionName="CineMaxTicketsDB11Model.Store.P_UpdateUser" />
           <FunctionImportMapping FunctionImportName="P_CheckUserExists" FunctionName="CineMaxTicketsDB11Model.Store.P_CheckUserExists" />
+          <FunctionImportMapping FunctionImportName="sp_GetLastThreeMoviesCarrousel" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetLastThreeMoviesCarrousel" />
+          <FunctionImportMapping FunctionImportName="sp_GetCinemaFunctionDataByID" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetCinemaFunctionDataByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CineMaxTicketsDB11Model.sp_GetCinemaFunctionDataByID_Result">
+                <ScalarProperty Name="id_function" ColumnName="id_function" />
+                <ScalarProperty Name="id_room" ColumnName="id_room" />
+                <ScalarProperty Name="function_create_at" ColumnName="function_create_at" />
+                <ScalarProperty Name="function_duration" ColumnName="function_duration" />
+                <ScalarProperty Name="function_start_date" ColumnName="function_start_date" />
+                <ScalarProperty Name="function_format_movie" ColumnName="function_format_movie" />
+                <ScalarProperty Name="function_ticket_price" ColumnName="function_ticket_price" />
+                <ScalarProperty Name="function_status" ColumnName="function_status" />
+                <ScalarProperty Name="room_id_agency" ColumnName="room_id_agency" />
+                <ScalarProperty Name="room_number_room" ColumnName="room_number_room" />
+                <ScalarProperty Name="room_title" ColumnName="room_title" />
+                <ScalarProperty Name="room_ubication" ColumnName="room_ubication" />
+                <ScalarProperty Name="room_description" ColumnName="room_description" />
+                <ScalarProperty Name="room_model" ColumnName="room_model" />
+                <ScalarProperty Name="room_status" ColumnName="room_status" />
+                <ScalarProperty Name="movie_id" ColumnName="movie_id" />
+                <ScalarProperty Name="movie_title" ColumnName="movie_title" />
+                <ScalarProperty Name="movie_synopsis" ColumnName="movie_synopsis" />
+                <ScalarProperty Name="movie_country" ColumnName="movie_country" />
+                <ScalarProperty Name="movie_directors" ColumnName="movie_directors" />
+                <ScalarProperty Name="movie_actors" ColumnName="movie_actors" />
+                <ScalarProperty Name="movie_writers" ColumnName="movie_writers" />
+                <ScalarProperty Name="movie_year" ColumnName="movie_year" />
+                <ScalarProperty Name="movie_relased_date" ColumnName="movie_relased_date" />
+                <ScalarProperty Name="movie_url_poster" ColumnName="movie_url_poster" />
+                <ScalarProperty Name="movie_clasification" ColumnName="movie_clasification" />
+                <ScalarProperty Name="movie_duration" ColumnName="movie_duration" />
+                <ScalarProperty Name="movie_language" ColumnName="movie_language" />
+                <ScalarProperty Name="movie_url_carrusel" ColumnName="movie_url_carrusel" />
+                <ScalarProperty Name="function_duration_to_show" ColumnName="function_duration_to_show" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetCinemaFunctionTicketsSelectedByUser" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetCinemaFunctionTicketsSelectedByUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CineMaxTicketsDB11Model.sp_GetCinemaFunctionTicketsSelectedByUser_Result">
+                <ScalarProperty Name="row_num_seat" ColumnName="row_num_seat" />
+                <ScalarProperty Name="col_num_seat" ColumnName="col_num_seat" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetCinemaFunctionTicketsNotAvaible1" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetCinemaFunctionTicketsNotAvaible">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CineMaxTicketsDB11Model.sp_GetCinemaFunctionTicketsNotAvaible1_Result">
+                <ScalarProperty Name="row_num_seat" ColumnName="row_num_seat" />
+                <ScalarProperty Name="col_num_seat" ColumnName="col_num_seat" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetCinemaFunctionTicketsNotAvaible" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetCinemaFunctionTicketsNotAvaible">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CineMaxTicketsDB11Model.sp_GetCinemaFunctionTicketsNotAvaible_Result">
+                <ScalarProperty Name="row_num_seat" ColumnName="row_num_seat" />
+                <ScalarProperty Name="col_num_seat" ColumnName="col_num_seat" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ManageCinemaTickets1" FunctionName="CineMaxTicketsDB11Model.Store.sp_ManageCinemaTickets" />
+          <FunctionImportMapping FunctionImportName="sp_ManageCinemaTicketsByList1" FunctionName="CineMaxTicketsDB11Model.Store.sp_ManageCinemaTicketsByList" />
+          <FunctionImportMapping FunctionImportName="sp_ManageCinemaTickets" FunctionName="CineMaxTicketsDB11Model.Store.sp_ManageCinemaTickets" />
+          <FunctionImportMapping FunctionImportName="sp_ManageCinemaTicketsByList" FunctionName="CineMaxTicketsDB11Model.Store.sp_ManageCinemaTicketsByList" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

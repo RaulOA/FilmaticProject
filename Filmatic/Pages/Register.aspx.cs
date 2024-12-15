@@ -1,5 +1,6 @@
 ﻿using Filmatic.Data;
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.UI;
 
@@ -47,6 +48,7 @@ namespace Filmatic
             else
             {
                 ShowAlert("Usuario registrado exitosamente.");
+                //Response.Redirect("Pages/Login.aspx");
             }
         }
 
@@ -136,9 +138,15 @@ namespace Filmatic
             {
                 using (var context = new CineMaxTicketsDB11Entities3())
                 {
+                    // Generar el nombre de usuario como la primera letra del nombre + apellido
+                    string generatedUsername = $"{name.Substring(0, 1).ToLower()}{lastName.ToLower()}";
+
+                    // Eliminar espacios y caracteres especiales (si los hubiera)
+                    generatedUsername = new string(generatedUsername.Where(c => char.IsLetterOrDigit(c)).ToArray());
+
                     // Llamada al procedimiento almacenado
                     int result = context.P_CreateUser(
-                        lv_username: email,
+                        lv_username: generatedUsername,
                         lv_password: password,
                         lv_name: name,
                         lv_lastname: lastName,
@@ -147,7 +155,6 @@ namespace Filmatic
                         lv_id_document: idDocument,
                         lv_birthday_date: birthDate
                     );
-
                     return result > 0;
                 }
             }

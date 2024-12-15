@@ -19,7 +19,7 @@ namespace Filmatic
 
             if (!IsPostBack)
             {
-                alertMsgLogin. Style["display"] = "none";
+                alertMsgLogin.Style["display"] = "none";
             }
         }
 
@@ -33,8 +33,8 @@ namespace Filmatic
         protected void OnClickLoginUser(object sender, EventArgs e)
         {
 
-            inputEmail.Value = "franj.lunam@gmail.com";
-            inputPassword.Value = "Abc123$";
+            //inputEmail.Value = "franj.lunam@gmail.com";
+            //inputPassword.Value = "Abc123$";
 
             string username = inputEmail.Value;
             string password = inputPassword.Value;
@@ -48,27 +48,31 @@ namespace Filmatic
 
             sp_LoginUser_Result dataLogin = LoginUser(username, password);
 
-            if (dataLogin.id_user == null || dataLogin.login_message != null)
+            if (dataLogin.id_usuario == null || dataLogin.mensaje_login != null)
             {
                 // Muestra el mensaje
                 alertMsgLogin.Style["display"] = "inherit";
-                alertMsgLogin.InnerHtml = dataLogin.login_message;
+                alertMsgLogin.InnerHtml = dataLogin.mensaje_login;
                 return;
             }
 
             // Cuando datos están correcto se hace un Objecto de Usuario
-            
+
             User userdata = new User();
-            userdata.IdUser = dataLogin.id_user;
-            userdata.UserName= dataLogin.username;
-            userdata.Name = dataLogin.user_name;
-            userdata.LastName = dataLogin.user_lastname;
-            userdata.PhoneNumber = dataLogin.user_phone_number;
-            userdata.Status = null;
-            userdata.IsAdmin = true;
+            userdata.id_usuario = dataLogin.id_usuario;
+            userdata.cedula = dataLogin.cedula;
+            userdata.nombre = dataLogin.nombre;
+            userdata.apellido = dataLogin.apellido;
+            userdata.mail = dataLogin.mail;
+            userdata.telefono = dataLogin.telefono;
+            userdata.usuario = dataLogin.usuario;
+            userdata.nacimiento = dataLogin.nacimiento;
+            userdata.estado = dataLogin.estado;
+            userdata.IsAdmin = dataLogin.admin == "1";
 
             // El objeto de usuario se carga en la session como user_logged
             Session["user_logged"] = userdata;
+
 
             // Se redirige a la pantalla principal
             Response.Redirect("/Pages/Billboard");
@@ -83,6 +87,7 @@ namespace Filmatic
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
+
         private sp_LoginUser_Result LoginUser(string username, string password)
         {
             try
@@ -103,8 +108,7 @@ namespace Filmatic
                 // Aquí podría implementarse un sistema de logging (ej. log4net, Serilog)
                 Console.WriteLine($"Error al registrar el validar datos usuario: {ex.Message}");
                 sp_LoginUser_Result loginDataError = new sp_LoginUser_Result();
-                loginDataError.login_message = $"Ha ocurrido un error al validar los datos! {ex.Message}";
-
+                loginDataError.mensaje_login = $"Ha ocurrido un error al validar los datos! {ex.Message}";
                 return loginDataError;
             }
         }

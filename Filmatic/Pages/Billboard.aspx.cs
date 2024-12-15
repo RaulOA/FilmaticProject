@@ -23,7 +23,7 @@ namespace Filmatic
                 welcomeMsg.Style["display"] = "inherit";
 
                 welcomeMsg.InnerHtml = "<h4>¡Bienvenido de nuevo!</h4>  " +
-                    $"<p> Hola <strong>{userData.Name} {userData.LastName}</strong>, nos alegra verte de nuevo! </p>";
+                    $"<p> Hola <strong>{userData.nombre} {userData.apellido}</strong>, nos alegra verte de nuevo! </p>";
 
             } else
             {

@@ -134,6 +134,7 @@
       <LastGenOutput>Model3.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
+    <Content Include="Pages\Admin\moviesCreate.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Pages\UserEdit.aspx" />
     <Content Include="Pages\Admin\GenresMoviesEdit.aspx" />
@@ -225,7 +226,13 @@
     <Compile Include="Data\sp_GetCinemaFunctionsDataByIDMovie_Result.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\sp_GetCinemaFunctionTicketsNotAvaible1_Result.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\sp_GetCinemaFunctionTicketsNotAvaible_Result.cs">
+      <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\sp_GetCinemaFunctionTicketsSelectedByUser1_Result.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\sp_GetCinemaFunctionTicketsSelectedByUser_Result.cs">
@@ -272,6 +279,13 @@
     </Compile>
     <Compile Include="Data\sp_ManageUserRoles_Result.cs">
       <DependentUpon>Model3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\moviesCreate.aspx.cs">
+      <DependentUpon>moviesCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\moviesCreate.aspx.designer.cs">
+      <DependentUpon>moviesCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

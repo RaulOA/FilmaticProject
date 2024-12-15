@@ -14,30 +14,12 @@ namespace Filmatic.Data
 
 using System;
     
-public partial class sp_LoginUser_Result
+public partial class sp_GetCinemaFunctionTicketsSelectedByUser1_Result
 {
 
-    public string mensaje_login { get; set; }
+    public string row_num_seat { get; set; }
 
-    public string id_usuario { get; set; }
-
-    public string usuario { get; set; }
-
-    public string cedula { get; set; }
-
-    public string nombre { get; set; }
-
-    public string apellido { get; set; }
-
-    public string mail { get; set; }
-
-    public string telefono { get; set; }
-
-    public Nullable<System.DateTime> nacimiento { get; set; }
-
-    public string estado { get; set; }
-
-    public string admin { get; set; }
+    public string col_num_seat { get; set; }
 
 }
 
