@@ -60,15 +60,30 @@
 
                         <% if (loggedUser.IsAdmin) // Verificamos la propiedad IsAdmin correctamente
                             { %>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Admin/Main.aspx">Administración</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="/Pages/Admin/Main.aspx">Administración</a></li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdministration" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                             Administración
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownAdministration">
+                                            <a class="dropdown-item" href="/Pages/Admin/GenresMoviesList.aspx">Funciones</a>
+                                            <a class="dropdown-item" href="/Pages/Admin/MoviesList.aspx">Pelicula</a>
+                                            <a class="dropdown-item" href="/Pages/Admin/GenresMoviesList.aspx">Generos Pelicula</a>
+                                        </div>
+                                    </li>
+
+
+
                         <% } %>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="Pages/UserEdit.aspx">Editar Datos</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Logout.aspx">Cerrar Sesión</a></li>
+                        
+                            <li class="nav-item"><a class="nav-link" runat="server" href="Pages/UserEdit.aspx">Editar Datos</a></li>
+                            <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Logout.aspx">Cerrar Sesión</a></li>
                         <% }
                             else
-                            { %>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Register.aspx">Crear Cuenta</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Login.aspx">Iniciar Sesión</a></li>
+                        { %>
+                            <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Register.aspx">Crear Cuenta</a></li>
+                            <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Login.aspx">Iniciar Sesión</a></li>
                         <% } %>
                     </ul>
                 </div>
@@ -102,8 +117,8 @@
                 <div class="modal-body" id="modalNoLoggedBody">
                 </div>
                 <div class="modal-footer">
-                    <a href="/views/Login.aspx" class="btn style-1">Ingresar</a>
-                    <a href="/views/Register.aspx" class="btn style-2">Registrame</a>
+                    <a href="/Pages/Login.aspx" class="btn style-1">Ingresar</a>
+                    <a href="/Pages/Register.aspx" class="btn style-2">Registrame</a>
                 </div>
             </div>
         </div>

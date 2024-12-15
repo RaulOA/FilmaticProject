@@ -86,6 +86,14 @@ function removeSelectedTickets(_row, _col) {
 }
 
 function manageSelectedTickets(_row, _col) {
+    const userData = getUserData()
+
+    if (!userData || !Boolean(userData?.id_usuario)) {
+        //callModalError(`¡Debes esta logeado para continuar!`);
+        callModalNoLogged('Para poder seleccionar asientos debes ingresar.');
+        return;
+    }
+
     const existSelected = selectedTickets.some(
         (item) => item.row == _row && item.col == _col
     );
@@ -223,6 +231,15 @@ function getDataSeatsNotAvailable() {
     }
 }
 
+function getUserData() {
+    try {
+        return JSON.parse(document.getElementById('jsonDataUser').textContent)
+    } catch {
+        return {}
+    }
+}
+
+
 function getAbecedaryByIdx(_idx = 0) {
     const abecedary = [
         "A",
@@ -261,12 +278,20 @@ function getAbecedaryByIdx(_idx = 0) {
 function reserveTicketsSelected() {
     const urlParams = new URLSearchParams(window.location.search);
     const idFunction = urlParams.get('idFunction');
+    const userData = getUserData()
 
+    if (!userData || !Boolean(userData?.id_usuario)) {
+        //callModalError(`¡Debes esta logeado para continuar!`);
+        callModalNoLogged('Para poder seleccionar asientos debes ingresar.');
+        return;
+    }
+
+    const idUser = userData?.id_usuario
     return new Promise((resolve, reject) => {
         $.ajax({
             type: "POST",
             url: "Asientos.aspx/ReserveTickets",
-            data: JSON.stringify({ jsonSeatsSelected: selectedTickets, idFunction: idFunction }),
+            data: JSON.stringify({ idUser, jsonSeatsSelected: selectedTickets, idFunction: idFunction }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {

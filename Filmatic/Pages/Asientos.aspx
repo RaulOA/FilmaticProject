@@ -4,6 +4,10 @@
 
     <link rel="stylesheet" href="/Content/cinema_tickets_styles.css" />
     <script src="/Scripts/cinema_tickets_scripts.js" defer></script>
+    <script type="application/json" id="jsonDataUser">
+        <%= hdfDataUser.Value %>
+    </script>
+
     <script type="application/json" id="jsonDataSeatsNotAvailable">
         <%= hdfDataSeatsNoAvaible.Value %>
     </script>
@@ -11,6 +15,7 @@
         <%= hdfDataSeatsSelectedByUser.Value %>
     </script>
 
+    <asp:HiddenField ID="hdfDataUser" runat="server" />
     <asp:HiddenField ID="hdfDataSeatsNoAvaible" runat="server" />
     <asp:HiddenField ID="hdfDataSeatsSelectedByUser" runat="server" />
     <asp:HiddenField ID="hdfPriceOfTicket" runat="server" />

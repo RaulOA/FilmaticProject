@@ -21,11 +21,6 @@
           <Parameter Name="Lv_permision" Type="varchar" Mode="In" />
         </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="P_CheckUserExists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Lv_username" Type="varchar" Mode="In" />
-          <Parameter Name="Lv_password" Type="varchar" Mode="In" />
-          <Parameter Name="UserExists" Type="int" Mode="InOut" />
-        </Function>
         <Function Name="P_CreateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Lv_username" Type="varchar" Mode="In" />
           <Parameter Name="Lv_password" Type="varchar" Mode="In" />
@@ -154,6 +149,7 @@
           <Parameter Name="Lv_clasification" Type="char" Mode="In" />
           <Parameter Name="Ln_duration" Type="decimal" Mode="In" />
           <Parameter Name="Lv_language" Type="char" Mode="In" />
+          <Parameter Name="Lv_url_carrousel" Type="varchar(max)" Mode="In" />
         </Function>
         <Function Name="sp_ManageDMLCinemaFunctions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Lv_id_user" Type="char" Mode="In" />
@@ -287,6 +283,7 @@
             <Parameter Name="Lv_clasification" Mode="In" Type="String" />
             <Parameter Name="Ln_duration" Mode="In" Type="Decimal" />
             <Parameter Name="Lv_language" Mode="In" Type="String" />
+            <Parameter Name="Lv_url_carrousel" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ManageDMLCinemaFunctions" ReturnType="Collection(CineMaxTicketsDB11Model.sp_ManageDMLCinemaFunctions_Result)">
             <Parameter Name="Lv_id_user" Mode="In" Type="String" />
@@ -459,6 +456,7 @@
           <Property Type="String" Name="clasification" Nullable="false" MaxLength="10" />
           <Property Type="Decimal" Name="duration" Nullable="true" Precision="5" Scale="1" />
           <Property Type="String" Name="language" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="url_carrousel" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_ManageDMLCinemaFunctions_Result">
           <Property Type="String" Name="id" Nullable="false" MaxLength="20" />
@@ -750,7 +748,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="P_UpdateUser" FunctionName="CineMaxTicketsDB11Model.Store.P_UpdateUser" />
-          <FunctionImportMapping FunctionImportName="P_CheckUserExists" FunctionName="CineMaxTicketsDB11Model.Store.P_CheckUserExists" />
           <FunctionImportMapping FunctionImportName="sp_GetLastThreeMoviesCarrousel" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetLastThreeMoviesCarrousel" />
           <FunctionImportMapping FunctionImportName="sp_GetCinemaFunctionDataByID" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetCinemaFunctionDataByID">
             <ResultMapping>

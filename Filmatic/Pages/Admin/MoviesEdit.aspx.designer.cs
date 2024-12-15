@@ -15,138 +15,156 @@ namespace Filmatic.Pages.Admin
     {
 
         /// <summary>
-        /// Control movieId.
+        /// Control alertMsg.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox movieId;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertMsg;
 
         /// <summary>
-        /// Control movieTitle.
+        /// Control formTitle.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox movieTitle;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl formTitle;
 
         /// <summary>
-        /// Control movieSynopsis.
+        /// Control lblMovieId.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox movieSynopsis;
+        protected global::System.Web.UI.WebControls.TextBox lblMovieId;
 
         /// <summary>
-        /// Control movieCountry.
+        /// Control lblMovieTitle.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox movieCountry;
+        protected global::System.Web.UI.WebControls.TextBox lblMovieTitle;
 
         /// <summary>
-        /// Control movieDirectors.
+        /// Control lblMovieSynopsis.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox movieDirectors;
+        protected global::System.Web.UI.WebControls.TextBox lblMovieSynopsis;
 
         /// <summary>
-        /// Control movieYear.
+        /// Control lblMovieCountry.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox movieYear;
+        protected global::System.Web.UI.WebControls.TextBox lblMovieCountry;
 
         /// <summary>
-        /// Control movieReleaseDate.
+        /// Control lblMovieDirectors.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox movieReleaseDate;
+        protected global::System.Web.UI.WebControls.TextBox lblMovieDirectors;
 
         /// <summary>
-        /// Control movieActors.
+        /// Control lblMovieYear.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox movieActors;
+        protected global::System.Web.UI.WebControls.TextBox lblMovieYear;
 
         /// <summary>
-        /// Control movieWriters.
+        /// Control lblMovieReleaseDate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox movieWriters;
+        protected global::System.Web.UI.WebControls.TextBox lblMovieReleaseDate;
 
         /// <summary>
-        /// Control moviePosterUrl.
+        /// Control lblMovieActors.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox moviePosterUrl;
+        protected global::System.Web.UI.WebControls.TextBox lblMovieActors;
 
         /// <summary>
-        /// Control movieClasification.
+        /// Control lblMovieWriters.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox movieClasification;
+        protected global::System.Web.UI.WebControls.TextBox lblMovieWriters;
 
         /// <summary>
-        /// Control movieDuration.
+        /// Control lblMoviePosterUrl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox movieDuration;
+        protected global::System.Web.UI.WebControls.TextBox lblMoviePosterUrl;
 
         /// <summary>
-        /// Control movieLanguage.
+        /// Control lblMovieClasification.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox movieLanguage;
+        protected global::System.Web.UI.WebControls.TextBox lblMovieClasification;
 
         /// <summary>
-        /// Control movieCarrouselUrl.
+        /// Control lblMovieDuration.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox movieCarrouselUrl;
+        protected global::System.Web.UI.WebControls.TextBox lblMovieDuration;
 
         /// <summary>
-        /// Control btnSubmit.
+        /// Control ddlMovieLanguage.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMovieLanguage;
+
+        /// <summary>
+        /// Control lblMovieCarrouselUrl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lblMovieCarrouselUrl;
+
+        /// <summary>
+        /// Control btnSave.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSave;
     }
 }

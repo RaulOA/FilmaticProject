@@ -12,6 +12,8 @@
 
         <section>
             <article>
+                <a href="/Pages/Admin/GenresMoviesList.aspx" class="btn btn-primary">Ir Funciones</a>
+                <a href="/Pages/Admin/MoviesList.aspx" class="btn btn-primary">Ir a Catalogo Pelicula</a>
                 <a href="/Pages/Admin/GenresMoviesList.aspx" class="btn btn-primary">Ir a Generos Pelicula</a>
             </article>
 
