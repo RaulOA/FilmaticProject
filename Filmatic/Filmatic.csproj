@@ -54,6 +54,27 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -134,13 +155,15 @@
       <LastGenOutput>Model3.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
+    <Content Include="Pages\Admin\Main.aspx" />
     <Content Include="Pages\Admin\MoviesEdit.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Pages\Admin\MoviesList.aspx" />
+    <Content Include="Pages\Admin\Reports\ReportMoreViewedMovies.aspx" />
+    <Content Include="Pages\Admin\Reports\ReportTicketsByFunctions.aspx" />
     <Content Include="Pages\UserEdit.aspx" />
     <Content Include="Pages\Admin\GenresMoviesEdit.aspx" />
     <Content Include="Pages\Admin\GenresMoviesList.aspx" />
-    <Content Include="Pages\Admin\Main.aspx" />
     <Content Include="Pages\Asientos.aspx" />
     <Content Include="Pages\Horarios.aspx" />
     <Content Include="Pages\InvoiceDetails.aspx" />
@@ -198,6 +221,19 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -281,6 +317,13 @@
     <Compile Include="Data\sp_ManageUserRoles_Result.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Admin\Main.aspx.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\Main.aspx.designer.cs">
+      <DependentUpon>Main.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Admin\MoviesEdit.aspx.cs">
       <DependentUpon>MoviesEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -297,6 +340,20 @@
     </Compile>
     <Compile Include="Pages\Admin\MoviesList.aspx.designer.cs">
       <DependentUpon>MoviesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Reports\ReportMoreViewedMovies.aspx.cs">
+      <DependentUpon>ReportMoreViewedMovies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\Reports\ReportMoreViewedMovies.aspx.designer.cs">
+      <DependentUpon>ReportMoreViewedMovies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\Reports\ReportTicketsByFunctions.aspx.cs">
+      <DependentUpon>ReportTicketsByFunctions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\Reports\ReportTicketsByFunctions.aspx.designer.cs">
+      <DependentUpon>ReportTicketsByFunctions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserEdit.aspx.cs">
       <DependentUpon>UserEdit.aspx</DependentUpon>
@@ -318,13 +375,6 @@
     </Compile>
     <Compile Include="Pages\Admin\GenresMoviesList.aspx.designer.cs">
       <DependentUpon>GenresMoviesList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Admin\Main.aspx.cs">
-      <DependentUpon>Main.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Admin\Main.aspx.designer.cs">
-      <DependentUpon>Main.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Asientos.aspx.cs">
       <DependentUpon>Asientos.aspx</DependentUpon>
@@ -440,6 +490,7 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

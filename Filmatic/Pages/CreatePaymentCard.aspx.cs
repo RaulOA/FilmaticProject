@@ -1,4 +1,5 @@
 ﻿using Filmatic.Data;
+using Filmatic.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -42,7 +43,7 @@ namespace Filmatic.Pages
                          
                     }
 
-                    var dataInsertPaymentCard = context.sp_ManageDMLPaymentCards("USER02", "C", "USER02", null, representName, cardNumber, cardExpYear, cardExpMonth, cvCard);
+                    var dataInsertPaymentCard = context.sp_ManageDMLPaymentCards(GetSessionUserData().id_usuario, "C", GetSessionUserData().id_usuario, null, representName, cardNumber, cardExpYear, cardExpMonth, cvCard);
                     ShowAlert("S", "¡Se ha creado con éxito!", "");
                     Response.Redirect("/Pages/MyPaymentCards");
 
@@ -86,6 +87,58 @@ namespace Filmatic.Pages
             alertMsg.InnerHtml = $"<h4 class=\"alert-heading\">{_title}</h4>";
             alertMsg.InnerHtml += $"<p>{_description}</p>";
 
+        }
+
+        /// <summary>
+        /// Se encarga de obtener los datos en session del usuario loggedo y devolverlos
+        /// Cuando no hay datos el IdUser es null
+        /// </summary>
+        /// <returns></returns>
+        public User GetSessionUserData()
+        {
+            User rUser = new User();
+            rUser.id_usuario = null;
+            rUser.IsAdmin = false;
+
+            if (Session == null) return rUser;
+
+            if (Session["user_logged"] == null) return rUser;
+
+            return Session["user_logged"] as User;
+        }
+
+        /// <summary>
+        /// Valida si el usuario es Admin y está authorizado para visitar la pagina
+        /// </summary>
+        /// <returns></returns>
+        private Boolean ValidateUserIsAdmin()
+        {
+            if (Session["user_logged"] == null)
+            {
+                Response.StatusCode = 401;
+                Response.Redirect("/Pages/Login");
+                return false;
+            }
+
+            User user = Session["user_logged"] as User;
+
+
+            if (user.id_usuario == null)
+            {
+                Response.StatusCode = 401;
+                Response.Redirect("/Pages/Login");
+                return false;
+            }
+
+
+            if (!user.IsAdmin)
+            {
+                Response.StatusCode = 401;
+                Response.Redirect("/Pages/Unauthorized");
+                return false;
+            }
+
+            return true;
         }
     }
 }

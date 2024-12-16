@@ -1,6 +1,7 @@
 ﻿using Filmatic.Data;
 using Filmatic.Models;
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Web.UI.WebControls;
 using static System.Runtime.CompilerServices.RuntimeHelpers;
@@ -17,15 +18,15 @@ namespace Filmatic.Pages.Admin
 
             if (idMovie == null || idMovie.Length < 1)
             {
-                formTitle.InnerText = "Crear Genero Peliculas";
-                lblMovieId.Visible = true;
+                formTitle.InnerText = "Crear Peliculas";
+                lblMovieId.Visible = false;
                 btnSave.Text = "Crear Pelicula";
                 return;
             }
 
 
-            formTitle.InnerText = $"Actualizando Genero Pelicula #{idMovie}";
-            lblMovieId.Visible = false;
+            formTitle.InnerText = $"Actualizando Pelicula #{idMovie}";
+            lblMovieId.Visible = true;
             btnSave.Text = "Actualizar Pelicula";
 
             lblMovieId.Attributes.Add("disabled", "");
@@ -60,7 +61,8 @@ namespace Filmatic.Pages.Admin
             DateTime relased_dateMovie = DateTime.Parse(lblMovieReleaseDate.Text);
             string url_posterMovie = lblMoviePosterUrl.Text;
             string clasificationMovie = lblMovieClasification.Text;
-            decimal durationMovie = Decimal.Parse(lblMovieDuration.Text);
+            decimal durationMovie = 0;
+            decimal.TryParse(lblMovieDuration.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out durationMovie);
             string languageMovi = ddlMovieLanguage.SelectedValue;
             string urlCarrouse= lblMovieCarrouselUrl.Text;
 
@@ -113,7 +115,8 @@ namespace Filmatic.Pages.Admin
                         GetSessionUserData().id_usuario, 
                         "S",
                         _idMovie,
-                        null,null,null,null,null,null,null,null,null,null,null,null,null).FirstOrDefault();
+                        null,null,null,null,null,null,null,null,null,null,null,null,null
+                    ).FirstOrDefault();
 
                     
                     if (dataMovie == null)
@@ -130,11 +133,12 @@ namespace Filmatic.Pages.Admin
                     lblMovieActors.Text = dataMovie.actors;
                     lblMovieWriters.Text = dataMovie.writers;
                     lblMovieYear.Text = dataMovie.year.ToString();
-                    lblMovieReleaseDate.Text = dataMovie.relased_date.ToString();
+
+                    lblMovieReleaseDate.Text = dataMovie.relased_date?.ToString("yyyy-MM-dd"); 
                     lblMoviePosterUrl.Text = dataMovie.url_poster;
                     lblMovieClasification.Text = dataMovie.clasification;
                     lblMovieCarrouselUrl.Text = dataMovie.url_carrousel;
-                    lblMovieDuration.Text = dataMovie.duration.ToString();
+                    lblMovieDuration.Text = dataMovie.duration?.ToString().Replace(",", ".");
                     ddlMovieLanguage.SelectedValue = dataMovie.language;
                     ShowAlert("S", "Se han obtenido datos con éxito!", "");
 

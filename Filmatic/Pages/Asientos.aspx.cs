@@ -123,7 +123,7 @@ namespace Filmatic
             {
                 using (var context = new CineMaxTicketsDB11Entities3())
                 {
-                    List<sp_GetCinemaFunctionTicketsSelectedByUser_Result> dataTicketsSelectedByUser = context.sp_GetCinemaFunctionTicketsSelectedByUser("USER02", _idFunction).ToList();
+                    List<sp_GetCinemaFunctionTicketsSelectedByUser_Result> dataTicketsSelectedByUser = context.sp_GetCinemaFunctionTicketsSelectedByUser(GetSessionUserData().id_usuario, _idFunction).ToList();
                     List<Seats> seatsSeelctedByUser= new List<Seats>();
 
 
@@ -169,7 +169,7 @@ namespace Filmatic
             {
                 using (var context = new CineMaxTicketsDB11Entities3())
                 {
-                  List<sp_GetCinemaFunctionTicketsNotAvaible_Result> dataNotAvailableTickets = context.sp_GetCinemaFunctionTicketsNotAvaible("USER02", _idFunction).ToList();
+                  List<sp_GetCinemaFunctionTicketsNotAvaible_Result> dataNotAvailableTickets = context.sp_GetCinemaFunctionTicketsNotAvaible(GetSessionUserData().id_usuario, _idFunction).ToList();
                     List<Seats> seatsNoAvailable = new List<Seats>();
 
                     

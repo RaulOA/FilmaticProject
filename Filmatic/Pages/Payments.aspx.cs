@@ -65,7 +65,7 @@ namespace Filmatic
 
                 using (var context = new CineMaxTicketsDB11Entities3())
                 {
-                    context.sp_CreateInvoice("USER02", idFunctionQS, ddlPaymentCard.SelectedValue);
+                    context.sp_CreateInvoice("GetSessionUserData().id_usuario", idFunctionQS, ddlPaymentCard.SelectedValue);
                     Response.Redirect("/Pages/Invoices");
                 }
 
@@ -81,7 +81,7 @@ namespace Filmatic
             ddlPaymentCard.Items.Add(new ListItem("-- Selecciona la Tarjeta --", ""));
             using (var context = new CineMaxTicketsDB11Entities3())
             {
-               List<sp_ManageDMLPaymentCards_Result> allPaymentsCards = context.sp_ManageDMLPaymentCards("USER02", "S", "USER02", null, null, null, null, null, null).ToList();
+               List<sp_ManageDMLPaymentCards_Result> allPaymentsCards = context.sp_ManageDMLPaymentCards("GetSessionUserData().id_usuario", "S", "GetSessionUserData().id_usuario", null, null, null, null, null, null).ToList();
                 allPaymentsCards.ForEach((item) =>
                 {
                     ddlPaymentCard.Items.Add(new ListItem($"{item.represent_name} - {item.card_number} [{item.card_month}/{item.card_year}]", item.id));
@@ -118,7 +118,7 @@ namespace Filmatic
             {
                 using (var context = new CineMaxTicketsDB11Entities3())
                 {
-                    List<sp_GetCinemaFunctionTicketsSelectedByUser_Result> dataTicketsSelectedByUser = context.sp_GetCinemaFunctionTicketsSelectedByUser("USER02", _idFunction).ToList();
+                    List<sp_GetCinemaFunctionTicketsSelectedByUser_Result> dataTicketsSelectedByUser = context.sp_GetCinemaFunctionTicketsSelectedByUser("GetSessionUserData().id_usuario", _idFunction).ToList();
                     List<Seats> seatsSeelctedByUser = new List<Seats>();
 
                     List <LineDetailPayment> listDetailLines = new List<LineDetailPayment>();

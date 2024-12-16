@@ -1,4 +1,5 @@
 ﻿using Filmatic.Models;
+using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Filmatic.Pages.Admin
 {
-    public partial class _Admin : Page
+    public partial class Main1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -16,6 +17,7 @@ namespace Filmatic.Pages.Admin
             if (!resultValidaAdminUser) return;
         }
 
+        
         /// <summary>
         /// Valida si el usuario es Admin y está authorizado para visitar la pagina
         /// </summary>

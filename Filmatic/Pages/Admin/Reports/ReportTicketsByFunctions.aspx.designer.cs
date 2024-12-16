@@ -7,20 +7,20 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Filmatic.Pages.Admin
+namespace Filmatic.Pages.Admin.Reports
 {
 
 
-    public partial class Main1
+    public partial class ReportTicketsByFunctions
     {
 
         /// <summary>
-        /// Control welcomeAdminMsg.
+        /// Control ReportViewer1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl welcomeAdminMsg;
+        protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewer1;
     }
 }

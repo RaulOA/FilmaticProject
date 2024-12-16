@@ -89,7 +89,7 @@
                         <div class="text-center mt-4">
                             <a href="MoviesList.aspx" class="btn btn-warning btn-lg  ">Cancelar</a>
                             <%--<asp:Button ID="btnSubmit" runat="server" Text="Crear Película" CssClass="btn btn-primary btn-lg w-100" OnClick="SubmitMovieForm" />--%>
-                            <asp:Button ID="btnSave" runat="server" Text="Crear Película" CssClass="btn btn-primary btn-lg w-100" OnClick="btnSave_Click" />
+                            <asp:Button ID="btnSave" runat="server" Text="Crear Película" CssClass="btn btn-primary btn-lg" OnClick="btnSave_Click" />
                         </div>
                     </div>
                 </div>

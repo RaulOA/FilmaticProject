@@ -17,7 +17,7 @@
     </asp:PlaceHolder>
 
     <!-- Referencias a los estilos del sitio -->
-    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <%--<webopt:BundleReference runat="server" Path="~/Content/css" />--%>
 
     <!-- Favicon del sitio -->
     <link href="~/favicon.ico" rel="icon" type="image/x-icon" />
@@ -39,7 +39,7 @@
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             <div class="container">
                 <!-- Nombre de la aplicación y enlace a la página de inicio -->
-                <a class="navbar-brand" runat="server" href="Pages/Home.aspx">FILMATIC</a>
+                <a class="navbar-brand" runat="server" href="Pages/Movies.aspx">FILMATIC</a>
 
                 <!-- Botón para navegación en dispositivos móviles -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
@@ -50,6 +50,9 @@
                 <!-- Menú de navegación -->
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+
+                 
+
                         <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Movies.aspx">Películas</a></li>
                         <%--<li class="nav-item"><a class="nav-link" runat="server" href="Pages/Billboard.aspx">Cartelera</a></li>--%>
 
@@ -60,23 +63,21 @@
 
                         <% if (loggedUser.IsAdmin) // Verificamos la propiedad IsAdmin correctamente
                             { %>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="/Pages/Admin/Main.aspx">Administración</a></li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdministration" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                             Administración
-                                        </a>
 
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownAdministration">
-                                            <a class="dropdown-item" href="/Pages/Admin/GenresMoviesList.aspx">Funciones</a>
-                                            <a class="dropdown-item" href="/Pages/Admin/MoviesList.aspx">Pelicula</a>
-                                            <a class="dropdown-item" href="/Pages/Admin/GenresMoviesList.aspx">Generos Pelicula</a>
-                                        </div>
-                                    </li>
-
-
-
+                          <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Administración
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/Pages/Admin/Main.aspx">Pantalla Principal</a></li>
+                                    <li><a class="dropdown-item" href="/Pages/Admin/GenresMoviesList.aspx">Funciones</a></li>
+                                    <li><a class="dropdown-item" href="/Pages/Admin/MoviesList.aspx">Pelicula</a></li>
+                                    <li><a class="dropdown-item" href="/Pages/Admin/GenresMoviesList.aspx">Generos Pelicula</a></li>
+                                </ul>
+                            </li>
                         <% } %>
-                        
+                            
+                            <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Invoices.aspx">Facturas</a></li>
                             <li class="nav-item"><a class="nav-link" runat="server" href="Pages/UserEdit.aspx">Editar Datos</a></li>
                             <li class="nav-item"><a class="nav-link" runat="server" href="Pages/Logout.aspx">Cerrar Sesión</a></li>
                         <% }
