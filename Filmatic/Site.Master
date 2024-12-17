@@ -73,6 +73,7 @@
                                     <li><a class="dropdown-item" href="/Pages/Admin/GenresMoviesList.aspx">Funciones</a></li>
                                     <li><a class="dropdown-item" href="/Pages/Admin/MoviesList.aspx">Pelicula</a></li>
                                     <li><a class="dropdown-item" href="/Pages/Admin/GenresMoviesList.aspx">Generos Pelicula</a></li>
+                                    <li><a class="dropdown-item" href="/Pages/Admin/CreateFunction.aspx">Funciones</a></li>
                                 </ul>
                             </li>
                         <% } %>
