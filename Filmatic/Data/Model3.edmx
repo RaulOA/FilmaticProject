@@ -56,6 +56,11 @@
           <Parameter Name="version" Type="int" Mode="In" />
           <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
         </Function>
+        <Function Name="sp_CreateInvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
+          <Parameter Name="Lv_id_function" Type="char" Mode="In" />
+          <Parameter Name="Lv_id_payment_card" Type="char" Mode="In" />
+        </Function>
         <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -75,6 +80,13 @@
           <Parameter Name="Lv_id_function" Type="char" Mode="In" />
         </Function>
         <Function Name="sp_GetCinemaMoviesForMainScreen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetInvoiceDetailsByInvoiceId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
+          <Parameter Name="Ln_id_invoice" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetInvoicesByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
+        </Function>
         <Function Name="sp_GetLastThreeMoviesCarrousel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -168,6 +180,17 @@
           <Parameter Name="Lv_code" Type="char" Mode="In" />
           <Parameter Name="Lv_title" Type="varchar" Mode="In" />
           <Parameter Name="Lv_description" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ManageDMLPaymentCards" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Lv_id_user" Type="char" Mode="In" />
+          <Parameter Name="Lv_dml_action" Type="char" Mode="In" />
+          <Parameter Name="Lv_id_user_credit_card" Type="char" Mode="In" />
+          <Parameter Name="Lv_id" Type="char" Mode="In" />
+          <Parameter Name="Lv_represent_name" Type="varchar" Mode="In" />
+          <Parameter Name="Lv_card_number" Type="varchar" Mode="In" />
+          <Parameter Name="Ln_card_year" Type="int" Mode="In" />
+          <Parameter Name="Ln_card_month" Type="int" Mode="In" />
+          <Parameter Name="Lv_card_cv" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_ManagePermissionsRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Lv_id_user" Type="char" Mode="In" />
@@ -370,7 +393,7 @@
             <Parameter Name="Ln_id_invoice" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetInvoicesByUser" ReturnType="Collection(CineMaxTicketsDB11Model.sp_GetInvoicesByUser_Result)">
-            <Parameter Name="Lv_id_user" Mode="In" Type="String" />
+          <Parameter Name="Lv_id_user" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="P_UpdateUser">
             <Parameter Name="Lv_id_user" Mode="In" Type="String" />
@@ -387,7 +410,7 @@
             <Parameter Name="UserExists" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetLastThreeMoviesCarrousel" ReturnType="Collection(String)" />
-          <FunctionImport Name="sp_GetCinemaFunctionTicketsNotAvaible1" ReturnType="Collection(CineMaxTicketsDB11Model.sp_GetCinemaFunctionTicketsNotAvaible1_Result)">
+          <FunctionImport Name="sp_GetCinemaFunctionTicketsNotAvaible1">
             <Parameter Name="Lv_id_user" Mode="In" Type="String" />
             <Parameter Name="Lv_id_function" Mode="In" Type="String" />
           </FunctionImport>
@@ -561,7 +584,7 @@
           <Property Type="String" Name="type_ticket" Nullable="false" MaxLength="4" />
           <Property Type="String" Name="id_movie" Nullable="true" MaxLength="20" />
           <Property Type="DateTime" Name="start_date" Nullable="true" Precision="23" />
-          <Property Type="String" Name="url_carrusel" Nullable="true" />
+          <Property Type="String" Name="url_carrousel" Nullable="true" />
           <Property Type="String" Name="url_poster" Nullable="true" />
           <Property Type="String" Name="clasification" Nullable="true" MaxLength="10" />
           <Property Type="Int32" Name="year" Nullable="true" />
@@ -577,16 +600,6 @@
           <Property Type="DateTime" Name="create_at" Nullable="true" Precision="23" />
           <Property Type="String" Name="card_represent_name" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="card_number" Nullable="true" MaxLength="20" />
-        </ComplexType>
-        <ComplexType Name="sp_GetCinemaFunctionTicketsSelectedByUser1_Result">
-          <Property Type="String" Name="row_num_seat" Nullable="true" MaxLength="4" />
-          <Property Type="String" Name="col_num_seat" Nullable="true" MaxLength="4" />
-        </ComplexType>
-        <ComplexType Name="sp_GetCinemaFunctionTicketsNotAvaible1_Result">
-          <Property Type="String" Name="row_num_seat" Nullable="true" MaxLength="4" />
-          <Property Type="String" Name="col_num_seat" Nullable="true" MaxLength="4" />
-          <Property Type="String" Name="status" Nullable="false" MaxLength="1" />
-          <Property Type="String" Name="id_user" Nullable="true" MaxLength="20" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -794,14 +807,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GetCinemaFunctionTicketsNotAvaible1" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetCinemaFunctionTicketsNotAvaible">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CineMaxTicketsDB11Model.sp_GetCinemaFunctionTicketsNotAvaible1_Result">
-                <ScalarProperty Name="row_num_seat" ColumnName="row_num_seat" />
-                <ScalarProperty Name="col_num_seat" ColumnName="col_num_seat" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="id_user" ColumnName="id_user" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GetCinemaFunctionTicketsNotAvaible" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetCinemaFunctionTicketsNotAvaible">
             <ResultMapping>
@@ -817,6 +822,10 @@
           <FunctionImportMapping FunctionImportName="sp_ManageCinemaTicketsByList1" FunctionName="CineMaxTicketsDB11Model.Store.sp_ManageCinemaTicketsByList" />
           <FunctionImportMapping FunctionImportName="sp_ManageCinemaTickets" FunctionName="CineMaxTicketsDB11Model.Store.sp_ManageCinemaTickets" />
           <FunctionImportMapping FunctionImportName="sp_ManageCinemaTicketsByList" FunctionName="CineMaxTicketsDB11Model.Store.sp_ManageCinemaTicketsByList" />
+          <FunctionImportMapping FunctionImportName="sp_ManageDMLPaymentCards" FunctionName="CineMaxTicketsDB11Model.Store.sp_ManageDMLPaymentCards" />
+          <FunctionImportMapping FunctionImportName="sp_GetInvoicesByUser" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetInvoicesByUser" />
+          <FunctionImportMapping FunctionImportName="sp_GetInvoiceDetailsByInvoiceId" FunctionName="CineMaxTicketsDB11Model.Store.sp_GetInvoiceDetailsByInvoiceId" />
+          <FunctionImportMapping FunctionImportName="sp_CreateInvoice" FunctionName="CineMaxTicketsDB11Model.Store.sp_CreateInvoice" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

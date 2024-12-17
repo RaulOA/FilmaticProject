@@ -24,9 +24,10 @@
                     <asp:BoundField DataField="id_function" HeaderText="#ID"/>
                     <asp:BoundField DataField="room_title" HeaderText="Sala"/>
                     <asp:BoundField DataField="movie_title" HeaderText="Pelicula"/>
+                    <asp:BoundField DataField="function_ticket_price" HeaderText="Precio"/>
                     <asp:BoundField DataField="function_duration_to_show" HeaderText="Duración"/>
                     <asp:BoundField DataField="function_start_date" HeaderText="Fecha"/>
-                    <asp:BoundField DataField="function_format_movie" HeaderText="Estado"/>                   
+                    <asp:BoundField DataField="function_format_movie" HeaderText="Formato"/>                   
 
                     <asp:TemplateField HeaderText="Editar">
                         <ItemTemplate>

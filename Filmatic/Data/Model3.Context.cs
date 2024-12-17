@@ -713,7 +713,7 @@ namespace Filmatic.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("sp_GetLastThreeMoviesCarrousel");
         }
     
-        public virtual ObjectResult<sp_GetCinemaFunctionTicketsNotAvaible1_Result> sp_GetCinemaFunctionTicketsNotAvaible1(string lv_id_user, string lv_id_function)
+        public virtual int sp_GetCinemaFunctionTicketsNotAvaible1(string lv_id_user, string lv_id_function)
         {
             var lv_id_userParameter = lv_id_user != null ?
                 new ObjectParameter("Lv_id_user", lv_id_user) :
@@ -723,7 +723,7 @@ namespace Filmatic.Data
                 new ObjectParameter("Lv_id_function", lv_id_function) :
                 new ObjectParameter("Lv_id_function", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetCinemaFunctionTicketsNotAvaible1_Result>("sp_GetCinemaFunctionTicketsNotAvaible1", lv_id_userParameter, lv_id_functionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GetCinemaFunctionTicketsNotAvaible1", lv_id_userParameter, lv_id_functionParameter);
         }
     
         public virtual int sp_ManageCinemaTickets1(string lv_id_user, string lv_action, string lv_id_function, string lv_row_num_seat, string lv_col_num_seat)

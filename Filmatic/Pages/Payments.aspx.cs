@@ -1,4 +1,5 @@
 ﻿using Filmatic.Data;
+using Filmatic.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -65,7 +66,7 @@ namespace Filmatic
 
                 using (var context = new CineMaxTicketsDB11Entities3())
                 {
-                    context.sp_CreateInvoice("GetSessionUserData().id_usuario", idFunctionQS, ddlPaymentCard.SelectedValue);
+                    context.sp_CreateInvoice(GetSessionUserData().id_usuario, idFunctionQS, ddlPaymentCard.SelectedValue);
                     Response.Redirect("/Pages/Invoices");
                 }
 
@@ -81,7 +82,7 @@ namespace Filmatic
             ddlPaymentCard.Items.Add(new ListItem("-- Selecciona la Tarjeta --", ""));
             using (var context = new CineMaxTicketsDB11Entities3())
             {
-               List<sp_ManageDMLPaymentCards_Result> allPaymentsCards = context.sp_ManageDMLPaymentCards("GetSessionUserData().id_usuario", "S", "GetSessionUserData().id_usuario", null, null, null, null, null, null).ToList();
+               List<sp_ManageDMLPaymentCards_Result> allPaymentsCards = context.sp_ManageDMLPaymentCards(GetSessionUserData().id_usuario, "S", GetSessionUserData().id_usuario, null, null, null, null, null, null).ToList();
                 allPaymentsCards.ForEach((item) =>
                 {
                     ddlPaymentCard.Items.Add(new ListItem($"{item.represent_name} - {item.card_number} [{item.card_month}/{item.card_year}]", item.id));
@@ -118,7 +119,7 @@ namespace Filmatic
             {
                 using (var context = new CineMaxTicketsDB11Entities3())
                 {
-                    List<sp_GetCinemaFunctionTicketsSelectedByUser_Result> dataTicketsSelectedByUser = context.sp_GetCinemaFunctionTicketsSelectedByUser("GetSessionUserData().id_usuario", _idFunction).ToList();
+                    List<sp_GetCinemaFunctionTicketsSelectedByUser_Result> dataTicketsSelectedByUser = context.sp_GetCinemaFunctionTicketsSelectedByUser(GetSessionUserData().id_usuario, _idFunction).ToList();
                     List<Seats> seatsSeelctedByUser = new List<Seats>();
 
                     List <LineDetailPayment> listDetailLines = new List<LineDetailPayment>();
@@ -207,6 +208,59 @@ namespace Filmatic
             alertMsg.InnerHtml = $"<h4 class=\"alert-heading\">{_title}</h4>";
             alertMsg.InnerHtml += $"<p>{_description}</p>";
 
+        }
+
+        /// <summary>
+        /// Se encarga de obtener los datos en session del usuario loggedo y devolverlos
+        /// Cuando no hay datos el IdUser es null
+        /// </summary>
+        /// <returns></returns>
+        public User GetSessionUserData()
+        {
+            User rUser = new User();
+            rUser.id_usuario = null;
+            rUser.IsAdmin = false;
+
+            if (Session == null) return rUser;
+
+            if (Session["user_logged"] == null) return rUser;
+
+            return Session["user_logged"] as User;
+        }
+
+        /// <summary>
+        /// Valida si el usuario es Admin y está authorizado para visitar la pagina
+        /// </summary>
+        /// <returns></returns>
+        private Boolean ValidateUserIsAdmin()
+        {
+            if (Session["user_logged"] == null)
+            {
+                Response.StatusCode = 401;
+                Response.StatusCode = 401;
+                Response.Redirect("/Pages/Login");
+                return false;
+            }
+
+            User user = Session["user_logged"] as User;
+
+
+            if (user.id_usuario == null)
+            {
+                Response.StatusCode = 401;
+                Response.Redirect("/Pages/Login");
+                return false;
+            }
+
+
+            if (!user.IsAdmin)
+            {
+                Response.StatusCode = 401;
+                Response.Redirect("/Pages/Unauthorized");
+                return false;
+            }
+
+            return true;
         }
 
         public class LineDetailPayment

@@ -32,7 +32,7 @@ namespace Filmatic
 
                 if (ddlFechas.SelectedValue.Length <= 0) return;
 
-
+                 
                 LoadDataInDDlHorarios(dataFunctions);
 
                 if (ddlHorarios.SelectedValue.Length <= 0) return;
@@ -177,6 +177,10 @@ namespace Filmatic
         {
             List<sp_GetCinemaFunctionsDataByIDMovie_Result> dataFunctions = Session[sesionStorageItemName] as List<sp_GetCinemaFunctionsDataByIDMovie_Result>;
             LoadDataInDDlHorarios(dataFunctions);
+
+            if (ddlHorarios.SelectedValue.Length <= 0) return;
+
+            LoadDataInDDlSalas(dataFunctions);
         }
 
         protected void ddlHorarios_SelectedIndexChanged(object sender, EventArgs e)
@@ -284,7 +288,7 @@ namespace Filmatic
                 if (listRoomsLoaded.Contains(itemTimeValue)) continue;
 
                 ddlSalas.Items.Add(new ListItem(itemRoomLabel, itemRoomValue));
-                listRoomsLoaded.Add(itemDateValue);
+                listRoomsLoaded.Add(itemRoomValue);
             }
 
             //* Si solo hay un item lo selecciona

@@ -33,13 +33,13 @@ namespace Filmatic
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl formTitle;
 
         /// <summary>
-        /// Control lblId.
+        /// Control txtId.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblId;
+        protected global::System.Web.UI.WebControls.TextBox txtId;
 
         /// <summary>
         /// Control ddlIdRoom.
@@ -51,31 +51,31 @@ namespace Filmatic
         protected global::System.Web.UI.WebControls.DropDownList ddlIdRoom;
 
         /// <summary>
-        /// Control lblCreateAt.
+        /// Control txtCreateAt.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblCreateAt;
+        protected global::System.Web.UI.WebControls.TextBox txtCreateAt;
 
         /// <summary>
-        /// Control lblDuration.
+        /// Control txtDuration.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblDuration;
+        protected global::System.Web.UI.WebControls.TextBox txtDuration;
 
         /// <summary>
-        /// Control lblStartDate.
+        /// Control txtStartDate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblStartDate;
+        protected global::System.Web.UI.WebControls.TextBox txtStartDate;
 
         /// <summary>
         /// Control ddlIdMovie.
@@ -96,22 +96,22 @@ namespace Filmatic
         protected global::System.Web.UI.WebControls.DropDownList ddlFormatMovie;
 
         /// <summary>
-        /// Control lblTicketPrice.
+        /// Control txtTicketPrice.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblTicketPrice;
+        protected global::System.Web.UI.WebControls.TextBox txtTicketPrice;
 
         /// <summary>
-        /// Control lblStatus.
+        /// Control ddlStatus.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblStatus;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
 
         /// <summary>
         /// Control btnSave.
@@ -121,5 +121,14 @@ namespace Filmatic
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
+
+        /// <summary>
+        /// Control btnGenerateFunctionTickets.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGenerateFunctionTickets;
     }
 }

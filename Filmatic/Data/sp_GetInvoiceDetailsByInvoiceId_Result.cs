@@ -20,7 +20,7 @@ namespace Filmatic.Data
         public string type_ticket { get; set; }
         public string id_movie { get; set; }
         public Nullable<System.DateTime> start_date { get; set; }
-        public string url_carrusel { get; set; }
+        public string url_carrousel { get; set; }
         public string url_poster { get; set; }
         public string clasification { get; set; }
         public Nullable<int> year { get; set; }

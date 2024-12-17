@@ -31,7 +31,7 @@ namespace Filmatic.Pages
         {
             using (var context = new CineMaxTicketsDB11Entities3())
             {
-                gvPaymentCards.DataSource = context.sp_ManageDMLPaymentCards("GetSessionUserData().id_usuario", "S", "GetSessionUserData().id_usuario", null, null, null, null, null, null);
+                gvPaymentCards.DataSource = context.sp_ManageDMLPaymentCards(GetSessionUserData().id_usuario, "S", GetSessionUserData().id_usuario, null, null, null, null, null, null);
                 gvPaymentCards.DataBind();
             }
         }

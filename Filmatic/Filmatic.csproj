@@ -265,13 +265,7 @@
     <Compile Include="Data\sp_GetCinemaFunctionsDataByIDMovie_Result.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\sp_GetCinemaFunctionTicketsNotAvaible1_Result.cs">
-      <DependentUpon>Model3.tt</DependentUpon>
-    </Compile>
     <Compile Include="Data\sp_GetCinemaFunctionTicketsNotAvaible_Result.cs">
-      <DependentUpon>Model3.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\sp_GetCinemaFunctionTicketsSelectedByUser1_Result.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\sp_GetCinemaFunctionTicketsSelectedByUser_Result.cs">

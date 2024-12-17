@@ -21,18 +21,18 @@ namespace Filmatic.Pages.Admin
             if (idMovie == null || idMovie.Length < 1)
             {
                 formTitle.InnerText = "Crear Peliculas";
-                lblMovieId.Visible = false;
+                txtMovieId.Visible = false;
                 btnSave.Text = "Crear Pelicula";
                 return;
             }
 
 
             formTitle.InnerText = $"Actualizando Pelicula #{idMovie}";
-            lblMovieId.Visible = true;
+            txtMovieId.Visible = true;
             btnSave.Text = "Actualizar Pelicula";
 
-            lblMovieId.Attributes.Add("disabled", "");
-            lblMovieId.Text = idMovie;
+            txtMovieId.Attributes.Add("disabled", "");
+            txtMovieId.Text = idMovie;
 
             if (!IsPostBack)
             {
@@ -52,21 +52,21 @@ namespace Filmatic.Pages.Admin
         protected void btnSave_Click(object sender, EventArgs e)
         {
 
-            string idMovie = lblMovieId.Text;
-            string titleMovie = lblMovieTitle.Text;
-            string synopsisMovie = lblMovieSynopsis.Text;
-            string countryMovie = lblMovieCountry.Text;
-            string directorsMovie = lblMovieDirectors.Text;
-            string actorsMovie = lblMovieActors.Text;
-            string writersMovie = lblMovieWriters.Text;
-            int yearMovie = Int16.Parse(lblMovieYear.Text);
-            DateTime relased_dateMovie = DateTime.Parse(lblMovieReleaseDate.Text);
-            string url_posterMovie = lblMoviePosterUrl.Text;
-            string clasificationMovie = lblMovieClasification.Text;
+            string idMovie = txtMovieId.Text;
+            string titleMovie = txtMovieTitle.Text;
+            string synopsisMovie = txtMovieSynopsis.Text;
+            string countryMovie = txtMovieCountry.Text;
+            string directorsMovie = txtMovieDirectors.Text;
+            string actorsMovie = txtMovieActors.Text;
+            string writersMovie = txtMovieWriters.Text;
+            int yearMovie = Int16.Parse(txtMovieYear.Text);
+            DateTime relased_dateMovie = DateTime.Parse(txtMovieReleaseDate.Text);
+            string url_posterMovie = txtMoviePosterUrl.Text;
+            string clasificationMovie = txtMovieClasification.Text;
             decimal durationMovie = 0;
-            decimal.TryParse(lblMovieDuration.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out durationMovie);
+            decimal.TryParse(txtMovieDuration.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out durationMovie);
             string languageMovi = ddlMovieLanguage.SelectedValue;
-            string urlCarrouse= lblMovieCarrouselUrl.Text;
+            string urlCarrouse= txtMovieCarrouselUrl.Text;
 
             string resultSaveDataFromDB = SaveDataFromDB(
                             idMovie,
@@ -127,20 +127,20 @@ namespace Filmatic.Pages.Admin
                         return;
                     };
 
-                    lblMovieId.Text = dataMovie.id;
-                    lblMovieTitle.Text = dataMovie.title;
-                    lblMovieSynopsis.Text = dataMovie.synopsis;
-                    lblMovieCountry.Text = dataMovie.country;
-                    lblMovieDirectors.Text = dataMovie.directors;
-                    lblMovieActors.Text = dataMovie.actors;
-                    lblMovieWriters.Text = dataMovie.writers;
-                    lblMovieYear.Text = dataMovie.year.ToString();
+                    txtMovieId.Text = dataMovie.id;
+                    txtMovieTitle.Text = dataMovie.title;
+                    txtMovieSynopsis.Text = dataMovie.synopsis;
+                    txtMovieCountry.Text = dataMovie.country;
+                    txtMovieDirectors.Text = dataMovie.directors;
+                    txtMovieActors.Text = dataMovie.actors;
+                    txtMovieWriters.Text = dataMovie.writers;
+                    txtMovieYear.Text = dataMovie.year.ToString();
 
-                    lblMovieReleaseDate.Text = dataMovie.relased_date?.ToString("yyyy-MM-dd"); 
-                    lblMoviePosterUrl.Text = dataMovie.url_poster;
-                    lblMovieClasification.Text = dataMovie.clasification;
-                    lblMovieCarrouselUrl.Text = dataMovie.url_carrousel;
-                    lblMovieDuration.Text = dataMovie.duration?.ToString().Replace(",", ".");
+                    txtMovieReleaseDate.Text = dataMovie.relased_date?.ToString("yyyy-MM-dd"); 
+                    txtMoviePosterUrl.Text = dataMovie.url_poster;
+                    txtMovieClasification.Text = dataMovie.clasification;
+                    txtMovieCarrouselUrl.Text = dataMovie.url_carrousel;
+                    txtMovieDuration.Text = dataMovie.duration?.ToString().Replace(",", ".");
                     ddlMovieLanguage.SelectedValue = dataMovie.language;
                     ShowAlert("S", "Se han obtenido datos con éxito!", "");
 

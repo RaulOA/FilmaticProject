@@ -1,5 +1,6 @@
 ﻿using Filmatic.Data;
 using Filmatic.Models;
+using Microsoft.Ajax.Utilities;
 using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Web.UI.WebControls;
 
 namespace Filmatic
 {
-    public partial class CreateFunction : Page
+    public partial class CreateFunction : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,25 +23,32 @@ namespace Filmatic
 
             string idFunctionQS = Request.QueryString["idFunction"];
 
-            LoadDataMovies();
-            LoadDataRooms();
-            LoadDataFormatMovie();
+            
+            if (!IsPostBack)
+            {
+                LoadDataMovies();
+                LoadDataRooms();
+                LoadDataFormatMovie();
+            }
 
             if (idFunctionQS == null || idFunctionQS.Length < 1)
             {
+
                 formTitle.InnerText = "Crear Función";
-                lblId.Visible = false;
+              
+                txtId.Visible = false;
+                txtCreateAt.Visible = false;
                 btnSave.Text = "Crear Función";
+                btnGenerateFunctionTickets.Visible = false;
                 return;
             }
 
 
             formTitle.InnerText = $"Actualizando Función #{idFunctionQS}";
-            lblId.Visible = true;
-            btnSave.Text = "Actualizar Función";
+            
 
-            lblId.Attributes.Add("disabled", "");
-            lblId.Text = idFunctionQS;
+            txtId.Attributes.Add("disabled", "");
+            txtId.Text = idFunctionQS;
 
             if (!IsPostBack)
             {
@@ -51,16 +59,56 @@ namespace Filmatic
                     return;
                 }
 
-                LoadFunctionData(idFunctionQS);
-                
+                string msgErrorLoadData = LoadFunctionData(idFunctionQS);
+
+                if (!msgErrorLoadData.IsNullOrWhiteSpace())
+                {
+                    ShowAlert("E", "Error al cargar datos", msgErrorLoadData);
+                } else
+                {
+                    btnSave.Text = "Actualizar Función";
+                    txtId.Visible = true;
+                    btnGenerateFunctionTickets.Visible = true;
+                }
+
 
             }
         }
 
+        protected void btnGenerateFunctionTickets_Click(object sender, EventArgs e)
+        {
+            string msgErrorGenerateTickets = GenerateFunctionTicketsData(txtId.Text);
+
+            if (msgErrorGenerateTickets != null)
+            {
+                ShowAlert("E", "Error al generar los tickets!", msgErrorGenerateTickets);
+            }
+            else
+            {
+                ShowAlert("S", "Se han generado los tickets con éxito!", "");
+            }
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            string msgResultSaveData = SaveFunction();
+
+            if (msgResultSaveData != null)
+            {
+                ShowAlert("E", "Error al modificar la información!", msgResultSaveData);
+            }
+            else
+            {
+                ShowAlert("S", "Se ha actualizado con éxito!", "");
+            }
+        }
+
+
 
         private void LoadDataFormatMovie()
         {
-            ddlFormatMovie.Items.Clear();
+            ddlFormatMovie.Items.Clear(); 
+            ddlFormatMovie.Items.Add(new ListItem("-- Selecciona el formato --", null));
             ddlFormatMovie.Items.Add(new ListItem("2D", "2D"));
             ddlFormatMovie.Items.Add(new ListItem("3D", "3D"));
         }
@@ -69,13 +117,14 @@ namespace Filmatic
         private void LoadDataMovies()
         {
             ddlIdMovie.Items.Clear();
+            ddlIdMovie.Items.Add(new ListItem("-- Selecciona la pélicula --", null));
             using (var context = new CineMaxTicketsDB11Entities3())
             {
                 List< sp_ManageDMLCinemaCatMovies_Result > dataMovies = context.sp_ManageDMLCinemaCatMovies(GetSessionUserData().id_usuario, "S", null, null, null, null, null, null, null, null, null, null, null, null, null, null).ToList();
 
                 dataMovies.ForEach(movie =>
                 {
-                    ddlIdMovie.Items.Add(new ListItem(movie.title, movie.id));
+                    ddlIdMovie.Items.Add(new ListItem(movie.title, movie.id.Trim()));
                 });
             }
         }
@@ -83,111 +132,121 @@ namespace Filmatic
         private void LoadDataRooms ()
         {
             ddlIdRoom.Items.Clear();
-
+            ddlIdRoom.Items.Add(new ListItem("-- Selecciona la sala --", null));
             using (var context = new CineMaxTicketsDB11Entities3())
             {
                 List<sp_ManageDMLCinemaAgencyRooms_Result> dataAgencyRooms = context.sp_ManageDMLCinemaAgencyRooms(GetSessionUserData().id_usuario, "S", null, null, null, null, null, null, null, null ).ToList();
                 dataAgencyRooms.ForEach(room =>
                 {
-                    ddlIdRoom.Items.Add(new ListItem(room.title, room.id));
+                    ddlIdRoom.Items.Add(new ListItem(room.title, room.id.Trim()));
                 }); 
             }
 
 
         }
 
-        protected void LoadFunctionData(string _idFunction)
+        protected string GenerateFunctionTicketsData(string _idFunction)
         {
-
-            // Simular datos cargados para mostrar en los campos.
-            lblId.Text = _idFunction;
-            //ddlIdRoom.SelectedValue = "1";  // ID de la sala
-            //lblCreateAt.Text = DateTime.Now.ToString("yyyy-MM-ddTHH:mm");  // Fecha de creación
-            //lblDuration.Text = "2";  // Duración
-            //lblStartDate.Text = DateTime.Now.AddDays(1).ToString("yyyy-MM-ddTHH:mm");  // Fecha de inicio
-            //ddlIdMovie.SelectedValue = "10";  // ID de la película
-            //lblFormatMovie.Text = "3D";  // Formato de la película
-            //lblTicketPrice.Text = "7.50";  // Precio de la entrada
-            //lblStatus.Text = "Activo";  // Estado
-
-
-            using (var context = new CineMaxTicketsDB11Entities3())
+            try {
+                using (var context = new CineMaxTicketsDB11Entities3())
+                {
+                    context.sp_CreateCinemaFunctionTickets(GetSessionUserData().id_usuario, _idFunction);
+                    return null;
+                }
+            } catch(Exception e)
             {
-                sp_ManageDMLCinemaFunctions_Result dataFunction = context.sp_ManageDMLCinemaFunctions(
-                    GetSessionUserData().id_usuario,"S",_idFunction,null,null,null,null,null,null).First();
+                return e.Message;
+            }
 
-                ddlFormatMovie.SelectedValue = dataFunction.format_movie;
-                lblDuration.Text = dataFunction.duration.ToString().Replace(".", ",");
-                lblTicketPrice.Text = dataFunction.ticket_price.ToString().Replace(".", ",");
-                lblStartDate.Text  = dataFunction.start_date?.ToString("yyyy-MM-ddTHH:mm");
-                lblCreateAt.Text = dataFunction.create_at.ToString("yyyy-MM-ddTHH:mm");
-                lblStatus.Text = dataFunction.status;
+        }
+        protected string LoadFunctionData(string _idFunction)
+        {
+            try
+            {
+                txtId.Text = _idFunction;
+
+                using (var context = new CineMaxTicketsDB11Entities3())
+                {
+                    sp_ManageDMLCinemaFunctions_Result dataFunction = context.sp_ManageDMLCinemaFunctions(
+                        GetSessionUserData().id_usuario,"S",_idFunction,null,null,null,null,null,null).First();
+                    ddlFormatMovie.SelectedValue = dataFunction.format_movie;
+                    txtDuration.Text = dataFunction.duration?.ToString("F2");
+                    txtTicketPrice.Text = dataFunction.ticket_price.ToString("F2");
+                    txtStartDate.Text  = dataFunction.start_date?.ToString("yyyy-MM-ddTHH:mm");
+                    txtCreateAt.Text = dataFunction.create_at.ToString("yyyy-MM-ddTHH:mm");
+                    ddlIdMovie.SelectedValue = dataFunction.id_movie.Trim();
+                    ddlStatus.SelectedValue = dataFunction.status.Trim();
+                    ddlIdRoom.SelectedValue = dataFunction.id_room.Trim();
+                    ddlFormatMovie.SelectedValue = dataFunction.format_movie.Trim();
+                }
+                return null;
+            }catch(Exception e)
+            {
+                return e.Message;
             }
 
 
         }
 
-        protected void SaveFunction(object sender, EventArgs e)
+        private string SaveFunction()
         {
-            // Validar y procesar los datos ingresados por el usuario.
-            if (Page.IsValid)
-            {
-                try
+            try{
+
+                // Validar y procesar los datos ingresados por el usuario.
+                if (!Page.IsValid) return "Pagina no es válida";
+                
+                string actionDML = "U";
+                string idFunctionQS = Request.QueryString["idFunction"];
+
+                if (idFunctionQS == null || idFunctionQS.Length < 1)
                 {
-                    string actionDML = "U";
-                    string idFunctionQS = Request.QueryString["idFunction"];
+                    actionDML = "C";
+                }
 
-
-                    if (idFunctionQS == null || idFunctionQS.Length < 1)
-                    {
-                        actionDML = "C";
-                    }
-
-                    string idFunction = idFunctionQS;
-                    string idSala = ddlIdRoom.SelectedValue;
-                    //DateTime fechaCreacion = DateTime.Parse(lblCreateAt.Text);
+                string idFunction = idFunctionQS;
+                string idSala = ddlIdRoom.SelectedItem.Value.Trim();
+                //DateTime fechaCreacion = DateTime.Parse(txtCreateAt.Text);
             
-                    decimal duracion = 0;
-                    decimal.TryParse(lblDuration.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out duracion);
+                decimal duracion = 0;
+                decimal.TryParse(txtDuration.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out duracion);
 
-                    DateTime fechaInicio = DateTime.Parse(lblStartDate.Text);
-                    string idPelicula = ddlIdMovie.SelectedValue;
-                    string formato = ddlFormatMovie.SelectedValue.Trim();
-                    decimal precio; 
-                    decimal.TryParse(lblTicketPrice.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out precio);
-
-                    string estado = lblStatus.Text.Trim();
+                DateTime fechaInicio = DateTime.Parse(txtStartDate.Text);
+                string idPelicula = ddlIdMovie.SelectedItem.Value.Trim();
+                string formato = ddlFormatMovie.SelectedItem.Value.Trim();
+                decimal precio; 
+                decimal.TryParse(txtTicketPrice.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out precio);
                  
-                    // Aquí se procesan los datos para guardar o actualizar en la base de datos.
-                    // Si es una edición (si hay un ID) o una nueva función.
+                // Aquí se procesan los datos para guardar o actualizar en la base de datos.
+                // Si es una edición (si hay un ID) o una nueva función.
 
-                    using (var context = new CineMaxTicketsDB11Entities3())
-                    {
-                        context.sp_ManageDMLCinemaFunctions(
-                            GetSessionUserData().id_usuario, 
-                            actionDML,
-                            idFunction,
-                            idSala,
-                            duracion,
-                            fechaInicio,
-                           idPelicula,
-                           formato,
-                           precio
-
-
-                            );
-                    }
-                     ShowAlert("S", "Se ha actualizado con éxito!", "");
-                    // Mostrar mensaje de éxito o redirigir a otra página.
-                }
-                catch (Exception error)
+                using (var context = new CineMaxTicketsDB11Entities3())
                 {
-                    ShowAlert("E", "Error al modificar la información!", error.Message);
+                    var newData = context.sp_ManageDMLCinemaFunctions(
+                        GetSessionUserData().id_usuario, 
+                        actionDML,
+                        idFunction,
+                        idSala,
+                        duracion,
+                        fechaInicio,
+                        idPelicula,
+                        formato,
+                        precio
+                        ).FirstOrDefault();
+                    if (actionDML == "C")
+                    {
+                        Response.Redirect($"?idFunction={newData.id}");
+                    }
                 }
+                    
+
+                return null;
+                
+            } catch (Exception e)
+            {
+                return e.Message;
             }
-
-
         }
+
 
         /// <summary>
         /// Utilidad para mostrar alertar en el cliente
@@ -275,5 +334,6 @@ namespace Filmatic
             return true;
         }
 
+        
     }
 }
