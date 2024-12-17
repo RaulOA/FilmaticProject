@@ -15,13 +15,31 @@ namespace Filmatic
     {
 
         /// <summary>
-        /// Control inputId.
+        /// Control alertMsg.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputId;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertMsg;
+
+        /// <summary>
+        /// Control formTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl formTitle;
+
+        /// <summary>
+        /// Control lblId.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lblId;
 
         /// <summary>
         /// Control ddlIdRoom.
@@ -33,31 +51,31 @@ namespace Filmatic
         protected global::System.Web.UI.WebControls.DropDownList ddlIdRoom;
 
         /// <summary>
-        /// Control inputCreateAt.
+        /// Control lblCreateAt.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputCreateAt;
+        protected global::System.Web.UI.WebControls.TextBox lblCreateAt;
 
         /// <summary>
-        /// Control inputDuration.
+        /// Control lblDuration.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputDuration;
+        protected global::System.Web.UI.WebControls.TextBox lblDuration;
 
         /// <summary>
-        /// Control inputStartDate.
+        /// Control lblStartDate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputStartDate;
+        protected global::System.Web.UI.WebControls.TextBox lblStartDate;
 
         /// <summary>
         /// Control ddlIdMovie.
@@ -69,31 +87,31 @@ namespace Filmatic
         protected global::System.Web.UI.WebControls.DropDownList ddlIdMovie;
 
         /// <summary>
-        /// Control inputFormatMovie.
+        /// Control ddlFormatMovie.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputFormatMovie;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFormatMovie;
 
         /// <summary>
-        /// Control inputTicketPrice.
+        /// Control lblTicketPrice.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputTicketPrice;
+        protected global::System.Web.UI.WebControls.TextBox lblTicketPrice;
 
         /// <summary>
-        /// Control inputStatus.
+        /// Control lblStatus.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputStatus;
+        protected global::System.Web.UI.WebControls.TextBox lblStatus;
 
         /// <summary>
         /// Control btnSave.

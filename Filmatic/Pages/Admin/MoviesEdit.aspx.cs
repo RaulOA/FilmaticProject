@@ -3,8 +3,7 @@ using Filmatic.Models;
 using System;
 using System.Globalization;
 using System.Linq;
-using System.Web.UI.WebControls;
-using static System.Runtime.CompilerServices.RuntimeHelpers;
+using System.Web.UI.WebControls; 
 
 namespace Filmatic.Pages.Admin
 {
@@ -13,6 +12,9 @@ namespace Filmatic.Pages.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            Boolean resultValidaAdminUser = ValidateUserIsAdmin();
+
+            if (!resultValidaAdminUser) return;
 
             string idMovie = Request.QueryString["idMovie"];
 

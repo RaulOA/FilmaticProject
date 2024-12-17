@@ -155,7 +155,8 @@
       <LastGenOutput>Model3.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
-    <Content Include="Pages\Admin\CreateFunction.aspx" />
+    <Content Include="Pages\Admin\FunctionsEdit.aspx" />
+    <Content Include="Pages\Admin\FunctionsList.aspx" />
     <Content Include="Pages\Admin\Main.aspx" />
     <Content Include="Pages\Admin\MoviesEdit.aspx" />
     <Content Include="Global.asax" />
@@ -318,12 +319,19 @@
     <Compile Include="Data\sp_ManageUserRoles_Result.cs">
       <DependentUpon>Model3.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Admin\CreateFunction.aspx.cs">
-      <DependentUpon>CreateFunction.aspx</DependentUpon>
+    <Compile Include="Pages\Admin\FunctionsEdit.aspx.cs">
+      <DependentUpon>FunctionsEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Admin\CreateFunction.aspx.designer.cs">
-      <DependentUpon>CreateFunction.aspx</DependentUpon>
+    <Compile Include="Pages\Admin\FunctionsEdit.aspx.designer.cs">
+      <DependentUpon>FunctionsEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Admin\FunctionsList.aspx.cs">
+      <DependentUpon>FunctionsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Admin\FunctionsList.aspx.designer.cs">
+      <DependentUpon>FunctionsList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Admin\Main.aspx.cs">
       <DependentUpon>Main.aspx</DependentUpon>

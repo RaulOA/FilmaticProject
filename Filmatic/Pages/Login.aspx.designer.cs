@@ -11,7 +11,7 @@ namespace Filmatic
 {
 
 
-    public partial class _Login
+    public partial class Login
     {
 
         /// <summary>
