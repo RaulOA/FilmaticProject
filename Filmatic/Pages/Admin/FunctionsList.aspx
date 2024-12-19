@@ -27,11 +27,26 @@
                     <asp:BoundField DataField="function_ticket_price" HeaderText="Precio"/>
                     <asp:BoundField DataField="function_duration_to_show" HeaderText="Duración"/>
                     <asp:BoundField DataField="function_start_date" HeaderText="Fecha"/>
-                    <asp:BoundField DataField="function_format_movie" HeaderText="Formato"/>                   
+                    <asp:BoundField DataField="function_format_movie" HeaderText="Formato"/>
+                    <asp:TemplateField HeaderText="Estado">
+                        <ItemTemplate>
+                            <%# 
+                                Eval("function_status").ToString().Trim() == "B" ? "Borrador" :
+                                Eval("function_status").ToString().Trim() == "P" ? "Programada" :
+                                Eval("function_status").ToString().Trim() == "A" ? "Activa" :
+                                Eval("function_status").ToString().Trim() == "F" ? "Finalizada" :
+                                Eval("function_status").ToString().Trim() == "C" ? "Cancelada" :
+                                Eval("function_status").ToString().Trim() == "E" ? "En pausa" :
+                                Eval("function_status").ToString().Trim() == "R" ? "Retrasada" :
+                                Eval("function_status").ToString().Trim() == "V" ? "Vendiendo entradas" :
+                                Eval("function_status").ToString().Trim() == "S" ? "Sin disponibilidad" : "Desconocido" 
+                            %>
+                        </ItemTemplate>
+                    </asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Editar">
                         <ItemTemplate>
-                            <a href="FunctionsEdit.aspx?idFunction=<%# Eval("id_function") %>">
+                            <a href="/Pages/Admin/FunctionsEdit.aspx?idFunction=<%# Eval("id_function") %>">
                             Modificar
                             </a>
                         </ItemTemplate>

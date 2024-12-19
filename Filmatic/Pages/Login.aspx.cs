@@ -33,8 +33,7 @@ namespace Filmatic
         protected void OnClickLoginUser(object sender, EventArgs e)
         {
 
-            inputEmail.Value = "franj.lunam@gmail.com";
-            inputPassword.Value = "Abc123$";
+
 
             string username = inputEmail.Value;
             string password = inputPassword.Value;

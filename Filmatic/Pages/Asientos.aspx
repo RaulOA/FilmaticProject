@@ -4,6 +4,13 @@
 
     <link rel="stylesheet" href="/Content/cinema_tickets_styles.css" />
     <script src="/Scripts/cinema_tickets_scripts.js" defer></script>
+    <script type="application/json" id="jsonPriceTicket">
+        {
+          "ticket_price": "<%= hdfPriceOfTicket.Value %>"
+        }
+        
+    </script>
+
     <script type="application/json" id="jsonDataUser">
         <%= hdfDataUser.Value %>
     </script>

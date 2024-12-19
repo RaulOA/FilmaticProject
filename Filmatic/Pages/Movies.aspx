@@ -8,9 +8,8 @@
             <div class="carousel-inner">
                 <asp:Repeater ID="rptCarouselItems" runat="server">
                     <ItemTemplate>
-                        <div data-bs-interval="1000" class="carousel-item <%# Container.ItemIndex == 0 ? "active" : "" %>">
+                        <div data-bs-interval="5000" class="carousel-item <%# Container.ItemIndex == 0 ? "active" : "" %>">
                             <img style="max-height: 1000px; object-fit: cover;"  src="<%# Eval("ImageUrl") %>" class="d-block w-100" alt="<%# Eval("Title") %>">
-                             <%--<img src="<%# Eval("ImageUrl") %>" class="d-block w-100" alt="<%# Eval("Title") %>" style="max-height: 200px; object-fit: cover;">--%>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>

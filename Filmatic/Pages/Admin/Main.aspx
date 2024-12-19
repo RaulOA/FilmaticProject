@@ -12,7 +12,7 @@
             <article>
                 <a href="/Pages/Admin/FunctionsList.aspx" class="btn btn-primary">Ir Funciones</a>
                 <a href="/Pages/Admin/MoviesList.aspx" class="btn btn-primary">Ir a Catalogo Pelicula</a>
-                <a href="/Pages/Admin/GenresMoviesList.aspx" class="btn btn-primary">Ir a Generos Pelicula</a>
+                <%--<a href="/Pages/Admin/GenresMoviesList.aspx" class="btn btn-primary">Ir a Generos Pelicula</a>--%>
                 <a href="/Pages/Admin/Reports/ReportMoreViewedMovies.aspx" class="btn btn-primary">Peliculas más vistas</a>
                 <a href="/Pages/Admin/Reports/ReportTicketsByFunctions.aspx" class="btn btn-primary">Tiquetes por Función</a>
             </article>

@@ -86,6 +86,7 @@ namespace Filmatic
             else
             {
                 ShowAlert("S", "Se han generado los tickets con éxito!", "");
+                btnGenerateFunctionTickets.Visible = false;
             }
         }
 
@@ -108,7 +109,7 @@ namespace Filmatic
         private void LoadDataFormatMovie()
         {
             ddlFormatMovie.Items.Clear(); 
-            ddlFormatMovie.Items.Add(new ListItem("-- Selecciona el formato --", null));
+            ddlFormatMovie.Items.Add(new ListItem("-- Selecciona el formato --", ""));
             ddlFormatMovie.Items.Add(new ListItem("2D", "2D"));
             ddlFormatMovie.Items.Add(new ListItem("3D", "3D"));
         }
@@ -117,7 +118,7 @@ namespace Filmatic
         private void LoadDataMovies()
         {
             ddlIdMovie.Items.Clear();
-            ddlIdMovie.Items.Add(new ListItem("-- Selecciona la pélicula --", null));
+            ddlIdMovie.Items.Add(new ListItem("-- Selecciona la pélicula --", ""));
             using (var context = new CineMaxTicketsDB11Entities3())
             {
                 List< sp_ManageDMLCinemaCatMovies_Result > dataMovies = context.sp_ManageDMLCinemaCatMovies(GetSessionUserData().id_usuario, "S", null, null, null, null, null, null, null, null, null, null, null, null, null, null).ToList();
@@ -132,7 +133,7 @@ namespace Filmatic
         private void LoadDataRooms ()
         {
             ddlIdRoom.Items.Clear();
-            ddlIdRoom.Items.Add(new ListItem("-- Selecciona la sala --", null));
+            ddlIdRoom.Items.Add(new ListItem("-- Selecciona la sala --", ""));
             using (var context = new CineMaxTicketsDB11Entities3())
             {
                 List<sp_ManageDMLCinemaAgencyRooms_Result> dataAgencyRooms = context.sp_ManageDMLCinemaAgencyRooms(GetSessionUserData().id_usuario, "S", null, null, null, null, null, null, null, null ).ToList();
@@ -170,14 +171,20 @@ namespace Filmatic
                     sp_ManageDMLCinemaFunctions_Result dataFunction = context.sp_ManageDMLCinemaFunctions(
                         GetSessionUserData().id_usuario,"S",_idFunction,null,null,null,null,null,null).First();
                     ddlFormatMovie.SelectedValue = dataFunction.format_movie;
-                    txtDuration.Text = dataFunction.duration?.ToString("F2");
-                    txtTicketPrice.Text = dataFunction.ticket_price.ToString("F2");
                     txtStartDate.Text  = dataFunction.start_date?.ToString("yyyy-MM-ddTHH:mm");
                     txtCreateAt.Text = dataFunction.create_at.ToString("yyyy-MM-ddTHH:mm");
                     ddlIdMovie.SelectedValue = dataFunction.id_movie.Trim();
                     ddlStatus.SelectedValue = dataFunction.status.Trim();
                     ddlIdRoom.SelectedValue = dataFunction.id_room.Trim();
                     ddlFormatMovie.SelectedValue = dataFunction.format_movie.Trim();
+
+                    txtDuration.Text = dataFunction.duration?.ToString().Replace(",", ".");
+                    txtTicketPrice.Text = dataFunction.ticket_price.ToString().Replace(",", ".");
+
+                    if (ddlStatus.SelectedValue == "B")
+                    {
+                        btnGenerateFunctionTickets.Visible = false;
+                    }
                 }
                 return null;
             }catch(Exception e)
@@ -234,7 +241,7 @@ namespace Filmatic
                         ).FirstOrDefault();
                     if (actionDML == "C")
                     {
-                        Response.Redirect($"?idFunction={newData.id}");
+                        Response.Redirect($"/Pages/Admin/FunctionsEdit?idFunction={newData.id}");
                     }
                 }
                     

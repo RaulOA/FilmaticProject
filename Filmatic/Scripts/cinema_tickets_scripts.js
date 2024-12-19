@@ -20,7 +20,7 @@ function loadDataDetailInSumaryElement() {
     $listSumary.innerHTML = ""
 
     selectedTickets.forEach(({row,col }) => {
-        $listSumary.append(getElementItemSumary(row, col, 1, 5000))
+        $listSumary.append(getElementItemSumary(row, col, 1, getTicketPrice()))
     })
 
 }
@@ -215,6 +215,15 @@ function printSeats(numRows, numCols) {
 }
 
 
+function getTicketPrice() {
+    try {
+        return JSON.parse(document.getElementById('jsonPriceTicket').textContent)?.ticket_price
+    } catch {
+        return 0
+    }
+}
+
+
 function getDataSeatsSelectedByUser() {
     try {
         return JSON.parse(document.getElementById('jsonDataSeatsSelectedByUser').textContent)
@@ -326,7 +335,7 @@ function gotToPayDotNet() {
 }
 printSeats(NUM_ROWS, NUM_COLS);
 loadDataDetailInSumaryElement()
-
+console.log("getTicketPrice: ", getTicketPrice()) 
 
 
 

@@ -49,7 +49,7 @@
                     <!-- Formato de Película -->
                     <div class="col-md-6 mb-3">
                         <label for="ddlFormatMovie" class="form-label">Formato de Película</label>
-                        <asp:DropDownList ID="ddlFormatMovie" runat="server" CssClass="form-control" InitialValue="" required>
+                        <asp:DropDownList ID="ddlFormatMovie" runat="server" CssClass="form-control"  required>
                         </asp:DropDownList>                        
                     </div>
 
@@ -80,7 +80,7 @@
 
                 <!-- Botón de Guardar -->
                 <div class="d-flex justify-content-center">
-                    <a href="FunctionsList.aspx" class="btn btn-warning mx-2">Cancelar</a>
+                    <a href="/Pages/Admin/FunctionsList.aspx" class="btn btn-warning mx-2">Cancelar</a>
                     <asp:Button ID="btnSave" runat="server" CssClass="btn btn-primary mx-2" Text="Guardar Función" OnClick="btnSave_Click" />
                     <asp:Button ID="btnGenerateFunctionTickets" runat="server" CssClass="btn btn-primary mx-2" Text="Generar Ticketes para la función" OnClick="btnGenerateFunctionTickets_Click" />
                 </div>

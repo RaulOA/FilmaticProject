@@ -72,7 +72,7 @@
                                     <li><a class="dropdown-item" href="/Pages/Admin/Main.aspx">Pantalla Principal</a></li>
                                     <li><a class="dropdown-item" href="/Pages/Admin/FunctionsList.aspx">Funciones</a></li>
                                     <li><a class="dropdown-item" href="/Pages/Admin/MoviesList.aspx">Pelicula</a></li>
-                                    <li><a class="dropdown-item" href="/Pages/Admin/GenresMoviesList.aspx">Generos Pelicula</a></li>
+                                    <li><%--<a class="dropdown-item" href="/Pages/Admin/GenresMoviesList.aspx">Generos Pelicula</a>--%></li>
                                 </ul>
                             </li>
                         <% } %>
